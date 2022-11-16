@@ -1,13 +1,71 @@
-import 'package:ecommerce_flutter/constants/const_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../../constants/const_colors.dart';
+import '../shared_widgets/bars/search_bar.dart';
+import '../shared_widgets/bars/see_more_bar.dart';
+import '../shared_widgets/items/category_Item.dart';
+import '../shared_widgets/items/sale_item.dart';
+import '../shared_widgets/items/sales_ad.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final TextEditingController searchController = TextEditingController();
   final FocusNode searchFocusNode = FocusNode();
+
+  final List<Map<String, dynamic>> sales = [
+    {
+      'image': 'assets/images/Products/image 46.png',
+      'name': 'FS - Nike Air Max 270 React...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 54.png',
+      'name': 'FS - QUILTED MAXI CROS...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 49.png',
+      'name': 'FS - Nike Air Max 270 React...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 46.png',
+      'name': 'FS - Nike Air Max 270 React...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 54.png',
+      'name': 'FS - QUILTED MAXI CROS...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 49.png',
+      'name': 'FS - Nike Air Max 270 React...',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+    {
+      'image': 'assets/images/Products/image 46.png',
+      'name': 'assets/images/Products/image 54.png',
+      'actual_cost': 534.33,
+      'discount': 24,
+      'net_cost': 299.43,
+    },
+  ];
+
   final List<List<String>> categories = [
     ['Bikini', 'assets/icons/Product_icon/24px/bikini.png'],
     ['Dress', 'assets/icons/Product_icon/24px/dress.png'],
@@ -25,6 +83,7 @@ class HomePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -48,6 +107,40 @@ class HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
+          ImageSlideshow(
+            indicatorColor: AppColors.primaryBlue,
+            // onPageChanged: (value) {
+            //   debugPrint('Page changed: $value');
+            // },
+            autoPlayInterval: 3000,
+            isLoop: true,
+            children: [
+              const SaleAd(
+                  bgImagePath: 'assets/images/Promotion Image/image 50.png',
+                  widget: SaleAdClock(
+                      seconds: '54',
+                      hours: '08',
+                      minutes: '32',
+                      saleName: 'Super Flash Sale',
+                      discount: 50)),
+              Image.asset(
+                'assets/images/Promotion Image/image 50.png',
+                fit: BoxFit.fill,
+              ),
+              Image.asset(
+                'assets/images/Promotion Image/image 50.png',
+                fit: BoxFit.fill,
+              ),
+              Image.asset(
+                'assets/images/Promotion Image/image 50.png',
+                fit: BoxFit.fill,
+              ),
+              Image.asset(
+                'assets/images/Promotion Image/image 50.png',
+                fit: BoxFit.fill,
+              ),
+            ],
+          ),
           //Categories
           SeeMoreBar(
               onTap: () {}, title: 'Category', txtButton: 'More Category'),
@@ -55,7 +148,6 @@ class HomePage extends StatelessWidget {
             height: 120,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                // the number of items in the list
                 itemCount: categories.length,
                 // display each item of the product list
                 itemBuilder: (BuildContext context, int index) {
@@ -64,121 +156,76 @@ class HomePage extends StatelessWidget {
                       title: categories[index][0]);
                 }),
           ),
+
+          //Flash Sale
+          const SizedBox(height: 24),
           SeeMoreBar(onTap: () {}, title: 'Flash Sale'),
-        ],
-      ),
-    );
-  }
-}
-
-class CategoryItem extends StatelessWidget {
-  final String imagePath;
-  final String title;
-  const CategoryItem({
-    Key? key,
-    required this.imagePath,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(66),
-              border: Border.all(
-                color: AppColors.neutralLight,
-                width: 1,
-              ),
-            ),
-            child: Image.asset(imagePath, scale: 20),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                // the number of items in the list
+                itemCount: sales.length,
+                // display each item of the product list
+                itemBuilder: (BuildContext context, int index) {
+                  return SaleItem(
+                      imagePath: sales[index]['image'],
+                      actualCost: sales[index]['actual_cost'],
+                      discount: sales[index]['discount'],
+                      netCost: sales[index]['net_cost'],
+                      productName: sales[index]['name']);
+                }),
           ),
+
+          //Mega Sale
+          const SizedBox(height: 24),
+          SeeMoreBar(onTap: () {}, title: 'Mega Sale'),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                // the number of items in the list
+                itemCount: sales.length,
+                // display each item of the product list
+                itemBuilder: (BuildContext context, int index) {
+                  return SaleItem(
+                      imagePath: sales[index]['image'],
+                      actualCost: sales[index]['actual_cost'],
+                      discount: sales[index]['discount'],
+                      netCost: sales[index]['net_cost'],
+                      productName: sales[index]['name']);
+                }),
+          ),
+          SaleAd(
+              bgImagePath: 'assets/images/Promotion Image/image 51.png',
+              widget: RecommendationTexts(
+                title: 'Recommended Product',
+                subtitle: 'We recommend the best for you',
+                size: size,
+              )),
           const SizedBox(height: 8),
-          Text(
-            title,
-            style: const AppTextStyles()
-                .captionNormalRegular
-                .copyWith(color: AppColors.neutralGrey),
+          //Grid Products
+          GridView.builder(
+            shrinkWrap: true,
+            itemCount: sales.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => SaleItem(
+                imagePath: sales[index]['image'],
+                actualCost: sales[index]['actual_cost'],
+                discount: sales[index]['discount'],
+                netCost: sales[index]['net_cost'],
+                productName: sales[index]['name'],
+                isGrid: true,
+                size: size),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 8,
+              childAspectRatio: ((size.width / 2) - (8 * 3)) / 280,
+            ),
           )
         ],
       ),
-    );
-  }
-}
-
-class SeeMoreBar extends StatelessWidget {
-  final String title;
-  final String txtButton;
-  final void Function() onTap;
-
-  const SeeMoreBar({
-    Key? key,
-    required this.title,
-    this.txtButton = 'See More',
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const AppTextStyles()
-              .bodyTextMediumBold
-              .copyWith(color: AppColors.neutralDark),
-        ),
-        TextButton(
-          onPressed: onTap,
-          child: Text(
-            txtButton,
-            style: const AppTextStyles()
-                .bodyTextMediumBold
-                .copyWith(color: AppColors.primaryBlue),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class SearchBar extends StatelessWidget {
-  const SearchBar({
-    Key? key,
-    required this.searchController,
-    required this.searchFocusNode,
-  }) : super(key: key);
-
-  final TextEditingController searchController;
-  final FocusNode searchFocusNode;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: 3,
-      borderRadius: BorderRadius.circular(5),
-      child: TextField(
-          style: const AppTextStyles().bodyTextNormalRegular,
-          controller: searchController,
-          focusNode: searchFocusNode,
-          decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(color: AppColors.primaryBlue),
-            ),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.transparent)),
-            isDense: true,
-            hintText: "Search Product",
-            prefixIcon: const Icon(Icons.search, size: 24),
-          )),
     );
   }
 }
