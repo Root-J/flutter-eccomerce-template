@@ -8,7 +8,7 @@ class ExplorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Explore Page', style: kH1()),
+      child: Text('Explore Page', style: const AppTextStyles().headingH1),
     );
   }
 }

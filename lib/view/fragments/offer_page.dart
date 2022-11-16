@@ -8,7 +8,7 @@ class OfferPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Offer Page', style: kH1()),
+      child: Text('Offer Page', style: const AppTextStyles().headingH1),
     );
   }
 }

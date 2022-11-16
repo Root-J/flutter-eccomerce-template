@@ -8,7 +8,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Account Page', style: kH1()),
+      child: Text('Account Page', style: const AppTextStyles().headingH1),
     );
   }
 }

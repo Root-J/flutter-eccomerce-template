@@ -8,7 +8,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Cart Page', style: kH1()),
+      child: Text('Cart Page', style: const AppTextStyles().headingH1),
     );
   }
 }
