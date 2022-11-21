@@ -4,12 +4,27 @@ import '../../../constants/const_colors.dart';
 import '../../../constants/const_text_styles.dart';
 
 class SaleItem extends StatelessWidget {
+  /// This widget represent the market item with discount
+  /// but there's two types of discounted items
+  /// on with rating
+  /// and another without stars rating
+  /// [imagePath] is the image of the product
+  /// [productName] is the name of the product
+  /// [actualCost] the actual cost od the product before  the discount which is in red color and has a line through (deleted)
+  /// [discount] the percent of the discount
+
+  /// optional [isGrid] the star rating only shows in grid lists so if it's gird the star will shows
+  /// and the items will scale up two fit two items in one screen
+  /// optional [size] to see what size you want for width only but height is fixed 238 in usual and 320 in grid for stars height
+  /// int [rating] is the number of stars for the item
+  /// the class has ratingDrawer() to make stars list for the given rating
+  ///
   final String imagePath;
   final String productName;
   final double actualCost;
   final int discount;
-  final double netCost;
   final bool isGrid;
+  final int? rating;
   final Size? size;
 
   const SaleItem({
@@ -17,25 +32,28 @@ class SaleItem extends StatelessWidget {
     required this.imagePath,
     required this.actualCost,
     required this.discount,
-    required this.netCost,
     required this.productName,
     this.isGrid = false,
     this.size,
+    this.rating,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Image> stars = [
-      Image.asset('assets/icons/Rating/star.png',
-          color: AppColors.primaryYellow, scale: 40),
-      Image.asset('assets/icons/Rating/star.png',
-          color: AppColors.primaryYellow, scale: 40),
-      Image.asset('assets/icons/Rating/star.png',
-          color: AppColors.primaryYellow, scale: 40),
-      Image.asset('assets/icons/Rating/star.png',
-          color: AppColors.primaryYellow, scale: 40),
-      Image.asset('assets/icons/Rating/star.png', scale: 40),
-    ];
+    List<Image> stars = [];
+
+    void ratingDrawer(rating) {
+      for (int i = 0; i < 6; i++) {
+        if (i <= rating) {
+          stars.add(Image.asset('assets/icons/Rating/star.png',
+              color: AppColors.primaryYellow, scale: 40));
+        } else {
+          stars.add(Image.asset('assets/icons/Rating/star.png', scale: 40));
+        }
+      }
+    }
+
+    ratingDrawer(rating);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -66,7 +84,7 @@ class SaleItem extends StatelessWidget {
                         .bodyTextNormalBold
                         .copyWith(color: AppColors.neutralDark)),
                 if (isGrid) Row(children: stars),
-                Text('\$$netCost',
+                Text('\$${actualCost - (actualCost - discount / 100)}',
                     textAlign: TextAlign.left,
                     style: const AppTextStyles()
                         .bodyTextNormalRegular

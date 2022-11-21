@@ -110,26 +110,24 @@ class _SaleAdClockState extends State<SaleAdClock> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Text('${widget.saleName} \n${widget.discount}% Off',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                softWrap: true,
-                style: const AppTextStyles()
-                    .headingH2
-                    .copyWith(color: AppColors.backgroundWhite)),
-            NumericClock(
-              hours: hours.toString(),
-              seconds: remainSeconds.toString(),
-              minutes: minutes.toString(),
-            )
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text('${widget.saleName} \n${widget.discount}% Off',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
+              softWrap: true,
+              style: const AppTextStyles()
+                  .headingH2
+                  .copyWith(color: AppColors.backgroundWhite)),
+          NumericClock(
+            hours: hours.toString(),
+            seconds: remainSeconds.toString(),
+            minutes: minutes.toString(),
+          )
+        ],
       ),
     );
   }

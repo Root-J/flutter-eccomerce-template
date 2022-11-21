@@ -4,6 +4,16 @@ import '../../../constants/const_colors.dart';
 import '../../../constants/const_text_styles.dart';
 
 class CategoryItem extends StatelessWidget {
+  /// This Widget contains the Category item shape
+  /// It's rounded circle with image inside it and a title below the circle
+  /// it takes [imagePath] to show an image
+  /// and a [title] that is below the circle
+  ///
+  /// Design role:
+  /// fixed radius: 35
+  /// image scale: 20
+  /// vertical padding: 8
+
   final String imagePath;
   final String title;
   const CategoryItem({

@@ -4,6 +4,12 @@ import '../../../constants/const_colors.dart';
 import '../../../constants/const_text_styles.dart';
 
 class NumericClock extends StatelessWidget {
+  /// 00 : 00 : 00
+  /// This Widget represent a clock shape
+  /// So, it takes [seconds], [minutes] and [hours] parameters that show in the clock
+  /// Design role:
+  /// fixed horizontal padding: 8
+  ///
   final String seconds;
   final String hours;
   final String minutes;
@@ -43,6 +49,9 @@ class NumericClock extends StatelessWidget {
 }
 
 class ClockNumber extends StatelessWidget {
+  /// it's an item that represent rounded white background and a dark-blue number on it
+  /// [number] takes String number to put it on 5 radius bg
+  ///
   final String number;
   const ClockNumber({
     Key? key,

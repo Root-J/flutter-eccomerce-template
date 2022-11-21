@@ -4,6 +4,7 @@ import '../../constants/const_colors.dart';
 import '../../constants/const_text_styles.dart';
 
 class TextHeader extends StatelessWidget {
+  /// This Widget represent the design of Text that show instead if AppBar in screens
   const TextHeader({
     Key? key,
     required this.text,

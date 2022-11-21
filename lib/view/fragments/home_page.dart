@@ -20,49 +20,42 @@ class HomePage extends StatelessWidget {
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 54.png',
       'name': 'FS - QUILTED MAXI CROS...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 49.png',
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 46.png',
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 54.png',
       'name': 'FS - QUILTED MAXI CROS...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 49.png',
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
     {
       'image': 'assets/images/Products/image 46.png',
       'name': 'assets/images/Products/image 54.png',
       'actual_cost': 534.33,
       'discount': 24,
-      'net_cost': 299.43,
     },
   ];
 
@@ -92,6 +85,7 @@ class HomePage extends StatelessWidget {
           Row(
             children: [
               Expanded(
+                // expanded widget here make the search bar takes the available space
                 child: SearchBar(
                     searchController: searchController,
                     searchFocusNode: searchFocusNode),
@@ -107,12 +101,16 @@ class HomePage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
+
+          // Image Slide show makes a beautiful auto player for any types of list
           ImageSlideshow(
             indicatorColor: AppColors.primaryBlue,
-            // onPageChanged: (value) {
-            //   debugPrint('Page changed: $value');
-            // },
-            autoPlayInterval: 3000,
+            /*
+            onPageChanged: (value) {
+               debugPrint('Page changed: $value');
+            },
+            */
+            autoPlayInterval: 6000,
             isLoop: true,
             children: [
               const SaleAd(
@@ -121,14 +119,6 @@ class HomePage extends StatelessWidget {
                       seconds: 30000,
                       saleName: 'Super Flash Sale',
                       discount: 50)),
-              Image.asset(
-                'assets/images/Promotion Image/image 50.png',
-                fit: BoxFit.fill,
-              ),
-              Image.asset(
-                'assets/images/Promotion Image/image 50.png',
-                fit: BoxFit.fill,
-              ),
               Image.asset(
                 'assets/images/Promotion Image/image 50.png',
                 fit: BoxFit.fill,
@@ -170,7 +160,6 @@ class HomePage extends StatelessWidget {
                       imagePath: sales[index]['image'],
                       actualCost: sales[index]['actual_cost'],
                       discount: sales[index]['discount'],
-                      netCost: sales[index]['net_cost'],
                       productName: sales[index]['name']);
                 }),
           ),
@@ -190,7 +179,6 @@ class HomePage extends StatelessWidget {
                       imagePath: sales[index]['image'],
                       actualCost: sales[index]['actual_cost'],
                       discount: sales[index]['discount'],
-                      netCost: sales[index]['net_cost'],
                       productName: sales[index]['name']);
                 }),
           ),
@@ -210,7 +198,6 @@ class HomePage extends StatelessWidget {
                 imagePath: sales[index]['image'],
                 actualCost: sales[index]['actual_cost'],
                 discount: sales[index]['discount'],
-                netCost: sales[index]['net_cost'],
                 productName: sales[index]['name'],
                 isGrid: true,
                 size: size),
