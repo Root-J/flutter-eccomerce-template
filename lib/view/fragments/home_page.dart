@@ -118,9 +118,7 @@ class HomePage extends StatelessWidget {
               const SaleAd(
                   bgImagePath: 'assets/images/Promotion Image/image 50.png',
                   widget: SaleAdClock(
-                      seconds: '54',
-                      hours: '08',
-                      minutes: '32',
+                      seconds: 30000,
                       saleName: 'Super Flash Sale',
                       discount: 50)),
               Image.asset(
@@ -196,12 +194,11 @@ class HomePage extends StatelessWidget {
                       productName: sales[index]['name']);
                 }),
           ),
-          SaleAd(
+          const SaleAd(
               bgImagePath: 'assets/images/Promotion Image/image 51.png',
               widget: RecommendationTexts(
                 title: 'Recommended Product',
                 subtitle: 'We recommend the best for you',
-                size: size,
               )),
           const SizedBox(height: 8),
           //Grid Products
