@@ -71,8 +71,13 @@ int minutes = 0;
 int remainSeconds = 0;
 
 void timeTranslator(seconds) {
+<<<<<<< HEAD
   hours = seconds / (60 * 60) > 1 ? (seconds / (60 * 60)).round() : 0;
   minutes = seconds / (60) > 1 ? (seconds / (60) - (60 * hours)).round() : 0;
+=======
+  hours = seconds / (60 * 60) > 1 ? (seconds / (60 * 60)).truncate() : 0;
+  minutes = seconds / (60) > 1 ? (seconds / (60) - (60 * hours)).truncate() : 0;
+>>>>>>> e7dee6a (commit)
   remainSeconds = seconds - (hours * 60 * 60) - (minutes * 60);
 }
 
