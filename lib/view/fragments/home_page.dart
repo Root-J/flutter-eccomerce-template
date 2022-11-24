@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
               const SaleAd(
                   bgImagePath: 'assets/images/Promotion Image/image 50.png',
                   widget: SaleAdClock(
-                      seconds: 30000,
+                      seconds: 45000,
                       saleName: 'Super Flash Sale',
                       discount: 50)),
               Image.asset(
