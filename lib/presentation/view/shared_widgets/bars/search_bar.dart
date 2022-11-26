@@ -1,7 +1,9 @@
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/const_colors.dart';
-import '../../../constants/const_text_styles.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
+import '../../../resources/values_manager.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({
@@ -16,23 +18,23 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 3,
-      borderRadius: BorderRadius.circular(5),
+      elevation: AppElevation.e3,
+      borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
       child: TextField(
           style: const AppTextStyles().bodyTextNormalRegular,
           controller: searchController,
           focusNode: searchFocusNode,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
               borderSide: const BorderSide(color: AppColors.primaryBlue),
             ),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
                 borderSide: const BorderSide(color: Colors.transparent)),
             isDense: true,
-            hintText: "Search Product",
-            prefixIcon: const Icon(Icons.search, size: 24),
+            hintText: AppStrings.searchProduct,
+            prefixIcon: const Icon(Icons.search, size: AppSize.s24),
           )),
     );
   }

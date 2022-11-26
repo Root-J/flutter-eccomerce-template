@@ -1,10 +1,10 @@
-import 'package:ecommerce_flutter/view/fragments/account_page.dart';
-import 'package:ecommerce_flutter/view/fragments/cart_page.dart';
-import 'package:ecommerce_flutter/view/fragments/explore_page.dart';
-import 'package:ecommerce_flutter/view/fragments/offer_page.dart';
 import 'package:flutter/material.dart';
 
+import 'fragments/account_page.dart';
+import 'fragments/cart_page.dart';
+import 'fragments/explore_page.dart';
 import 'fragments/home_page.dart';
+import 'fragments/offer_page.dart';
 
 class MarketParent extends StatefulWidget {
   ///

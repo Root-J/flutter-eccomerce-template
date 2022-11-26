@@ -1,10 +1,11 @@
+import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
   const AppTextStyles();
 
   TextStyle get buttonText => const TextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s14,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -13,7 +14,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH1 => const TextStyle(
-        fontSize: 32,
+        fontSize: AppSize.s32,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -22,7 +23,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH2 => const TextStyle(
-        fontSize: 24,
+        fontSize: AppSize.s24,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -31,7 +32,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH3 => const TextStyle(
-        fontSize: 20,
+        fontSize: AppSize.s20,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -40,7 +41,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH4 => const TextStyle(
-        fontSize: 16,
+        fontSize: AppSize.s16,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -49,7 +50,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH5 => const TextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s14,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -58,7 +59,7 @@ class AppTextStyles {
       );
 
   TextStyle get headingH6 => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -67,7 +68,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextLargeBold => const TextStyle(
-        fontSize: 16,
+        fontSize: AppSize.s16,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -76,7 +77,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextLargeRegular => const TextStyle(
-        fontSize: 16,
+        fontSize: AppSize.s16,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -85,7 +86,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextMediumBold => const TextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s14,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -94,7 +95,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextMediumRegular => const TextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s14,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -103,7 +104,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextNormalBold => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -112,7 +113,7 @@ class AppTextStyles {
       );
 
   TextStyle get bodyTextNormalRegular => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -121,7 +122,7 @@ class AppTextStyles {
       );
 
   TextStyle get captionLargeBold => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -130,7 +131,7 @@ class AppTextStyles {
       );
 
   TextStyle get captionLargeRegular => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -139,7 +140,7 @@ class AppTextStyles {
       );
 
   TextStyle get captionNormalBold => const TextStyle(
-        fontSize: 10,
+        fontSize: AppSize.s10,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -148,7 +149,7 @@ class AppTextStyles {
       );
 
   TextStyle get captionNormalRegular => const TextStyle(
-        fontSize: 10,
+        fontSize: AppSize.s10,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -157,7 +158,7 @@ class AppTextStyles {
       );
 
   TextStyle get captionNormalRegularLine => const TextStyle(
-        fontSize: 10,
+        fontSize: AppSize.s10,
         decoration: TextDecoration.lineThrough,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -166,7 +167,7 @@ class AppTextStyles {
       );
 
   TextStyle get formTextNormal => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w400,
@@ -175,7 +176,7 @@ class AppTextStyles {
       );
 
   TextStyle get formTextFill => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -184,7 +185,7 @@ class AppTextStyles {
       );
 
   TextStyle get linkNormal => const TextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s14,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
@@ -193,7 +194,7 @@ class AppTextStyles {
       );
 
   TextStyle get linkSmall => const TextStyle(
-        fontSize: 12,
+        fontSize: AppSize.s12,
         decoration: TextDecoration.none,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,

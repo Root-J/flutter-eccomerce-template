@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/const_colors.dart';
-import '../../constants/const_text_styles.dart';
+import '../../resources/colors_manager.dart';
+import '../../resources/text_styles_manager.dart';
 
 class TextHeader extends StatelessWidget {
   /// This Widget represent the design of Text that show instead if AppBar in screens

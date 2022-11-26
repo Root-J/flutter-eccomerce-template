@@ -1,7 +1,8 @@
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/const_colors.dart';
-import '../../../constants/const_text_styles.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
 
 class SeeMoreBar extends StatelessWidget {
   /// This Widget takes all width available
@@ -18,7 +19,7 @@ class SeeMoreBar extends StatelessWidget {
   const SeeMoreBar({
     Key? key,
     required this.title,
-    this.txtButton = 'See More',
+    this.txtButton = AppStrings.seeMore,
     required this.onTap,
   }) : super(key: key);
 

@@ -1,7 +1,8 @@
-import 'package:ecommerce_flutter/constants/const_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/const_text_styles.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
+import '../../../resources/values_manager.dart';
 
 class CouponBar extends StatelessWidget {
   /// Bar item that contains a text and background color
@@ -26,10 +27,10 @@ class CouponBar extends StatelessWidget {
       width: size.width,
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(AppPadding.p24),
         child: Text(message,
             style: const AppTextStyles().headingH4.copyWith(color: textColor)),
       ),

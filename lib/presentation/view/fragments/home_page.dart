@@ -1,7 +1,10 @@
+import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
-import '../../constants/const_colors.dart';
+import '../../resources/colors_manager.dart';
+import '../../resources/values_manager.dart';
 import '../shared_widgets/bars/search_bar.dart';
 import '../shared_widgets/bars/see_more_bar.dart';
 import '../shared_widgets/items/category_Item.dart';
@@ -16,63 +19,63 @@ class HomePage extends StatelessWidget {
 
   final List<Map<String, dynamic>> sales = [
     {
-      'image': 'assets/images/Products/image 46.png',
+      'image': ProductImage.nikeYellowShoeImage,
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 54.png',
+      'image': ProductImage.womanBlackBagImage,
       'name': 'FS - QUILTED MAXI CROS...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 49.png',
+      'image': ProductImage.nikeRedShoeImage,
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 46.png',
+      'image': ProductImage.nikeYellowShoeImage,
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 54.png',
+      'image': ProductImage.womanBlackBagImage,
       'name': 'FS - QUILTED MAXI CROS...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 49.png',
+      'image': ProductImage.nikeRedShoeImage,
       'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
     },
     {
-      'image': 'assets/images/Products/image 46.png',
-      'name': 'assets/images/Products/image 54.png',
+      'image': ProductImage.nikeYellowShoeImage,
+      'name': 'FS - Nike Air Max 270 React...',
       'actual_cost': 534.33,
       'discount': 24,
     },
   ];
 
   final List<List<String>> categories = [
-    ['Bikini', 'assets/icons/Product_icon/24px/bikini.png'],
-    ['Dress', 'assets/icons/Product_icon/24px/dress.png'],
-    ['Man Bag', 'assets/icons/Product_icon/24px/man bag.png'],
-    ['Man Pants', 'assets/icons/Product_icon/24px/man pants.png'],
-    ['Man Shoes', 'assets/icons/Product_icon/24px/man shoes.png'],
-    ['Man Underwear', 'assets/icons/Product_icon/24px/man underwear.png'],
-    ['Shirt', 'assets/icons/Product_icon/24px/shirt.png'],
-    ['Skirt', 'assets/icons/Product_icon/24px/skirt.png'],
-    ['T-shirt', 'assets/icons/Product_icon/24px/Tshirt.png'],
-    ['Woman Bag', 'assets/icons/Product_icon/24px/woman bag.png'],
-    ['Woman Pants', 'assets/icons/Product_icon/24px/woman pants.png'],
-    ['Woman Shoes', 'assets/icons/Product_icon/24px/woman shoes.png'],
-    ['Woman T-shirt', 'assets/icons/Product_icon/24px/woman tshirt.png'],
+    ['Bikini', ProductIcon.bikiniProductIcon],
+    ['Dress', ProductIcon.dressProductIcon],
+    ['Man Bag', ProductIcon.manBagProductIcon],
+    ['Man Pants', ProductIcon.manPantsProductIcon],
+    ['Man Shoes', ProductIcon.manShoesProductIcon],
+    ['Man Underwear', ProductIcon.manUnderwearProductIcon],
+    ['Shirt', ProductIcon.shirtProductIcon],
+    ['Skirt', ProductIcon.skirtProductIcon],
+    ['T-shirt', ProductIcon.tshirtProductIcon],
+    ['Woman Bag', ProductIcon.womanBagProductIcon],
+    ['Woman Pants', ProductIcon.womanPantsProductIcon],
+    ['Woman Shoes', ProductIcon.womanShoesProductIcon],
+    ['Woman T-shirt', ProductIcon.womanTshirtProductIcon],
   ];
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class HomePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 24),
+          const SizedBox(height: AppMargin.m24),
           // Header Bar
           Row(
             children: [
@@ -93,14 +96,14 @@ class HomePage extends StatelessWidget {
               IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.favorite_outline_rounded,
-                      color: AppColors.neutralGrey, size: 30)),
+                      color: AppColors.neutralGrey, size: AppSize.s30)),
               IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.notifications_outlined,
-                      color: AppColors.neutralGrey, size: 30)),
+                      color: AppColors.neutralGrey, size: AppSize.s30)),
             ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AppMargin.m24),
 
           // Image Slide show makes a beautiful auto player for any types of list
           ImageSlideshow(
@@ -114,24 +117,27 @@ class HomePage extends StatelessWidget {
             isLoop: true,
             children: [
               const SaleAd(
-                  bgImagePath: 'assets/images/Promotion Image/image 50.png',
+                  // Todo Add Api call that create sale Ad
+                  bgImagePath: PromotionImage.redShoeImage,
                   widget: SaleAdClock(
-                      seconds: 45000,
+                      seconds: 30000,
                       saleName: 'Super Flash Sale',
                       discount: 50)),
               Image.asset(
-                'assets/images/Promotion Image/image 50.png',
+                PromotionImage.redShoeImage,
                 fit: BoxFit.fill,
               ),
               Image.asset(
-                'assets/images/Promotion Image/image 50.png',
+                PromotionImage.redShoeImage,
                 fit: BoxFit.fill,
               ),
             ],
           ),
           //Categories
           SeeMoreBar(
-              onTap: () {}, title: 'Category', txtButton: 'More Category'),
+              onTap: () {},
+              title: AppStrings.category,
+              txtButton: AppStrings.moreCategory),
           SizedBox(
             height: 120,
             child: ListView.builder(
@@ -146,8 +152,8 @@ class HomePage extends StatelessWidget {
           ),
 
           //Flash Sale
-          const SizedBox(height: 24),
-          SeeMoreBar(onTap: () {}, title: 'Flash Sale'),
+          const SizedBox(height: AppMargin.m24),
+          SeeMoreBar(onTap: () {}, title: AppStrings.flashSale),
           SizedBox(
             height: 250,
             child: ListView.builder(
@@ -157,6 +163,7 @@ class HomePage extends StatelessWidget {
                 // display each item of the product list
                 itemBuilder: (BuildContext context, int index) {
                   return SaleItem(
+                      // ToDo Add Api call that create flash sales List
                       imagePath: sales[index]['image'],
                       actualCost: sales[index]['actual_cost'],
                       discount: sales[index]['discount'],
@@ -165,8 +172,8 @@ class HomePage extends StatelessWidget {
           ),
 
           //Mega Sale
-          const SizedBox(height: 24),
-          SeeMoreBar(onTap: () {}, title: 'Mega Sale'),
+          const SizedBox(height: AppMargin.m24),
+          SeeMoreBar(onTap: () {}, title: AppStrings.megaSale),
           SizedBox(
             height: 250,
             child: ListView.builder(
@@ -176,6 +183,7 @@ class HomePage extends StatelessWidget {
                 // display each item of the product list
                 itemBuilder: (BuildContext context, int index) {
                   return SaleItem(
+                      // ToDo Add Api call that creates Mega Sale List
                       imagePath: sales[index]['image'],
                       actualCost: sales[index]['actual_cost'],
                       discount: sales[index]['discount'],
@@ -183,14 +191,16 @@ class HomePage extends StatelessWidget {
                 }),
           ),
           const SaleAd(
-              bgImagePath: 'assets/images/Promotion Image/image 51.png',
+              // ToDo Add Api call that creates Sale AD
+              bgImagePath: PromotionImage.whiteShoeImage,
               widget: RecommendationTexts(
                 title: 'Recommended Product',
                 subtitle: 'We recommend the best for you',
               )),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppMargin.m8),
           //Grid Products
           GridView.builder(
+            // ToDo add Api call that creates Sales Item Grid list
             shrinkWrap: true,
             itemCount: sales.length,
             physics: const NeverScrollableScrollPhysics(),

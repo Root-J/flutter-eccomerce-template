@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/const_colors.dart';
-import '../../../constants/const_text_styles.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
+import '../../../resources/values_manager.dart';
 
 class SaleItem extends StatelessWidget {
   /// This widget represent the market item with discount
@@ -43,32 +44,32 @@ class SaleItem extends StatelessWidget {
     List<Image> stars = [];
 
     void ratingDrawer(rating) {
+      // This function is responsible for creating rating stars list of widgets
+      // as number of highest rated item is 5 stars
+      // then it can't proceed to 6
       for (int i = 0; i < 6; i++) {
         if (i <= rating) {
           stars.add(Image.asset('assets/icons/Rating/star.png',
-              color: AppColors.primaryYellow, scale: 40));
+              color: AppColors.primaryYellow, scale: AppSize.s40));
         } else {
-          stars.add(Image.asset('assets/icons/Rating/star.png', scale: 40));
+          stars.add(
+              Image.asset('assets/icons/Rating/star.png', scale: AppSize.s40));
         }
       }
     }
 
-<<<<<<< HEAD
-    ratingDrawer(rating);
-=======
     if (rating != null) {
       ratingDrawer(rating);
     }
->>>>>>> e7dee6a (commit)
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
       child: Container(
           width: size == null ? 141 : null,
           height: size == null ? 238 : 320,
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(AppPadding.p8),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
               border: Border.all(color: AppColors.neutralLight)),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,8 @@ class SaleItem extends StatelessWidget {
                       width: size == null ? 109 : size!.width / 2 - (8 * 4),
                       height: 109,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius:
+                            BorderRadius.circular(AppCircularRadius.cr5),
                         image: DecorationImage(
                             image: AssetImage(imagePath), fit: BoxFit.fitWidth),
                       )),
@@ -90,12 +92,8 @@ class SaleItem extends StatelessWidget {
                         .bodyTextNormalBold
                         .copyWith(color: AppColors.neutralDark)),
                 if (isGrid) Row(children: stars),
-<<<<<<< HEAD
-                Text('\$${actualCost - (actualCost - discount / 100)}',
-=======
                 Text(
                     '\$${(actualCost - (actualCost * discount ~/ 100)).round()}',
->>>>>>> e7dee6a (commit)
                     textAlign: TextAlign.left,
                     style: const AppTextStyles()
                         .bodyTextNormalRegular
@@ -109,7 +107,7 @@ class SaleItem extends StatelessWidget {
                         style: const AppTextStyles()
                             .captionNormalRegularLine
                             .copyWith(color: AppColors.neutralGrey)),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: AppMargin.m8),
                     Text('$discount% Off',
                         textAlign: TextAlign.left,
                         style: const AppTextStyles()

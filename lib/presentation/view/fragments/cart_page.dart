@@ -1,6 +1,7 @@
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/const_text_styles.dart';
+import '../../resources/text_styles_manager.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Cart Page', style: const AppTextStyles().headingH1),
+      child: Text(AppStrings.cartPage, style: const AppTextStyles().headingH1),
     );
   }
 }

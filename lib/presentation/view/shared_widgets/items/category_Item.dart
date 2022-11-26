@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/const_colors.dart';
-import '../../../constants/const_text_styles.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
+import '../../../resources/values_manager.dart';
 
 class CategoryItem extends StatelessWidget {
   /// This Widget contains the Category item shape
@@ -25,22 +26,22 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(AppPadding.p8),
       child: Column(
         children: [
           Container(
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(66),
+              borderRadius: BorderRadius.circular(AppCircularRadius.cr66),
               border: Border.all(
                 color: AppColors.neutralLight,
                 width: 1,
               ),
             ),
-            child: Image.asset(imagePath, scale: 20),
+            child: Image.asset(imagePath, scale: AppSize.s20),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppMargin.m8),
           Text(
             title,
             style: const AppTextStyles()

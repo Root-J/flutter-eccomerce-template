@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class HeaderPadding extends StatelessWidget {
@@ -12,9 +13,9 @@ class HeaderPadding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 48),
+        const SizedBox(height: AppMargin.m48),
         widget,
-        const SizedBox(height: 32),
+        const SizedBox(height: AppMargin.m32),
       ],
     );
   }
