@@ -56,4 +56,5 @@ class SystemIcons {
   static const String moreIcon = '$SYSTEM_ICONS_PATH/more.png';
   static const String listIcon = '$SYSTEM_ICONS_PATH/List.png';
   static const String backIcon = '$SYSTEM_ICONS_PATH/Left.png';
+  static const String transactionIcon = '$SYSTEM_ICONS_PATH/Transaction.png';
 }

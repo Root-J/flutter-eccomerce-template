@@ -8,7 +8,7 @@ import '../../shared_widgets/items/notification_list_item.dart';
 
 class NotificationOfferScreen extends StatelessWidget {
   NotificationOfferScreen({Key? key}) : super(key: key);
-  final offerNews = [
+  final List<Map<String, dynamic>> offerNews = [
     {
       'imagePath': SystemIcons.offerIcon,
       'title': 'The Best Title',
@@ -23,7 +23,6 @@ class NotificationOfferScreen extends StatelessWidget {
           'Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo',
       'date': 'April 30, 2014 1:01 PM',
     },
-    {}
   ];
   @override
   Widget build(BuildContext context) {
