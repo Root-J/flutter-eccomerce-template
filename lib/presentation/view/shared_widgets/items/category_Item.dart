@@ -17,10 +17,12 @@ class CategoryItem extends StatelessWidget {
 
   final String imagePath;
   final String title;
+  final double diameter;
   const CategoryItem({
     Key? key,
     required this.imagePath,
     required this.title,
+    this.diameter = 70,
   }) : super(key: key);
 
   @override
@@ -30,8 +32,8 @@ class CategoryItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 70,
-            height: 70,
+            width: diameter,
+            height: diameter,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppCircularRadius.cr66),
               border: Border.all(

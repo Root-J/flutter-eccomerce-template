@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
@@ -83,12 +84,12 @@ class HomePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: AppMargin.m24),
           // Header Bar
-          AppBarActiveSearch(
-              searchController: searchController,
-              searchFocusNode: searchFocusNode),
-          const SizedBox(height: AppMargin.m24),
+          HeaderPadding(
+            widget: AppBarActiveSearch(
+                searchController: searchController,
+                searchFocusNode: searchFocusNode),
+          ),
 
           // Image Slide show makes a beautiful auto player for any types of list
           ImageSlideshow(

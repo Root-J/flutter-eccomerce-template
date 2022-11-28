@@ -26,7 +26,7 @@ class AppBarActiveSearch extends StatelessWidget {
               searchController: searchController,
               searchFocusNode: searchFocusNode),
         ),
-        const SizedBox(width: AppSize.s8),
+        const SizedBox(width: AppMargin.m8),
         GestureDetector(
             onTap: () =>
                 Navigator.of(context).pushNamed(Routes.favouritesRoute),
@@ -34,7 +34,7 @@ class AppBarActiveSearch extends StatelessWidget {
               SystemIcons.loveIcon,
               scale: AppSize.s20,
             )),
-        const SizedBox(width: AppSize.s8),
+        const SizedBox(width: AppMargin.m8),
         GestureDetector(
             onTap: () => Navigator.of(context).pushNamed(Routes.marketRoute),
             child: Image.asset(

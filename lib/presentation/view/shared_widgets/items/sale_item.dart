@@ -116,14 +116,15 @@ class SaleItem extends StatelessWidget {
                         style: const AppTextStyles()
                             .captionNormalRegular
                             .copyWith(color: AppColors.primaryRed)),
-                    Expanded(
-                      child: Visibility(
-                          visible: isDeletable,
-                          child: GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Image.asset(SystemIcons.trashIcon,
-                                scale: AppSize.s24),
-                          )),
+                    Visibility(
+                      visible: isDeletable,
+                      child: Expanded(
+                        child: GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: Image.asset(SystemIcons.trashIcon,
+                              scale: AppSize.s24),
+                        ),
+                      ),
                     )
                   ],
                 ),

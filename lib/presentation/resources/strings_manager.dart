@@ -1,4 +1,6 @@
 class AppStrings {
+  const AppStrings();
+
   static const String noRouteFound = 'No Route Found';
   static const String accountPage = 'Account Page';
   static const String cartPage = 'Cart Page';
@@ -14,4 +16,7 @@ class AppStrings {
   static const String favourite = 'Favourite';
   static const String screen = 'Screen';
   static const String product = 'Product';
+  static const String man = 'Man';
+  static const String fashion = 'Fashion';
+  static const String woman = 'Woman';
 }

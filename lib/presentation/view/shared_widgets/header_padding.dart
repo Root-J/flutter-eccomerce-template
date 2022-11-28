@@ -13,7 +13,7 @@ class HeaderPadding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: AppMargin.m48),
+        const SizedBox(height: AppMargin.m32),
         widget,
         const SizedBox(height: AppMargin.m32),
       ],
