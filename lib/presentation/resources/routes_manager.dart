@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
+import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_offer.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -32,10 +33,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FavouriteScreen());
       case Routes.notificationRoute:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
+      case Routes.notificationOfferRoute:
+        return MaterialPageRoute(builder: (_) => OfferNotificationScreen());
       case Routes.notificationFeedRoute:
-        return MaterialPageRoute(builder: (_) => const NotificationScreen());
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
       case Routes.notificationActivityRoute:
-        return MaterialPageRoute(builder: (_) => const NotificationScreen());
+        return MaterialPageRoute(builder: (_) => NotificationScreen());
       default:
         return unDefinedRoute();
     }

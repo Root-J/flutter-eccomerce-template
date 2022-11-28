@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../resources/colors_manager.dart';
 import '../../../resources/text_styles_manager.dart';
 import '../../../resources/values_manager.dart';
-import '../number_alert.dart';
+import 'number_alert.dart';
 
 class NotificationItem extends StatelessWidget {
   final String iconPath;

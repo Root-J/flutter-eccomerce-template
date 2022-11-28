@@ -15,7 +15,7 @@ class HeaderPadding extends StatelessWidget {
       children: [
         const SizedBox(height: AppMargin.m32),
         widget,
-        const SizedBox(height: AppMargin.m32),
+        const SizedBox(height: AppMargin.m24),
       ],
     );
   }
