@@ -33,7 +33,7 @@ class NotificationOfferScreen extends StatelessWidget {
             const HeaderPadding(widget: NestedAppBar(title: AppStrings.offer)),
             ListView.builder(
                 shrinkWrap: true,
-                itemCount: offerNews.length - 1,
+                itemCount: offerNews.length,
                 itemBuilder: (context, i) => NotificationListItem(
                     imagePath: offerNews[i]['imagePath'],
                     title: offerNews[i]['title'],
