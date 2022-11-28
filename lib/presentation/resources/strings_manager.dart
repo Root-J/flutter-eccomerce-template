@@ -11,4 +11,7 @@ class AppStrings {
   static const String megaSale = 'Mega Sale';
   static const String searchProduct = "Search Product";
   static const String seeMore = 'See More';
+  static const String favourite = 'Favourite';
+  static const String screen = 'Screen';
+  static const String product = 'Product';
 }

@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -94,7 +95,8 @@ class HomePage extends StatelessWidget {
                     searchFocusNode: searchFocusNode),
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed(Routes.favouritesRoute),
                   icon: const Icon(Icons.favorite_outline_rounded,
                       color: AppColors.neutralGrey, size: AppSize.s30)),
               IconButton(

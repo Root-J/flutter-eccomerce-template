@@ -41,3 +41,9 @@ class PromotionImage {
   static const String redShoeImage = '$PROMOTION_IMAGE_PATH/image 50.png';
   static const String whiteShoeImage = '$PROMOTION_IMAGE_PATH/image 51.png';
 }
+
+const String SYSTEM_ICONS_PATH = 'assets/icons/system_icon/24px';
+
+class SystemIcons {
+  static const String trashIcon = '$SYSTEM_ICONS_PATH/Trash.png';
+}

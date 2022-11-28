@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav.dart';
+import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -7,7 +8,7 @@ class Routes {
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String marketRoute = '/market';
-  static const String favouritesRoute = '/storeDetails';
+  static const String favouritesRoute = '/favourite';
 }
 
 class RouteGenerator {
@@ -22,7 +23,7 @@ class RouteGenerator {
       case Routes.marketRoute:
         return MaterialPageRoute(builder: (_) => const MarketParent());
       case Routes.favouritesRoute:
-        return MaterialPageRoute(builder: (_) => const MarketParent());
+        return MaterialPageRoute(builder: (_) => FavouriteScreen());
       default:
         return unDefinedRoute();
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../resources/assets_manager.dart';
 import '../../../resources/colors_manager.dart';
 import '../../../resources/text_styles_manager.dart';
 import '../../../resources/values_manager.dart';
@@ -27,6 +28,7 @@ class SaleItem extends StatelessWidget {
   final bool isGrid;
   final int? rating;
   final Size? size;
+  final bool isDeletable;
 
   const SaleItem({
     Key? key,
@@ -37,6 +39,7 @@ class SaleItem extends StatelessWidget {
     this.isGrid = false,
     this.size,
     this.rating,
+    this.isDeletable = false,
   }) : super(key: key);
 
   @override
@@ -113,6 +116,15 @@ class SaleItem extends StatelessWidget {
                         style: const AppTextStyles()
                             .captionNormalRegular
                             .copyWith(color: AppColors.primaryRed)),
+                    Expanded(
+                      child: Visibility(
+                          visible: isDeletable,
+                          child: GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Image.asset(SystemIcons.trashIcon,
+                                scale: AppSize.s24),
+                          )),
+                    )
                   ],
                 ),
               ])),
