@@ -63,20 +63,9 @@ class FavouriteScreen extends StatelessWidget {
         child: Column(
           children: [
             // App Bar
-            HeaderPadding(
-              widget: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                          color: AppColors.neutralGrey)),
-                  Text(
-                    '${AppStrings.favourite} ${AppStrings.product}',
-                    style: const AppTextStyles().bodyTextLargeBold,
-                  )
-                ],
-              ),
+            const HeaderPadding(
+              widget: LightAppBar(
+                  title: '${AppStrings.favourite} ${AppStrings.product}'),
             ),
             GridView.builder(
               // ToDo add Api call that creates Sales Item Grid list
@@ -101,6 +90,31 @@ class FavouriteScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class LightAppBar extends StatelessWidget {
+  final String title;
+  const LightAppBar({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                color: AppColors.neutralGrey)),
+        Text(
+          title,
+          style: const AppTextStyles().bodyTextLargeBold,
+        )
+      ],
     );
   }
 }
