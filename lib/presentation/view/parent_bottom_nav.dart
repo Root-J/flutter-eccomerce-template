@@ -1,3 +1,7 @@
+import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'fragments/account_page.dart';
@@ -27,6 +31,7 @@ List screens = [
   const OfferPage(),
   const AccountPage(),
 ];
+const double bottomNavItemsScale = AppSize.s20;
 
 class _MarketParentState extends State<MarketParent> {
   @override
@@ -60,31 +65,53 @@ class _MarketParentState extends State<MarketParent> {
       // // Docked make the Float in the middle of Bottom Navigation
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Image.asset(SystemIcons.homeIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 0
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Image.asset(SystemIcons.searchIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 1
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: Image.asset(SystemIcons.cartIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 2
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer_outlined),
+            icon: Image.asset(SystemIcons.offerIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 3
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Offer',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_rounded),
+            icon: Image.asset(SystemIcons.userIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 4
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Account',
           ),
         ],
         currentIndex: pageIndex,
         type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const AppTextStyles().captionLargeBold,
         unselectedItemColor: Colors.grey,
+        selectedItemColor: AppColors.primaryBlue,
         onTap: _onItemTapped,
       ),
     );

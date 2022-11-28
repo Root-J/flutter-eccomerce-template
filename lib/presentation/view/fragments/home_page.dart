@@ -87,6 +87,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: AppMargin.m24),
           // Header Bar
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 // expanded widget here make the search bar takes the available space
@@ -94,15 +95,22 @@ class HomePage extends StatelessWidget {
                     searchController: searchController,
                     searchFocusNode: searchFocusNode),
               ),
-              IconButton(
-                  onPressed: () =>
+              const SizedBox(width: AppSize.s8),
+              GestureDetector(
+                  onTap: () =>
                       Navigator.of(context).pushNamed(Routes.favouritesRoute),
-                  icon: const Icon(Icons.favorite_outline_rounded,
-                      color: AppColors.neutralGrey, size: AppSize.s30)),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined,
-                      color: AppColors.neutralGrey, size: AppSize.s30)),
+                  child: Image.asset(
+                    SystemIcons.loveIcon,
+                    scale: AppSize.s20,
+                  )),
+              const SizedBox(width: AppSize.s8),
+              GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(Routes.marketRoute),
+                  child: Image.asset(
+                    SystemIcons.notificationIcon,
+                    scale: AppSize.s20,
+                  )),
             ],
           ),
           const SizedBox(height: AppMargin.m24),

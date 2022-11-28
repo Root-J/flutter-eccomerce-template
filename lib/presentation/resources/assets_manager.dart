@@ -46,4 +46,11 @@ const String SYSTEM_ICONS_PATH = 'assets/icons/system_icon/24px';
 
 class SystemIcons {
   static const String trashIcon = '$SYSTEM_ICONS_PATH/Trash.png';
+  static const String cartIcon = '$SYSTEM_ICONS_PATH/Cart.png';
+  static const String homeIcon = '$SYSTEM_ICONS_PATH/Home.png';
+  static const String offerIcon = '$SYSTEM_ICONS_PATH/Offer.png';
+  static const String searchIcon = '$SYSTEM_ICONS_PATH/Search.png';
+  static const String userIcon = '$SYSTEM_ICONS_PATH/User.png';
+  static const String notificationIcon = '$SYSTEM_ICONS_PATH/Notification.png';
+  static const String loveIcon = '$SYSTEM_ICONS_PATH/love.png';
 }
