@@ -1,12 +1,11 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../../resources/colors_manager.dart';
 import '../../resources/values_manager.dart';
-import '../shared_widgets/bars/search_bar.dart';
+import '../shared_widgets/bars/active_search_app_bar_.dart';
 import '../shared_widgets/bars/see_more_bar.dart';
 import '../shared_widgets/items/category_Item.dart';
 import '../shared_widgets/items/sale_item.dart';
@@ -86,33 +85,9 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: AppMargin.m24),
           // Header Bar
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                // expanded widget here make the search bar takes the available space
-                child: SearchBar(
-                    searchController: searchController,
-                    searchFocusNode: searchFocusNode),
-              ),
-              const SizedBox(width: AppSize.s8),
-              GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(Routes.favouritesRoute),
-                  child: Image.asset(
-                    SystemIcons.loveIcon,
-                    scale: AppSize.s20,
-                  )),
-              const SizedBox(width: AppSize.s8),
-              GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(Routes.marketRoute),
-                  child: Image.asset(
-                    SystemIcons.notificationIcon,
-                    scale: AppSize.s20,
-                  )),
-            ],
-          ),
+          AppBarActiveSearch(
+              searchController: searchController,
+              searchFocusNode: searchFocusNode),
           const SizedBox(height: AppMargin.m24),
 
           // Image Slide show makes a beautiful auto player for any types of list
