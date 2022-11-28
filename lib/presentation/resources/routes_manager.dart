@@ -4,8 +4,9 @@ import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dar
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_activity.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_feed.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
-import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_offer.dart';
 import 'package:flutter/material.dart';
+
+import '../view/screens/notification_screen/notification_offer.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -36,7 +37,7 @@ class RouteGenerator {
       case Routes.notificationRoute:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.notificationOfferRoute:
-        return MaterialPageRoute(builder: (_) => OfferNotificationScreen());
+        return MaterialPageRoute(builder: (_) => NotificationOfferScreen());
       case Routes.notificationFeedRoute:
         return MaterialPageRoute(builder: (_) => NotificationFeedScreen());
       case Routes.notificationActivityRoute:

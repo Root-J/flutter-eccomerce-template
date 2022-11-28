@@ -6,8 +6,8 @@ import '../../shared_widgets/bars/nested_app_bar.dart';
 import '../../shared_widgets/header_padding.dart';
 import '../../shared_widgets/items/notification_list_item.dart';
 
-class OfferNotificationScreen extends StatelessWidget {
-  OfferNotificationScreen({Key? key}) : super(key: key);
+class NotificationOfferScreen extends StatelessWidget {
+  NotificationOfferScreen({Key? key}) : super(key: key);
   final offerNews = [
     {
       'imagePath': SystemIcons.offerIcon,
