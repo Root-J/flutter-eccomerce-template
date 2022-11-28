@@ -36,7 +36,8 @@ class AppBarActiveSearch extends StatelessWidget {
             )),
         const SizedBox(width: AppMargin.m8),
         GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(Routes.marketRoute),
+            onTap: () =>
+                Navigator.of(context).pushNamed(Routes.notificationRoute),
             child: Image.asset(
               SystemIcons.notificationIcon,
               scale: AppSize.s20,

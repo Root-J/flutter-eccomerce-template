@@ -9,8 +9,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child:
-          Text(AppStrings.accountPage, style: const AppTextStyles().headingH1),
+      child: Text(AppStrings.account, style: const AppTextStyles().headingH1),
     );
   }
 }

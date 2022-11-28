@@ -1,10 +1,9 @@
-import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/assets_manager.dart';
+import '../shared_widgets/bars/nested_app_bar.dart';
 import '../shared_widgets/items/sale_item.dart';
 
 class FavouriteScreen extends StatelessWidget {
@@ -64,7 +63,7 @@ class FavouriteScreen extends StatelessWidget {
           children: [
             // App Bar
             const HeaderPadding(
-              widget: LightAppBar(
+              widget: NestedAppBar(
                   title: '${AppStrings.favourite} ${AppStrings.product}'),
             ),
             GridView.builder(
@@ -90,31 +89,6 @@ class FavouriteScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class LightAppBar extends StatelessWidget {
-  final String title;
-  const LightAppBar({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                color: AppColors.neutralGrey)),
-        Text(
-          title,
-          style: const AppTextStyles().bodyTextLargeBold,
-        )
-      ],
     );
   }
 }

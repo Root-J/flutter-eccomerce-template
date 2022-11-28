@@ -53,4 +53,7 @@ class SystemIcons {
   static const String userIcon = '$SYSTEM_ICONS_PATH/User.png';
   static const String notificationIcon = '$SYSTEM_ICONS_PATH/Notification.png';
   static const String loveIcon = '$SYSTEM_ICONS_PATH/love.png';
+  static const String moreIcon = '$SYSTEM_ICONS_PATH/more.png';
+  static const String listIcon = '$SYSTEM_ICONS_PATH/List.png';
+  static const String backIcon = '$SYSTEM_ICONS_PATH/Left.png';
 }

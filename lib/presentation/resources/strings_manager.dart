@@ -2,11 +2,12 @@ class AppStrings {
   const AppStrings();
 
   static const String noRouteFound = 'No Route Found';
-  static const String accountPage = 'Account Page';
-  static const String cartPage = 'Cart Page';
-  static const String explorePage = 'Explore Page';
-  static const String homePage = 'Home Page';
-  static const String offerPage = 'Offer Page';
+  static const String account = 'Account';
+  static const String cart = 'Cart';
+  static const String explore = 'Explore';
+  static const String home = 'Home';
+  static const String offer = 'Offer';
+  static const String page = 'Page';
   static const String category = 'Category';
   static const String moreCategory = 'More Category';
   static const String flashSale = 'Flash Sale';
@@ -19,4 +20,7 @@ class AppStrings {
   static const String man = 'Man';
   static const String fashion = 'Fashion';
   static const String woman = 'Woman';
+  static const String notification = 'Notification';
+  static const String feed = 'Feed';
+  static const String activity = 'Activity';
 }
