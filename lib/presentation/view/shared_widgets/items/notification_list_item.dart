@@ -38,8 +38,8 @@ class NotificationListItem extends StatelessWidget {
             visible: !isIcon,
             child: Image.asset(
               imagePath,
-              height: 60,
-              width: 60,
+              height: AppSize.s60,
+              width: AppSize.s60,
               fit: BoxFit.fill,
             ),
           ),

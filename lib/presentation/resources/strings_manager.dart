@@ -23,4 +23,5 @@ class AppStrings {
   static const String notification = 'Notification';
   static const String feed = 'Feed';
   static const String activity = 'Activity';
+  static const String your = 'Your';
 }

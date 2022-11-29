@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/resources/decoration_mananger.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/assets_manager.dart';
@@ -71,9 +72,7 @@ class SaleItem extends StatelessWidget {
           width: size == null ? 141 : null,
           height: size == null ? 238 : 320,
           padding: const EdgeInsets.all(AppPadding.p8),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-              border: Border.all(color: AppColors.neutralLight)),
+          decoration: AppDecoration.lightRoundedBorder,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

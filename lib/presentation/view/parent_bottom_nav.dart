@@ -27,7 +27,7 @@ int pageIndex = 0;
 List screens = [
   HomePage(),
   ExplorePage(),
-  const CartPage(),
+  CartPage(),
   const OfferPage(),
   const AccountPage(),
 ];

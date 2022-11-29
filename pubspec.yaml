@@ -67,6 +67,7 @@ flutter:
    - assets/icons/Product_icon/24px/
    - assets/icons/Rating/
    - assets/icons/system_icon/24px/
+   - assets/icons/system_icon/16px/
 
 
    # Images

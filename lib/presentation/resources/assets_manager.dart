@@ -42,19 +42,23 @@ class PromotionImage {
   static const String whiteShoeImage = '$PROMOTION_IMAGE_PATH/image 51.png';
 }
 
-const String SYSTEM_ICONS_PATH = 'assets/icons/system_icon/24px';
+const String SYSTEM_ICONS_PATHx24 = 'assets/icons/system_icon/24px';
+const String SYSTEM_ICONS_PATHx16 = 'assets/icons/system_icon/16px';
 
 class SystemIcons {
-  static const String trashIcon = '$SYSTEM_ICONS_PATH/Trash.png';
-  static const String cartIcon = '$SYSTEM_ICONS_PATH/Cart.png';
-  static const String homeIcon = '$SYSTEM_ICONS_PATH/Home.png';
-  static const String offerIcon = '$SYSTEM_ICONS_PATH/Offer.png';
-  static const String searchIcon = '$SYSTEM_ICONS_PATH/Search.png';
-  static const String userIcon = '$SYSTEM_ICONS_PATH/User.png';
-  static const String notificationIcon = '$SYSTEM_ICONS_PATH/Notification.png';
-  static const String loveIcon = '$SYSTEM_ICONS_PATH/love.png';
-  static const String moreIcon = '$SYSTEM_ICONS_PATH/more.png';
-  static const String listIcon = '$SYSTEM_ICONS_PATH/List.png';
-  static const String backIcon = '$SYSTEM_ICONS_PATH/Left.png';
-  static const String transactionIcon = '$SYSTEM_ICONS_PATH/Transaction.png';
+  static const String trashIcon = '$SYSTEM_ICONS_PATHx24/Trash.png';
+  static const String cartIcon = '$SYSTEM_ICONS_PATHx24/Cart.png';
+  static const String homeIcon = '$SYSTEM_ICONS_PATHx24/Home.png';
+  static const String offerIcon = '$SYSTEM_ICONS_PATHx24/Offer.png';
+  static const String searchIcon = '$SYSTEM_ICONS_PATHx24/Search.png';
+  static const String userIcon = '$SYSTEM_ICONS_PATHx24/User.png';
+  static const String notificationIcon =
+      '$SYSTEM_ICONS_PATHx24/Notification.png';
+  static const String loveIcon = '$SYSTEM_ICONS_PATHx24/love.png';
+  static const String moreIcon = '$SYSTEM_ICONS_PATHx24/more.png';
+  static const String listIcon = '$SYSTEM_ICONS_PATHx24/List.png';
+  static const String backIcon = '$SYSTEM_ICONS_PATHx24/Left.png';
+  static const String transactionIcon = '$SYSTEM_ICONS_PATHx24/Transaction.png';
+  static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
+  static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';
 }
