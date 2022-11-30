@@ -66,7 +66,11 @@ class _PickAddressState extends State<PickAddress> {
               children: [
                 for (int i = 0; i < addressList.length; i++)
                   GestureDetector(
-                    onTap: () => _selectAddress(i),
+                    onTap: () {
+                      if (addressList[i]['isDefault'] == false) {
+                        _selectAddress(i);
+                      }
+                    },
                     child: AddressItem(
                       town: addressList[i]['address town'],
                       addressDetails: addressList[i]['address details'],
