@@ -38,4 +38,17 @@ class AppStrings {
   static const String emailValidationMessage = 'Invalid Email';
   static const String phoneValidationMessage = 'Invalid Phone Number';
   static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
+  static const String payment = 'Payment';
+  static const String shipTo = 'Ship To';
+  static const String pay = 'Pay';
+  static const String cardHolder = 'Card Holder';
+  static const String cardExpire = 'Card Exp';
+  static const String chooseCard = 'Choose Card';
+  static const String paypal = 'Paypal';
+  static const String bankTransfer = 'Bank Transfer';
+  static const String success = 'Success';
+  static const String cartSuccessMessage =
+      'Thank you for shopping using appName';
+  static const String edit = 'Edit';
+  static const backToOrder = 'Back To Order';
 }
