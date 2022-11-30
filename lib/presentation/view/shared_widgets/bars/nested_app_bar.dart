@@ -58,6 +58,7 @@ class NestedAppBar extends StatelessWidget {
               icon: Image.asset(
                 SystemIcons.plusIcon,
                 scale: AppSize.s20,
+                fit: BoxFit.fill,
                 color: AppColors.primaryBlue,
               )),
         ),
