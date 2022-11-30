@@ -51,9 +51,9 @@ class CartItem extends StatelessWidget {
                     children: [
                       SizedBox(
                         // as every image is 25.6 we will subtract 25.6*2
-                        // collecting all 8th from the actual size we will reach 8 of 8th
-                        // also subtracting 4 as a padding for other items
-                        width: size.width - 8 * 8 - 25.6 * 2 - 70 - 4,
+                        // collecting all 8th from the actual size we will reach 9 of 8th
+                        // also subtracting 12 as a for Spacing Sized Box
+                        width: size.width - 8 * 8 - 25.6 * 2 - 70 - (4 + 8),
                         child: Text(
                           title,
                           softWrap: true,
@@ -62,10 +62,11 @@ class CartItem extends StatelessWidget {
                           style: const AppTextStyles().headingH6,
                         ),
                       ),
-                      const SizedBox(width: AppSize.s4),
+                      const SizedBox(width: AppMargin.m4),
                       // Every Icon in the app is 512 square divided by 20 (scale)
                       // then any asset icon is 25.6 square
                       Image.asset(SystemIcons.loveIcon, scale: AppSize.s20),
+                      const SizedBox(width: AppMargin.m8),
                       Image.asset(SystemIcons.trashIcon, scale: AppSize.s20)
                     ],
                   ),

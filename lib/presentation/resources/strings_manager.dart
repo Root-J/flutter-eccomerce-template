@@ -24,4 +24,12 @@ class AppStrings {
   static const String feed = 'Feed';
   static const String activity = 'Activity';
   static const String your = 'Your';
+  static const String apply = 'Apply';
+  static const String enter = 'Enter';
+  static const String couponCode = 'Coupon Code';
+  static const String items = 'Items';
+  static const String shopping = 'Shopping';
+  static const String importCharges = 'Import Charges';
+  static const String totalPrice = 'Total Price';
+  static const String checkOut = 'Check Out';
 }
