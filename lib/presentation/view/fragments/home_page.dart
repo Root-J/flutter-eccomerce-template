@@ -1,15 +1,16 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../../resources/colors_manager.dart';
 import '../../resources/values_manager.dart';
-import '../shared_widgets/bars/search_bar.dart';
+import '../shared_widgets/bars/active_search_app_bar_.dart';
 import '../shared_widgets/bars/see_more_bar.dart';
 import '../shared_widgets/items/category_Item.dart';
 import '../shared_widgets/items/sale_item.dart';
 import '../shared_widgets/items/sales_ad.dart';
+import '../shared_widgets/slide_show.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -83,30 +84,15 @@ class HomePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: AppMargin.m24),
           // Header Bar
-          Row(
-            children: [
-              Expanded(
-                // expanded widget here make the search bar takes the available space
-                child: SearchBar(
-                    searchController: searchController,
-                    searchFocusNode: searchFocusNode),
-              ),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite_outline_rounded,
-                      color: AppColors.neutralGrey, size: AppSize.s30)),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined,
-                      color: AppColors.neutralGrey, size: AppSize.s30)),
-            ],
+          HeaderPadding(
+            widget: AppBarActiveSearch(
+                searchController: searchController,
+                searchFocusNode: searchFocusNode),
           ),
-          const SizedBox(height: AppMargin.m24),
 
           // Image Slide show makes a beautiful auto player for any types of list
-          ImageSlideshow(
+          Slideshow(
             indicatorColor: AppColors.primaryBlue,
             /*
             onPageChanged: (value) {

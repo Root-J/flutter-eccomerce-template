@@ -41,3 +41,43 @@ class PromotionImage {
   static const String redShoeImage = '$PROMOTION_IMAGE_PATH/image 50.png';
   static const String whiteShoeImage = '$PROMOTION_IMAGE_PATH/image 51.png';
 }
+
+const String SYSTEM_ICONS_PATHx24 = 'assets/icons/system_icon/24px';
+const String SYSTEM_ICONS_PATHx16 = 'assets/icons/system_icon/16px';
+
+class SystemIcons {
+  static const String trashIcon = '$SYSTEM_ICONS_PATHx24/Trash.png';
+  static const String cartIcon = '$SYSTEM_ICONS_PATHx24/Cart.png';
+  static const String homeIcon = '$SYSTEM_ICONS_PATHx24/Home.png';
+  static const String offerIcon = '$SYSTEM_ICONS_PATHx24/Offer.png';
+  static const String searchIcon = '$SYSTEM_ICONS_PATHx24/Search.png';
+  static const String userIcon = '$SYSTEM_ICONS_PATHx24/User.png';
+  static const String notificationIcon =
+      '$SYSTEM_ICONS_PATHx24/Notification.png';
+  static const String loveIcon = '$SYSTEM_ICONS_PATHx24/love.png';
+  static const String moreIcon = '$SYSTEM_ICONS_PATHx24/more.png';
+  static const String listIcon = '$SYSTEM_ICONS_PATHx24/List.png';
+  static const String backIcon = '$SYSTEM_ICONS_PATHx24/Left.png';
+  static const String transactionIcon = '$SYSTEM_ICONS_PATHx24/Transaction.png';
+  static const String bankIcon = '$SYSTEM_ICONS_PATHx24/Bank.png';
+  static const String creditCardIcon = '$SYSTEM_ICONS_PATHx24/Credit Card.png';
+
+  static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
+  static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';
+}
+
+const String SOCIAL_ICONS_PATH = 'assets/icons/social_icons';
+
+class SocialIcons {
+  static const String facebookIcon = '$SOCIAL_ICONS_PATH/Facebook.png';
+  static const String googleIcon = '$SOCIAL_ICONS_PATH/Google.png';
+  static const String paypalIcon = '$SOCIAL_ICONS_PATH/Paypal.png';
+}
+
+const String ALERT_ICONS_PATH = 'assets/icons/Alert_Icon';
+
+class AlertIcons {
+  static const String successIcon = '$ALERT_ICONS_PATH/Success.png';
+  static const String notFoundIcon = '$ALERT_ICONS_PATH/Not Found.png';
+  static const String alertIcon = '$ALERT_ICONS_PATH/Alert.png';
+}
