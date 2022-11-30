@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,14 @@ import '../../../resources/routes_manager.dart';
 class NestedAppBar extends StatelessWidget {
   final String title;
   final bool isFullBar;
+  final bool isAdd;
+  final void Function()? onAddTapped;
   const NestedAppBar({
     Key? key,
     required this.title,
     this.isFullBar = false,
+    this.isAdd = false,
+    this.onAddTapped,
   }) : super(key: key);
 
   @override
@@ -43,7 +48,17 @@ class NestedAppBar extends StatelessWidget {
               onPressed: () => Navigator.pushNamed(context, Routes.searchRoute),
               icon: Image.asset(
                 SystemIcons.moreIcon,
+                scale: AppSize.s24,
+              )),
+        ),
+        Visibility(
+          visible: isAdd,
+          child: IconButton(
+              onPressed: onAddTapped,
+              icon: Image.asset(
+                SystemIcons.plusIcon,
                 scale: AppSize.s20,
+                color: AppColors.primaryBlue,
               )),
         ),
       ],

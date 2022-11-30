@@ -51,13 +51,13 @@ class RouteGenerator {
       case Routes.notificationActivityRoute:
         return MaterialPageRoute(builder: (_) => NotificationActivityScreen());
       case Routes.cartChooseCardRoute:
-        return MaterialPageRoute(builder: (_) => const ChooseCard());
+        return MaterialPageRoute(builder: (_) => ChooseCard());
       case Routes.cartPaymentRoute:
-        return MaterialPageRoute(builder: (_) => const Payment());
+        return MaterialPageRoute(builder: (_) => Payment());
       case Routes.cartShipToRoute:
-        return MaterialPageRoute(builder: (_) => const PickAddress());
+        return MaterialPageRoute(builder: (_) => PickAddress());
       case Routes.cartSuccessRoute:
-        return MaterialPageRoute(builder: (_) => const SuccessScreen());
+        return MaterialPageRoute(builder: (_) => SuccessScreen());
       default:
         return unDefinedRoute();
     }

@@ -51,4 +51,5 @@ class AppStrings {
       'Thank you for shopping using appName';
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';
+  static const String next = 'Next';
 }

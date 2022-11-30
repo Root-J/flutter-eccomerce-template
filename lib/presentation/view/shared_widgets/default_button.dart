@@ -5,18 +5,22 @@ import '../../resources/text_styles_manager.dart';
 import '../../resources/values_manager.dart';
 
 class DefaultButton extends StatelessWidget {
-  final Size size;
+  final double width;
   final String title;
+  final void Function() onTap;
 
   const DefaultButton({
     Key? key,
-    required this.size,
     required this.title,
+    required this.width,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: AppSize.s60,
+      width: width,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -31,10 +35,12 @@ class DefaultButton extends StatelessWidget {
         ],
       ),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onTap,
           style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppCircularRadius.cr5)),
               backgroundColor: AppColors.primaryBlue,
-              fixedSize: Size(size.width, AppSize.s60),
+              fixedSize: Size(width, AppSize.s60),
               elevation: 0
               // shadowColor: AppColors.primaryBlue24Opacity,
               // elevation: 10,
