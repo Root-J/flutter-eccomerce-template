@@ -32,4 +32,10 @@ class AppStrings {
   static const String importCharges = 'Import Charges';
   static const String totalPrice = 'Total Price';
   static const String checkOut = 'Check Out';
+  static const String passwordValidationMessage =
+      'Password must be at least 8 Characters';
+  static const String requiredValidationMessage = 'Required Field';
+  static const String emailValidationMessage = 'Invalid Email';
+  static const String phoneValidationMessage = 'Invalid Phone Number';
+  static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
 }

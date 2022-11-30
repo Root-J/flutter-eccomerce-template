@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/core/validation/coupon_validator.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
@@ -38,6 +39,7 @@ class _CartPageState extends State<CartPage> {
   final double importCharges = 128.0;
 
   final TextEditingController couponController = TextEditingController();
+  bool isCouponValid = true;
 
   int get _getItemsNumber {
     int numberOfItems = 0;
@@ -63,6 +65,12 @@ class _CartPageState extends State<CartPage> {
     return total;
   }
 
+  OutlineInputBorder couponBorder({required Color color}) => OutlineInputBorder(
+      borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(AppCircularRadius.cr5),
+          bottomLeft: Radius.circular(AppCircularRadius.cr5)),
+      borderSide: BorderSide(color: color));
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -83,8 +91,11 @@ class _CartPageState extends State<CartPage> {
                   numberOfItems: cartList[i]['number of items']),
           ]),
           const SizedBox(height: AppMargin.m16),
+
+          // Coupon Field
           Row(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: TextField(
@@ -94,29 +105,26 @@ class _CartPageState extends State<CartPage> {
                         .copyWith(color: AppColors.neutralGrey),
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: AppPadding.p20,
-                            horizontal: AppPadding.p16),
-                        focusedBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(AppCircularRadius.cr5),
-                              bottomLeft:
-                                  Radius.circular(AppCircularRadius.cr5)),
-                          borderSide: BorderSide(color: AppColors.primaryBlue),
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(AppCircularRadius.cr5),
-                                bottomLeft:
-                                    Radius.circular(AppCircularRadius.cr5)),
-                            borderSide:
-                                BorderSide(color: AppColors.neutralLight)),
-                        isDense: true,
-                        hintText:
-                            '${AppStrings.enter} ${AppStrings.couponCode}',
-                        hintStyle: const AppTextStyles()
-                            .formTextFill
-                            .copyWith(color: AppColors.neutralGrey))),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: AppPadding.p20, horizontal: AppPadding.p16),
+                      border: couponBorder(color: AppColors.neutralLight),
+                      focusedBorder: couponBorder(color: AppColors.primaryBlue),
+                      focusedErrorBorder:
+                          couponBorder(color: AppColors.primaryRed),
+                      enabledBorder:
+                          couponBorder(color: AppColors.neutralLight),
+                      errorBorder: couponBorder(color: AppColors.primaryRed),
+                      isDense: true,
+                      hintText: '${AppStrings.enter} ${AppStrings.couponCode}',
+                      hintStyle: const AppTextStyles()
+                          .formTextFill
+                          .copyWith(color: AppColors.neutralGrey),
+                      errorText:
+                          isCouponValid ? null : CouponValidator().getMessage(),
+                      errorStyle: const AppTextStyles()
+                          .bodyTextNormalBold
+                          .copyWith(color: AppColors.primaryRed),
+                    )),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -128,7 +136,10 @@ class _CartPageState extends State<CartPage> {
                             topRight: Radius.circular(AppCircularRadius.cr5),
                             bottomRight:
                                 Radius.circular(AppCircularRadius.cr5)))),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() => isCouponValid =
+                      CouponValidator().validate(couponController.text));
+                },
                 child: Text(
                   AppStrings.apply,
                   style: const AppTextStyles()
@@ -142,6 +153,8 @@ class _CartPageState extends State<CartPage> {
           Container(
               decoration: AppDecoration.lightRoundedBorder,
               padding: const EdgeInsets.all(AppPadding.p16),
+
+              // Receipt
               child: Column(children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
