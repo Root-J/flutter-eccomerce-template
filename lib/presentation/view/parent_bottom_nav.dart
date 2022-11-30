@@ -5,7 +5,7 @@ import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'fragments/account_page.dart';
-import 'fragments/cart_page.dart';
+import 'fragments/cart_page/cart_page.dart';
 import 'fragments/explore_page.dart';
 import 'fragments/home_page.dart';
 import 'fragments/offer_page.dart';

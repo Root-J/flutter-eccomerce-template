@@ -1,4 +1,7 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/choose_card.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/payment.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/ship_to.dart';
 import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_activity.dart';
@@ -6,6 +9,7 @@ import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
 import 'package:flutter/material.dart';
 
+import '../view/fragments/cart_page/success_screen.dart';
 import '../view/screens/notification_screen/notification_offer.dart';
 
 class Routes {
@@ -19,6 +23,10 @@ class Routes {
   static const String notificationOfferRoute = '/offer';
   static const String notificationFeedRoute = '/feed';
   static const String notificationActivityRoute = '/activity';
+  static const String cartShipToRoute = '/ship to';
+  static const String cartPaymentRoute = '/payment';
+  static const String cartChooseCardRoute = '/choose Card';
+  static const String cartSuccessRoute = '/success purchase';
 }
 
 class RouteGenerator {
@@ -42,6 +50,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NotificationFeedScreen());
       case Routes.notificationActivityRoute:
         return MaterialPageRoute(builder: (_) => NotificationActivityScreen());
+      case Routes.cartChooseCardRoute:
+        return MaterialPageRoute(builder: (_) => const ChooseCard());
+      case Routes.cartPaymentRoute:
+        return MaterialPageRoute(builder: (_) => const Payment());
+      case Routes.cartShipToRoute:
+        return MaterialPageRoute(builder: (_) => const PickAddress());
+      case Routes.cartSuccessRoute:
+        return MaterialPageRoute(builder: (_) => const SuccessScreen());
       default:
         return unDefinedRoute();
     }

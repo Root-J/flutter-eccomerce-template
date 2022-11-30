@@ -7,11 +7,11 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_paddin
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/colors_manager.dart';
-import '../../resources/text_styles_manager.dart';
-import '../../resources/values_manager.dart';
-import '../shared_widgets/default_button.dart';
-import '../shared_widgets/items/cart_item.dart';
+import '../../../resources/colors_manager.dart';
+import '../../../resources/text_styles_manager.dart';
+import '../../../resources/values_manager.dart';
+import '../../shared_widgets/default_button.dart';
+import '../../shared_widgets/items/cart_item.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
