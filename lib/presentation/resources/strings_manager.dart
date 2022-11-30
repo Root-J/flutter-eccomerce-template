@@ -44,6 +44,7 @@ class AppStrings {
   static const String cardHolder = 'Card Holder';
   static const String cardExpire = 'Card Exp';
   static const String chooseCard = 'Choose Card';
+  static const String creditCardOrDebit = 'Credit Card Or Debit';
   static const String paypal = 'Paypal';
   static const String bankTransfer = 'Bank Transfer';
   static const String success = 'Success';

@@ -59,6 +59,17 @@ class SystemIcons {
   static const String listIcon = '$SYSTEM_ICONS_PATHx24/List.png';
   static const String backIcon = '$SYSTEM_ICONS_PATHx24/Left.png';
   static const String transactionIcon = '$SYSTEM_ICONS_PATHx24/Transaction.png';
+  static const String bankIcon = '$SYSTEM_ICONS_PATHx24/Bank.png';
+  static const String creditCardIcon = '$SYSTEM_ICONS_PATHx24/Credit Card.png';
+
   static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
   static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';
+}
+
+const String SOCIAL_ICONS_PATH = 'assets/icons/social_icons';
+
+class SocialIcons {
+  static const String facebookIcon = '$SOCIAL_ICONS_PATH/Facebook.png';
+  static const String googleIcon = '$SOCIAL_ICONS_PATH/Google.png';
+  static const String paypalIcon = '$SOCIAL_ICONS_PATH/Paypal.png';
 }
