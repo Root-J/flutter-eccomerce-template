@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_mananger.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
@@ -36,6 +34,8 @@ class _CartPageState extends State<CartPage> {
       'number of items': 1,
     }
   ];
+  final double shippingPrice = 40.0;
+  final double importCharges = 128.0;
 
   final TextEditingController couponController = TextEditingController();
 
@@ -47,11 +47,19 @@ class _CartPageState extends State<CartPage> {
     return numberOfItems;
   }
 
-  double get _getTotalPrice {
+  double get _getTotalItemsPrice {
     double total = 0;
     for (int i = 0; i < cartList.length; i++) {
       total += cartList[i]['price'] as double;
     }
+    return total;
+  }
+
+  double get _getTotalPrice {
+    double total = 0;
+    total += _getTotalItemsPrice;
+    total += shippingPrice;
+    total += importCharges;
     return total;
   }
 
@@ -143,7 +151,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$_getTotalPrice',
+                      Text('\$$_getTotalItemsPrice',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
@@ -156,7 +164,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$_getTotalPrice',
+                      Text('\$$shippingPrice',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
@@ -169,7 +177,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$_getTotalPrice',
+                      Text('\$$importCharges',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
