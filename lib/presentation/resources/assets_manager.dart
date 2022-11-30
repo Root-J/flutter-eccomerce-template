@@ -73,3 +73,11 @@ class SocialIcons {
   static const String googleIcon = '$SOCIAL_ICONS_PATH/Google.png';
   static const String paypalIcon = '$SOCIAL_ICONS_PATH/Paypal.png';
 }
+
+const String ALERT_ICONS_PATH = 'assets/icons/Alert_Icon';
+
+class AlertIcons {
+  static const String successIcon = '$ALERT_ICONS_PATH/Success.png';
+  static const String notFoundIcon = '$ALERT_ICONS_PATH/Not Found.png';
+  static const String alertIcon = '$ALERT_ICONS_PATH/Alert.png';
+}

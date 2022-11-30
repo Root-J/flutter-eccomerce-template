@@ -1,5 +1,7 @@
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/shared_widgets/alerts/success_alert.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
@@ -48,8 +50,10 @@ class ChooseCard extends StatelessWidget {
       floatingActionButton: DefaultButton(
           title: AppStrings.pay,
           width: size.width - (AppPadding.p16 * 2),
-          onTap: () =>
-              Navigator.pushNamed(context, AppStrings.cartSuccessMessage)),
+          onTap: () => Navigator.pushNamed(context, Routes.successRoute,
+              arguments: const SuccessAlertParams(
+                  buttonText: AppStrings.backToOrder,
+                  message: AppStrings.cartSuccessMessage))),
     );
   }
 }

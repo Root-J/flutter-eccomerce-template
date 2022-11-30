@@ -16,13 +16,13 @@ class MarketParent extends StatefulWidget {
   ///moving around with bottom navigation this page doesn't change
   ///
 
-  const MarketParent({Key? key}) : super(key: key);
+  final int? intIndex;
+
+  const MarketParent({Key? key, this.intIndex}) : super(key: key);
 
   @override
   State<MarketParent> createState() => _MarketParentState();
 }
-
-int pageIndex = 0;
 
 List screens = [
   HomePage(),
@@ -34,6 +34,15 @@ List screens = [
 const double bottomNavItemsScale = AppSize.s20;
 
 class _MarketParentState extends State<MarketParent> {
+  int pageIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageIndex = widget.intIndex == null ? 0 : widget.intIndex!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -68,6 +68,7 @@ flutter:
    - assets/icons/system_icon/24px/
    - assets/icons/system_icon/16px/
    - assets/icons/social_icons/
+   - assets/icons/Alert_Icon/
 
 
    # Images

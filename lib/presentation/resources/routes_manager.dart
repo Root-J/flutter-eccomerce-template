@@ -9,8 +9,8 @@ import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
 import 'package:flutter/material.dart';
 
-import '../view/fragments/cart_page/success_screen.dart';
 import '../view/screens/notification_screen/notification_offer.dart';
+import '../view/shared_widgets/alerts/success_alert.dart';
 
 class Routes {
   static const String splashRoute = '/';
@@ -26,7 +26,7 @@ class Routes {
   static const String cartShipToRoute = '/ship to';
   static const String cartPaymentRoute = '/payment';
   static const String cartChooseCardRoute = '/choose Card';
-  static const String cartSuccessRoute = '/success purchase';
+  static const String successRoute = '/success purchase';
 }
 
 class RouteGenerator {
@@ -56,8 +56,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Payment());
       case Routes.cartShipToRoute:
         return MaterialPageRoute(builder: (_) => PickAddress());
-      case Routes.cartSuccessRoute:
-        return MaterialPageRoute(builder: (_) => SuccessScreen());
+      case Routes.successRoute:
+        final args = settings.arguments as SuccessAlertParams;
+        return MaterialPageRoute(
+            builder: (_) => SuccessScreen(
+                  buttonText: args.buttonText,
+                  message: args.message,
+                ));
       default:
         return unDefinedRoute();
     }
