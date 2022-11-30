@@ -1,4 +1,4 @@
-import 'package:ecommerce_flutter/presentation/resources/decoration_mananger.dart';
+import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/assets_manager.dart';

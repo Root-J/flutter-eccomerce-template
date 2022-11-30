@@ -1,5 +1,5 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/decoration_mananger.dart';
+import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/dashed_separator.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
@@ -77,7 +77,6 @@ class _CartPageState extends State<CartPage> {
           Wrap(children: [
             for (int i = 0; i < cartList.length; i++)
               CartItem(
-                  size: size,
                   imagePath: cartList[i]['imagePath'],
                   title: cartList[i]['title'],
                   price: cartList[i]['price'],
