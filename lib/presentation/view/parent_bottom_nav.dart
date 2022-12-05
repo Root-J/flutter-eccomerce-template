@@ -1,7 +1,11 @@
+import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'fragments/account_page.dart';
-import 'fragments/cart_page.dart';
+import 'fragments/cart_page/cart_page.dart';
 import 'fragments/explore_page.dart';
 import 'fragments/home_page.dart';
 import 'fragments/offer_page.dart';
@@ -12,23 +16,33 @@ class MarketParent extends StatefulWidget {
   ///moving around with bottom navigation this page doesn't change
   ///
 
-  const MarketParent({Key? key}) : super(key: key);
+  final int? intIndex;
+
+  const MarketParent({Key? key, this.intIndex}) : super(key: key);
 
   @override
   State<MarketParent> createState() => _MarketParentState();
 }
 
-int pageIndex = 0;
-
 List screens = [
   HomePage(),
-  const ExplorePage(),
+  ExplorePage(),
   const CartPage(),
   const OfferPage(),
   const AccountPage(),
 ];
+const double bottomNavItemsScale = AppSize.s20;
 
 class _MarketParentState extends State<MarketParent> {
+  int pageIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageIndex = widget.intIndex == null ? 0 : widget.intIndex!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,31 +74,53 @@ class _MarketParentState extends State<MarketParent> {
       // // Docked make the Float in the middle of Bottom Navigation
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Image.asset(SystemIcons.homeIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 0
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Image.asset(SystemIcons.searchIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 1
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: Image.asset(SystemIcons.cartIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 2
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer_outlined),
+            icon: Image.asset(SystemIcons.offerIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 3
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Offer',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_rounded),
+            icon: Image.asset(SystemIcons.userIcon,
+                scale: bottomNavItemsScale,
+                color: pageIndex == 4
+                    ? AppColors.primaryBlue
+                    : AppColors.neutralGrey),
             label: 'Account',
           ),
         ],
         currentIndex: pageIndex,
         type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const AppTextStyles().captionLargeBold,
         unselectedItemColor: Colors.grey,
+        selectedItemColor: AppColors.primaryBlue,
         onTap: _onItemTapped,
       ),
     );

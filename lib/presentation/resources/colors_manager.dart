@@ -5,6 +5,7 @@ class AppColors {
 
   //Primary Colors
   static const Color primaryBlue = Color(0xff40bfff);
+  static const Color primaryBlue24Opacity = Color(0x3D40bfff);
   static const Color primaryRed = Color(0xfffb7181);
   static const Color primaryYellow = Color(0xffffc833);
   static const Color primaryGreen = Color(0xff53d1b6);

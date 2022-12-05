@@ -1,5 +1,7 @@
+import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../resources/assets_manager.dart';
 import '../../../resources/colors_manager.dart';
 import '../../../resources/text_styles_manager.dart';
 import '../../../resources/values_manager.dart';
@@ -27,6 +29,7 @@ class SaleItem extends StatelessWidget {
   final bool isGrid;
   final int? rating;
   final Size? size;
+  final bool isDeletable;
 
   const SaleItem({
     Key? key,
@@ -37,6 +40,7 @@ class SaleItem extends StatelessWidget {
     this.isGrid = false,
     this.size,
     this.rating,
+    this.isDeletable = false,
   }) : super(key: key);
 
   @override
@@ -68,9 +72,7 @@ class SaleItem extends StatelessWidget {
           width: size == null ? 141 : null,
           height: size == null ? 238 : 320,
           padding: const EdgeInsets.all(AppPadding.p8),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-              border: Border.all(color: AppColors.neutralLight)),
+          decoration: AppDecoration.lightRoundedBorder,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -113,6 +115,16 @@ class SaleItem extends StatelessWidget {
                         style: const AppTextStyles()
                             .captionNormalRegular
                             .copyWith(color: AppColors.primaryRed)),
+                    Visibility(
+                      visible: isDeletable,
+                      child: Expanded(
+                        child: GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: Image.asset(SystemIcons.trashIcon,
+                              scale: AppSize.s24),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ])),
