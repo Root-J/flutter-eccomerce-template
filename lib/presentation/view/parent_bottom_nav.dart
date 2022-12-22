@@ -2,13 +2,8 @@ import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav_view_model.dart';
 import 'package:flutter/material.dart';
-
-import 'fragments/account_page.dart';
-import 'fragments/cart_page/cart_page.dart';
-import 'fragments/explore_page.dart';
-import 'fragments/home_page.dart';
-import 'fragments/offer_page.dart';
 
 class MarketParent extends StatefulWidget {
   ///
@@ -24,34 +19,53 @@ class MarketParent extends StatefulWidget {
   State<MarketParent> createState() => _MarketParentState();
 }
 
-List screens = [
-  HomePage(),
-  ExplorePage(),
-  const CartPage(),
-  const OfferPage(),
-  const AccountPage(),
-];
+// List screens = [
+//   HomePage(),
+//   ExplorePage(),
+//   const CartPage(),
+//   const OfferPage(),
+//   const AccountPage(),
+// ];
+
 const double bottomNavItemsScale = AppSize.s20;
 
 class _MarketParentState extends State<MarketParent> {
-  int pageIndex = 0;
+  final MarketParentViewModel _viewModel = MarketParentViewModel();
 
+  _bind() {
+    _viewModel.start();
+    if (widget.intIndex != null) {
+      _viewModel.onPageChanged(widget.intIndex!);
+    }
+  }
+
+  // int pageIndex = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    pageIndex = widget.intIndex == null ? 0 : widget.intIndex!;
+    _bind();
   }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: _viewModel.outputNavViewObject,
+        builder: (context, snapshot) {
+          return getMarketUI(snapshot.data);
+        });
+  }
+
+  Widget getMarketUI(fragment) {
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: screens[pageIndex],
-        ),
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p16, vertical: AppPadding.p24),
+            child: fragment
+            // screens[pageIndex],
+            ),
       ),
       // floatingActionButton: FloatingActionButton(
       //   // FAB has fixed Size so its children should has fixed values also
@@ -78,7 +92,7 @@ class _MarketParentState extends State<MarketParent> {
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.homeIcon,
                 scale: bottomNavItemsScale,
-                color: pageIndex == 0
+                color: _viewModel.getCurrentIndex == 0
                     ? AppColors.primaryBlue
                     : AppColors.neutralGrey),
             label: 'Home',
@@ -86,7 +100,7 @@ class _MarketParentState extends State<MarketParent> {
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.searchIcon,
                 scale: bottomNavItemsScale,
-                color: pageIndex == 1
+                color: _viewModel.getCurrentIndex == 1
                     ? AppColors.primaryBlue
                     : AppColors.neutralGrey),
             label: 'Explore',
@@ -94,7 +108,7 @@ class _MarketParentState extends State<MarketParent> {
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.cartIcon,
                 scale: bottomNavItemsScale,
-                color: pageIndex == 2
+                color: _viewModel.getCurrentIndex == 2
                     ? AppColors.primaryBlue
                     : AppColors.neutralGrey),
             label: 'Cart',
@@ -102,7 +116,7 @@ class _MarketParentState extends State<MarketParent> {
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.offerIcon,
                 scale: bottomNavItemsScale,
-                color: pageIndex == 3
+                color: _viewModel.getCurrentIndex == 3
                     ? AppColors.primaryBlue
                     : AppColors.neutralGrey),
             label: 'Offer',
@@ -110,25 +124,25 @@ class _MarketParentState extends State<MarketParent> {
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.userIcon,
                 scale: bottomNavItemsScale,
-                color: pageIndex == 4
+                color: _viewModel.getCurrentIndex == 4
                     ? AppColors.primaryBlue
                     : AppColors.neutralGrey),
             label: 'Account',
           ),
         ],
-        currentIndex: pageIndex,
+        currentIndex: _viewModel.getCurrentIndex,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: const AppTextStyles().captionLargeBold,
         unselectedItemColor: Colors.grey,
         selectedItemColor: AppColors.primaryBlue,
-        onTap: _onItemTapped,
+        onTap: _viewModel.onPageChanged,
       ),
     );
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      pageIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     pageIndex = index;
+  //   });
+  // }
 }
