@@ -16,7 +16,10 @@ class MarketParentViewModel extends BaseViewModel
   // that change the current index value
   // and return a state class
   // stream controllers
-  final StreamController _streamController = StreamController<Widget>();
+
+  // TODO : remove braodcast() method it's only there for developing process
+  final StreamController _streamController =
+      StreamController<Widget>.broadcast();
 
   late final List _list;
 
