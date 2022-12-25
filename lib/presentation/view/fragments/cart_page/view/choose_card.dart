@@ -8,8 +8,8 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_paddin
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/slide_show.dart';
 import 'package:flutter/material.dart';
 
-import '../../../resources/colors_manager.dart';
-import '../../shared_widgets/items/credit_card_item.dart';
+import '../../../../resources/colors_manager.dart';
+import '../../../shared_widgets/items/credit_card_item.dart';
 
 class ChooseCard extends StatelessWidget {
   const ChooseCard({Key? key}) : super(key: key);

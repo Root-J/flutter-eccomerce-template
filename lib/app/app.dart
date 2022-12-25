@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../presentation/resources/routes_manager.dart';
 import '../presentation/resources/theme_manager.dart';
-import '../presentation/view/parent_bottom_nav.dart';
+import '../presentation/view/parent_nav/parent_bottom_nav.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

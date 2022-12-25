@@ -1,18 +1,18 @@
 import 'package:ecommerce_flutter/core/validation/coupon_validator.dart';
-import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/cart_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/dashed_separator.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
-import '../../../resources/colors_manager.dart';
-import '../../../resources/text_styles_manager.dart';
-import '../../../resources/values_manager.dart';
-import '../../shared_widgets/default_button.dart';
-import '../../shared_widgets/items/cart_item.dart';
+import '../../../../resources/colors_manager.dart';
+import '../../../../resources/text_styles_manager.dart';
+import '../../../../resources/values_manager.dart';
+import '../../../shared_widgets/default_button.dart';
+import '../../../shared_widgets/items/cart_item.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -23,7 +23,20 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   final TextEditingController couponController = TextEditingController();
+  final _cartViewModel = CartViewModel();
   bool isCouponValid = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _cartViewModel.start();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _cartViewModel.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +50,13 @@ class _CartPageState extends State<CartPage> {
               widget:
                   TextHeader(text: '${AppStrings.your} ${AppStrings.cart}')),
           Wrap(children: [
-            for (int i = 0; i < cartList.length; i++)
+            for (var i in _cartViewModel.list)
               CartItem(
-                  imagePath: cartList[i]['imagePath'],
-                  title: cartList[i]['title'],
-                  price: cartList[i]['price'],
-                  numberOfItems: cartList[i]['number of items']),
+                  imagePath: i.image,
+                  title: i.title,
+                  price: i.price,
+                  numberOfItems: i.count,
+                  isFavourite: i.isFavourite)
           ]),
           const SizedBox(height: AppMargin.m16),
 
@@ -113,11 +127,12 @@ class _CartPageState extends State<CartPage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${AppStrings.items} ($_getItemsNumber)',
+                      Text(
+                          '${AppStrings.items} (${_cartViewModel.getItemsNumber})',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$_getTotalItemsPrice',
+                      Text('\$${_cartViewModel.getTotalItemsPrice}',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
@@ -130,7 +145,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$shippingPrice',
+                      Text('\$${_cartViewModel.shippingPrice}',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
@@ -143,7 +158,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralGrey)),
-                      Text('\$$importCharges',
+                      Text('\$${_cartViewModel.importCharges}',
                           style: const AppTextStyles()
                               .bodyTextNormalRegular
                               .copyWith(color: AppColors.neutralDark))
@@ -158,7 +173,7 @@ class _CartPageState extends State<CartPage> {
                           style: const AppTextStyles()
                               .headingH6
                               .copyWith(color: AppColors.neutralDark)),
-                      Text('\$$_getTotalPrice',
+                      Text('\$${_cartViewModel.getTotalPrice}',
                           style: const AppTextStyles()
                               .headingH6
                               .copyWith(color: AppColors.primaryBlue))
@@ -173,47 +188,6 @@ class _CartPageState extends State<CartPage> {
         ],
       ),
     );
-  }
-
-  final List<Map<String, dynamic>> cartList = [
-    {
-      'imagePath': ProductImage.nikeBlueShoeImage,
-      'title': 'Nike Air Zoom Pegasus 36 Miami',
-      'price': 299.43,
-      'number of items': 2,
-    },
-    {
-      'imagePath': ProductImage.nikeRedShoeImage,
-      'title': 'Nike Air Zoom Pegasus 36 Miami',
-      'price': 299.43,
-      'number of items': 1,
-    }
-  ];
-  final double shippingPrice = 40.0;
-  final double importCharges = 128.0;
-
-  int get _getItemsNumber {
-    int numberOfItems = 0;
-    for (int i = 0; i < cartList.length; i++) {
-      numberOfItems += cartList[i]['number of items'] as int;
-    }
-    return numberOfItems;
-  }
-
-  double get _getTotalItemsPrice {
-    double total = 0;
-    for (int i = 0; i < cartList.length; i++) {
-      total += cartList[i]['price'] as double;
-    }
-    return total;
-  }
-
-  double get _getTotalPrice {
-    double total = 0;
-    total += _getTotalItemsPrice;
-    total += shippingPrice;
-    total += importCharges;
-    return total;
   }
 
   OutlineInputBorder couponBorder({required Color color}) => OutlineInputBorder(

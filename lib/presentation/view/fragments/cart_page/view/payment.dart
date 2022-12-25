@@ -7,7 +7,7 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_a
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
-import '../../../resources/colors_manager.dart';
+import '../../../../resources/colors_manager.dart';
 
 class Payment extends StatelessWidget {
   const Payment({Key? key}) : super(key: key);

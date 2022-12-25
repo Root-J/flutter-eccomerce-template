@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 import '/presentation/base/base_view_model.dart';
-import 'fragments/account_page.dart';
-import 'fragments/cart_page/cart_page.dart';
-import 'fragments/explore_page.dart';
-import 'fragments/home_page.dart';
-import 'fragments/offer_page.dart';
+import '../fragments/account_page.dart';
+import '../fragments/cart_page/view/cart_page.dart';
+import '../fragments/explore_page.dart';
+import '../fragments/home_page.dart';
+import '../fragments/offer_page.dart';
 
 class MarketParentViewModel extends BaseViewModel
     with ParentViewInput, ParentViewOutput {
@@ -34,7 +34,6 @@ class MarketParentViewModel extends BaseViewModel
   @override
   void start() {
     _list = _getPages();
-    // send this slider data to our view
     _postDataToView();
   }
 
@@ -70,7 +69,6 @@ class MarketParentViewModel extends BaseViewModel
   }
 }
 
-//
 // inputs mean the orders that our view model will receive from our view
 abstract class ParentViewInput {
   void onPageChanged(int index);

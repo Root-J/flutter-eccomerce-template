@@ -1,8 +1,8 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/choose_card.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/payment.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/ship_to.dart';
-import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/ship_to.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_activity.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_feed.dart';

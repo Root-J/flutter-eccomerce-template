@@ -2,7 +2,7 @@ import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/parent_bottom_nav_view_model.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav_view_model.dart';
 import 'package:flutter/material.dart';
 
 class MarketParent extends StatefulWidget {
@@ -42,9 +42,14 @@ class _MarketParentState extends State<MarketParent> {
   // int pageIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _bind();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _viewModel.dispose();
   }
 
   @override
