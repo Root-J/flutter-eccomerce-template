@@ -5,6 +5,7 @@ import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
@@ -18,34 +19,18 @@ class PickAddress extends StatefulWidget {
 }
 
 class _PickAddressState extends State<PickAddress> {
-  final List<Map<String, dynamic>> addressList = [
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': true,
-    },
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': false,
-    },
-  ];
+  final AddressViewModel _addressViewModel = AddressViewModel();
 
-  void _selectAddress(int selectedI) {
-    // assign selected Address
-    addressList[selectedI]['isDefault'] = true;
+  @override
+  void initState() {
+    super.initState();
+    _addressViewModel.start();
+  }
 
-    // make other addresses unavailable
-    for (int i = 0; i < addressList.length; i++) {
-      if (i != selectedI) {
-        addressList[i]['isDefault'] = false;
-      }
-    }
-    setState(() {});
+  @override
+  void dispose() {
+    super.dispose();
+    _addressViewModel.dispose();
   }
 
   @override
@@ -53,35 +38,40 @@ class _PickAddressState extends State<PickAddress> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const HeaderPadding(
-                widget: NestedAppBar(
-              title: AppStrings.shipTo,
-              isAdd: true,
-              /* onAddTapped: navigate to add new Address page, */
-            )),
-            Wrap(
-              children: [
-                for (int i = 0; i < addressList.length; i++)
-                  GestureDetector(
-                    onTap: () {
-                      if (addressList[i]['isDefault'] == false) {
-                        _selectAddress(i);
-                      }
-                    },
-                    child: AddressItem(
-                      town: addressList[i]['address town'],
-                      addressDetails: addressList[i]['address details'],
-                      phone: addressList[i]['phone'],
-                      isSelected: addressList[i]['isDefault'],
-                    ),
-                  )
-              ],
-            )
-          ],
-        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const HeaderPadding(
+              widget: NestedAppBar(
+            title: AppStrings.shipTo,
+            isAdd: true,
+            /* onAddTapped: navigate to add new Address page, */
+          )),
+          StreamBuilder(
+            stream: _addressViewModel.outputAddressViewObject,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Wrap(children: [
+                  for (int i = 0; i < _addressViewModel.list.length; i++)
+                    GestureDetector(
+                      onTap: () {
+                        if (_addressViewModel.list[i].isDefault == false) {
+                          _addressViewModel.selectAddress(i);
+                        }
+                      },
+                      child: AddressItem(
+                        town: _addressViewModel.list[i].town,
+                        addressDetails:
+                            _addressViewModel.list[i].addressDetails,
+                        phone: _addressViewModel.list[i].phone,
+                        isSelected: _addressViewModel.list[i].isDefault,
+                      ),
+                    )
+                ]);
+              } else {
+                return const Center(child: Text('you need to put address'));
+              }
+            },
+          ),
+        ]),
       ),
       floatingActionButton: DefaultButton(
           width: size.width - AppPadding.p16 * 2,
