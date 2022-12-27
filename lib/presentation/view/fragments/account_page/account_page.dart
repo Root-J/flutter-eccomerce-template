@@ -55,28 +55,18 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: AppPadding.p4, bottom: AppPadding.p16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(
-              imagePath,
-              scale: AppSize.s20,
-              color: AppColors.primaryBlue,
-            ),
-            const SizedBox(width: AppMargin.m16),
-            Text(
-              txt,
-              style: const AppTextStyles()
-                  .headingH6
-                  .copyWith(color: AppColors.neutralDark),
-            )
-          ],
+    return ListTile(
+        onTap: onTap,
+        leading: Image.asset(
+          imagePath,
+          scale: AppSize.s20,
+          color: AppColors.primaryBlue,
         ),
-      ),
-    );
+        title: Text(
+          txt,
+          style: const AppTextStyles()
+              .headingH6
+              .copyWith(color: AppColors.neutralDark),
+        ));
   }
 }
