@@ -61,6 +61,8 @@ class SystemIcons {
   static const String transactionIcon = '$SYSTEM_ICONS_PATHx24/Transaction.png';
   static const String bankIcon = '$SYSTEM_ICONS_PATHx24/Bank.png';
   static const String creditCardIcon = '$SYSTEM_ICONS_PATHx24/Credit Card.png';
+  static const String bagIcon = '$SYSTEM_ICONS_PATHx24/bag.png';
+  static const String locationIcon = '$SYSTEM_ICONS_PATHx24/Location.png';
 
   static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
   static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';

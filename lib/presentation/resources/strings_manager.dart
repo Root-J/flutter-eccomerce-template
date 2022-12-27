@@ -53,4 +53,9 @@ class AppStrings {
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';
   static const String next = 'Next';
+
+  // Account Page
+  static const String profile = 'Profile';
+  static const String order = "Order";
+  static const String address = "Address";
 }
