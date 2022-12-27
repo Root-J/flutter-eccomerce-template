@@ -1,7 +1,7 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/text_styles_manager.dart';
+import '../../../resources/text_styles_manager.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);

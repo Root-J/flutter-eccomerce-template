@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 import '/presentation/base/base_view_model.dart';
-import '../fragments/account_page.dart';
+import '../fragments/account_page/account_page.dart';
 import '../fragments/cart_page/view/cart_page.dart';
 import '../fragments/explore_page.dart';
 import '../fragments/home_page.dart';

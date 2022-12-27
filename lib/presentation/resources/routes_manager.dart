@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/ship_to.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String cartPaymentRoute = '/payment';
   static const String cartChooseCardRoute = '/choose Card';
   static const String successRoute = '/success purchase';
+  static const String accountRoute = '/account';
 }
 
 class RouteGenerator {
@@ -51,11 +53,11 @@ class RouteGenerator {
       case Routes.notificationActivityRoute:
         return MaterialPageRoute(builder: (_) => NotificationActivityScreen());
       case Routes.cartChooseCardRoute:
-        return MaterialPageRoute(builder: (_) => ChooseCard());
+        return MaterialPageRoute(builder: (_) => const ChooseCard());
       case Routes.cartPaymentRoute:
-        return MaterialPageRoute(builder: (_) => Payment());
+        return MaterialPageRoute(builder: (_) => const Payment());
       case Routes.cartShipToRoute:
-        return MaterialPageRoute(builder: (_) => PickAddress());
+        return MaterialPageRoute(builder: (_) => const PickAddress());
       case Routes.successRoute:
         final args = settings.arguments as SuccessAlertParams;
         return MaterialPageRoute(
@@ -63,6 +65,8 @@ class RouteGenerator {
                   buttonText: args.buttonText,
                   message: args.message,
                 ));
+      case Routes.accountRoute:
+        return MaterialPageRoute(builder: (_) => const AccountPage());
       default:
         return unDefinedRoute();
     }
