@@ -58,4 +58,15 @@ class AppStrings {
   static const String profile = 'Profile';
   static const String order = "Order";
   static const String address = "Address";
+
+  //Profile Screen
+  static const String gender = "Gender";
+  static const String birthday = "Birthday";
+  static const String email = "Email";
+  static const String phone = "Phone";
+  static const String phoneNumber = "Phone Number";
+  static const String changePassword = "Change Password";
+  static const String password = "Password";
+  static const String male = "Male";
+  static const String female = "Female";
 }

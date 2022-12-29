@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
@@ -21,7 +22,8 @@ class AccountPage extends StatelessWidget {
             AccountItem(
                 imagePath: SystemIcons.userIcon,
                 txt: AppStrings.profile,
-                onTap: () {}),
+                onTap: () =>
+                    Navigator.pushNamed(context, Routes.accountProfileRoute)),
             AccountItem(
                 imagePath: SystemIcons.bagIcon,
                 txt: AppStrings.order,

@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/ship_to.dart';
@@ -25,10 +26,14 @@ class Routes {
   static const String notificationFeedRoute = '/feed';
   static const String notificationActivityRoute = '/activity';
   static const String cartShipToRoute = '/ship to';
-  static const String cartPaymentRoute = '/payment';
+  static const String cartPaymentRoute = '/cart/payment';
   static const String cartChooseCardRoute = '/choose Card';
   static const String successRoute = '/success purchase';
   static const String accountRoute = '/account';
+  static const String accountProfileRoute = '/profile';
+  static const String accountOrderRoute = '/order';
+  static const String accountAddressRoute = '/address';
+  static const String accountPaymentRoute = '$accountRoute/payment';
 }
 
 class RouteGenerator {
@@ -66,6 +71,14 @@ class RouteGenerator {
                   message: args.message,
                 ));
       case Routes.accountRoute:
+        return MaterialPageRoute(builder: (_) => const AccountPage());
+      case Routes.accountProfileRoute:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      case Routes.accountOrderRoute:
+        return MaterialPageRoute(builder: (_) => const AccountPage());
+      case Routes.accountAddressRoute:
+        return MaterialPageRoute(builder: (_) => const AccountPage());
+      case Routes.accountPaymentRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());
       default:
         return unDefinedRoute();

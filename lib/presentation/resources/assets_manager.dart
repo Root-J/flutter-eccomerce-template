@@ -58,11 +58,17 @@ class SystemIcons {
   static const String moreIcon = '$SYSTEM_ICONS_PATHx24/more.png';
   static const String listIcon = '$SYSTEM_ICONS_PATHx24/List.png';
   static const String backIcon = '$SYSTEM_ICONS_PATHx24/Left.png';
+  static const String forwardIcon = '$SYSTEM_ICONS_PATHx24/Right.png';
   static const String transactionIcon = '$SYSTEM_ICONS_PATHx24/Transaction.png';
   static const String bankIcon = '$SYSTEM_ICONS_PATHx24/Bank.png';
   static const String creditCardIcon = '$SYSTEM_ICONS_PATHx24/Credit Card.png';
   static const String bagIcon = '$SYSTEM_ICONS_PATHx24/bag.png';
   static const String locationIcon = '$SYSTEM_ICONS_PATHx24/Location.png';
+  static const String genderIcon = '$SYSTEM_ICONS_PATHx24/Gender.png';
+  static const String emailIcon = '$SYSTEM_ICONS_PATHx24/Message.png';
+  static const String phoneIcon = '$SYSTEM_ICONS_PATHx24/Phone.png';
+  static const String passwordIcon = '$SYSTEM_ICONS_PATHx24/Password.png';
+  static const String dateIcon = '$SYSTEM_ICONS_PATHx24/Date.png';
 
   static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
   static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';
