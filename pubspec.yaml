@@ -37,7 +37,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
-  flutter_image_slideshow: ^0.1.4
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +65,10 @@ flutter:
    # icons
    - assets/icons/Product_icon/24px/
    - assets/icons/Rating/
+   - assets/icons/system_icon/24px/
+   - assets/icons/system_icon/16px/
+   - assets/icons/social_icons/
+   - assets/icons/Alert_Icon/
 
 
    # Images
