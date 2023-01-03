@@ -1,13 +1,11 @@
 import 'package:ecommerce_flutter/core/validation/name_validator.dart';
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/name_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../core/validation/base_validator.dart';
 import 'descendants_scaffold.dart';
@@ -20,30 +18,18 @@ class NameScreen extends StatefulWidget {
 }
 
 class _NameScreenState extends State<NameScreen> {
-  late SharedPreferences prefs;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
+  final NameViewModel _viewModel = NameViewModel();
 
   @override
   void initState() {
     super.initState();
-    initial();
-  }
-
-  void initial() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      firstNameController.text = prefs.getString(AppStrings.firstName) ?? '';
-      lastNameController.text = prefs.getString(AppStrings.lastName) ?? '';
-    });
+    _viewModel.start();
   }
 
   @override
   void dispose() {
     super.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
+    _viewModel.dispose();
   }
 
   @override
@@ -51,7 +37,7 @@ class _NameScreenState extends State<NameScreen> {
     return ProfileDescendantsScaffold(
       title: AppStrings.name,
       child: Form(
-        key: _formKey,
+        key: _viewModel.formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -60,7 +46,7 @@ class _NameScreenState extends State<NameScreen> {
                     .headingH5
                     .copyWith(color: AppColors.neutralDark)),
             DataField(
-                controller: firstNameController,
+                controller: _viewModel.firstNameController,
                 hintText: AppStrings.firstName,
                 validator: NameValidator()),
             const SizedBox(height: AppMargin.m8),
@@ -69,22 +55,13 @@ class _NameScreenState extends State<NameScreen> {
                     .headingH5
                     .copyWith(color: AppColors.neutralDark)),
             DataField(
-                controller: lastNameController,
+                controller: _viewModel.lastNameController,
                 hintText: AppStrings.lastName,
                 validator: NameValidator()),
           ],
         ),
       ),
-      fabFun: () {
-        if (_formKey.currentState!.validate()) {
-          SharedPrefs.save(
-              key: AppStrings.firstName, value: firstNameController.text);
-          SharedPrefs.save(
-              key: AppStrings.lastName, value: lastNameController.text);
-          Navigator.pushNamedAndRemoveUntil(
-              context, Routes.accountProfileRoute, (route) => false);
-        }
-      },
+      fabFun: () => _viewModel.saveButton(context),
     );
   }
 }
