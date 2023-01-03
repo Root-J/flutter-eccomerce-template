@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/gender_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/name_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
@@ -39,6 +40,7 @@ class Routes {
   static const String accountPaymentRoute = '$accountRoute/payment';
   static const String accountNameRoute = '$accountProfileRoute/name';
   static const String accountGenderRoute = '$accountProfileRoute/gender';
+  static const String accountBirthdayRoute = '$accountProfileRoute/birthday';
 }
 
 class RouteGenerator {
@@ -93,6 +95,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NameScreen());
       case Routes.accountGenderRoute:
         return MaterialPageRoute(builder: (_) => const GenderScreen());
+      case Routes.accountBirthdayRoute:
+        return MaterialPageRoute(builder: (_) => const BirthdayScreen());
       default:
         return unDefinedRoute();
     }

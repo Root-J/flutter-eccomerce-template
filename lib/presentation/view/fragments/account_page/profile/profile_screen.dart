@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         context, Routes.accountGenderRoute)),
                 ProfileTiles(
                     imagePath: SystemIcons.dateIcon,
-                    title: AutofillHints.birthdayDay,
+                    title: AppStrings.birthday,
                     trailing: birthday ?? '',
                     onTap: () {}),
                 ProfileTiles(
