@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../resources/decoration_manager.dart';
 import '../../../../resources/routes_manager.dart';
 
 class BirthdayScreen extends StatefulWidget {
@@ -50,9 +51,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                     .headingH5
                     .copyWith(color: AppColors.neutralDark)),
             Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-                  border: Border.all(color: AppColors.neutralLight)),
+              decoration: AppDecoration.defaultBoxDecoration,
               padding: const EdgeInsets.all(AppPadding.p12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,9 +74,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ),
             const SizedBox(height: AppMargin.m8),
             Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-                  border: Border.all(color: AppColors.neutralLight)),
+              decoration: AppDecoration.defaultBoxDecoration,
               child: CalendarDatePicker(
                   initialDate: birthday != null ? birthday! : DateTime.now(),
                   firstDate: DateTime(1940),

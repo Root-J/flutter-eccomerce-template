@@ -27,4 +27,8 @@ class AppDecoration {
       OutlineInputBorder(
           borderSide: BorderSide(color: color, width: borderWidth),
           borderRadius: BorderRadius.circular(AppCircularRadius.cr5));
+
+  static BoxDecoration defaultBoxDecoration = BoxDecoration(
+      border: Border.all(color: AppColors.neutralLight),
+      borderRadius: BorderRadius.circular(AppCircularRadius.cr5));
 }

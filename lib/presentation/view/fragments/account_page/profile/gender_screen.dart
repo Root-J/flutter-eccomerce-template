@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
@@ -54,9 +55,7 @@ class _GenderScreenState extends State<GenderScreen> {
             Container(
               width: size.width - 16,
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12),
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.neutralLight),
-                  borderRadius: BorderRadius.circular(AppCircularRadius.cr5)),
+              decoration: AppDecoration.defaultBoxDecoration,
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
                   isExpanded: true,

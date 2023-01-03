@@ -122,7 +122,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     imagePath: SystemIcons.emailIcon,
                     title: AppStrings.email,
                     trailing: email ?? '',
-                    onTap: () {}),
+                    onTap: () =>
+                        Navigator.pushNamed(context, Routes.accountEmailRoute)),
                 ProfileTiles(
                     imagePath: SystemIcons.phoneIcon,
                     title: AppStrings.phoneNumber,
