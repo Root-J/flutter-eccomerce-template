@@ -17,6 +17,7 @@ import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
 import 'package:flutter/material.dart';
 
+import '../view/fragments/account_page/profile/change_password_screen.dart';
 import '../view/screens/notification_screen/notification_offer.dart';
 import '../view/shared_widgets/alerts/success_alert.dart';
 
@@ -46,6 +47,8 @@ class Routes {
   static const String accountEmailRoute = '$accountProfileRoute/email';
   static const String accountPhoneNumberRoute =
       '$accountProfileRoute/phone number';
+  static const String accountChangePassword =
+      '$accountProfileRoute/change password';
 }
 
 class RouteGenerator {
@@ -106,6 +109,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const EmailScreen());
       case Routes.accountPhoneNumberRoute:
         return MaterialPageRoute(builder: (_) => const PhoneNumberScreen());
+      case Routes.accountChangePassword:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       default:
         return unDefinedRoute();
     }

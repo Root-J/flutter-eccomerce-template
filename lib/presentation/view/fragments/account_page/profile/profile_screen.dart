@@ -135,7 +135,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     isPassword: true,
                     title: AppStrings.changePassword,
                     trailing: password ?? '',
-                    onTap: () {}),
+                    onTap: () => Navigator.pushNamed(
+                        context, Routes.accountChangePassword))
               ],
             ),
           ],
