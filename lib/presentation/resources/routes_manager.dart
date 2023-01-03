@@ -4,6 +4,7 @@ import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profi
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/email_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/gender_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/name_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/phone_number_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
@@ -43,6 +44,8 @@ class Routes {
   static const String accountGenderRoute = '$accountProfileRoute/gender';
   static const String accountBirthdayRoute = '$accountProfileRoute/birthday';
   static const String accountEmailRoute = '$accountProfileRoute/email';
+  static const String accountPhoneNumberRoute =
+      '$accountProfileRoute/phone number';
 }
 
 class RouteGenerator {
@@ -101,6 +104,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BirthdayScreen());
       case Routes.accountEmailRoute:
         return MaterialPageRoute(builder: (_) => const EmailScreen());
+      case Routes.accountPhoneNumberRoute:
+        return MaterialPageRoute(builder: (_) => const PhoneNumber());
       default:
         return unDefinedRoute();
     }

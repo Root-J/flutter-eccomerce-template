@@ -128,7 +128,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     imagePath: SystemIcons.phoneIcon,
                     title: AppStrings.phoneNumber,
                     trailing: phoneNumber ?? '',
-                    onTap: () {}),
+                    onTap: () => Navigator.pushNamed(
+                        context, Routes.accountPhoneNumberRoute)),
                 ProfileTiles(
                     imagePath: SystemIcons.passwordIcon,
                     isPassword: true,
