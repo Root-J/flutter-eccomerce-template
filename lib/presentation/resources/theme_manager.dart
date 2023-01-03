@@ -9,6 +9,20 @@ ThemeData getApplicationTheme() {
       // main colors of the app
       primaryColor: AppColors.primaryBlue,
       disabledColor: AppColors.neutralGrey,
+      colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: AppColors.primaryBlue,
+          // color the selected number in calender
+          onPrimary: AppColors.backgroundWhite,
+          secondary: AppColors.neutralDark,
+          onSecondary: AppColors.neutralDark,
+          error: AppColors.primaryRed,
+          onError: AppColors.primaryRed,
+          background: AppColors.backgroundWhite,
+          onBackground: AppColors.backgroundWhite,
+          surface: AppColors.primaryBlue,
+          // colors the numbers in calender
+          onSurface: AppColors.neutralGrey),
 
       // ripple color
       // splashColor:
@@ -55,7 +69,10 @@ ThemeData getApplicationTheme() {
           subtitle1: const AppTextStyles().linkSmall,
           subtitle2: const AppTextStyles().linkSmall,
           bodyText2: const AppTextStyles().bodyTextMediumRegular,
-          caption: const AppTextStyles().captionNormalRegular,
+          // it affects the style of calender number
+          caption: const AppTextStyles()
+              .captionNormalRegular
+              .copyWith(fontWeight: FontWeight.w900),
           bodyText1: const AppTextStyles().bodyTextNormalRegular),
       // input decoration theme (text form field)
 

@@ -9,4 +9,26 @@ class AppDecoration {
   static BoxDecoration lightRoundedBorder = BoxDecoration(
       borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
       border: Border.all(color: AppColors.neutralLight));
+
+  static InputDecoration formFieldDecoration(String hintText) =>
+      InputDecoration(
+          contentPadding: const EdgeInsets.all(AppPadding.p12),
+          hintText: hintText,
+          border: defaultOutlineBorder(),
+          enabledBorder: defaultOutlineBorder(),
+          focusedBorder: defaultOutlineBorder(color: AppColors.primaryBlue),
+          errorBorder: defaultOutlineBorder(color: AppColors.primaryRed),
+          focusedErrorBorder: defaultOutlineBorder(
+              color: AppColors.primaryRed, borderWidth: AppSize.s2));
+
+  static OutlineInputBorder defaultOutlineBorder(
+          {Color color = AppColors.neutralLight,
+          double borderWidth = AppSize.s1}) =>
+      OutlineInputBorder(
+          borderSide: BorderSide(color: color, width: borderWidth),
+          borderRadius: BorderRadius.circular(AppCircularRadius.cr5));
+
+  static BoxDecoration defaultBoxDecoration = BoxDecoration(
+      border: Border.all(color: AppColors.neutralLight),
+      borderRadius: BorderRadius.circular(AppCircularRadius.cr5));
 }

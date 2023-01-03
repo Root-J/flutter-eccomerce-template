@@ -20,28 +20,21 @@ class NotificationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSize.s16),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(
-              iconPath,
-              scale: AppSize.s20,
-              color: AppColors.primaryBlue,
-            ),
-            const SizedBox(width: AppSize.s12),
-            Text(title,
-                style: const AppTextStyles()
-                    .headingH6
-                    .copyWith(color: AppColors.neutralDark)),
-            const Spacer(),
-            NumberAlert(number: number),
-          ],
-        ),
+    return ListTile(
+      title: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(title,
+            style: const AppTextStyles()
+                .headingH6
+                .copyWith(color: AppColors.neutralDark)),
       ),
+      leading: Image.asset(
+        iconPath,
+        scale: AppSize.s20,
+        color: AppColors.primaryBlue,
+      ),
+      onTap: onTap,
+      trailing: NumberAlert(number: number),
     );
   }
 }

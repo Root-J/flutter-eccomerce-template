@@ -36,20 +36,22 @@ class NotificationActivityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const HeaderPadding(widget: NestedAppBar(title: AppStrings.activity)),
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: activityNews.length,
-              itemBuilder: (context, i) => NotificationListItem(
-                  imagePath: activityNews[i]['imagePath'],
-                  title: activityNews[i]['title'],
-                  details: activityNews[i]['details'],
-                  date: activityNews[i]['date']))
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const HeaderPadding(
+                widget: NestedAppBar(title: AppStrings.activity)),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: activityNews.length,
+                itemBuilder: (context, i) => NotificationListItem(
+                    imagePath: activityNews[i]['imagePath'],
+                    title: activityNews[i]['title'],
+                    details: activityNews[i]['details'],
+                    date: activityNews[i]['date']))
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

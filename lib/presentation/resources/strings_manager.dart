@@ -32,12 +32,18 @@ class AppStrings {
   static const String importCharges = 'Import Charges';
   static const String totalPrice = 'Total Price';
   static const String checkOut = 'Check Out';
+
+  // Validation messages
   static const String passwordValidationMessage =
       'Password must be at least 8 Characters';
+  static const String passwordNotMatchingMessage =
+      'Oops! Your Password Is Not Correct';
   static const String requiredValidationMessage = 'Required Field';
   static const String emailValidationMessage = 'Invalid Email';
   static const String phoneValidationMessage = 'Invalid Phone Number';
   static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
+  static const String nameValidationMessage = "Only letters(a-A) are allowed";
+
   static const String payment = 'Payment';
   static const String shipTo = 'Ship To';
   static const String pay = 'Pay';
@@ -53,4 +59,36 @@ class AppStrings {
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';
   static const String next = 'Next';
+
+  // Account Page
+  static const String profile = 'Profile';
+  static const String order = "Order";
+  static const String address = "Address";
+
+  //Profile Screen
+  static const String gender = "Gender";
+  static const String birthday = "Birthday";
+  static const String email = "Email";
+  static const String phone = "Phone";
+  static const String phoneNumber = "Phone Number";
+  static const String changePassword = "Change Password";
+  static const String password = "Password";
+  static const String male = "Male";
+  static const String female = "Female";
+  static const String userName = "User Name";
+  static const String tempData = "Local Temp Data";
+
+  //Name Screen
+  static const String name = "Name";
+  static const String firstName = "First Name";
+  static const String lastName = "Last Name";
+  static const String save = "Save";
+
+  //Gender Screen
+  static const String chooseGender = "Choose Gender";
+
+  //Change Password Screen
+  static const String oldPassword = 'Old Password';
+  static const String newPassword = "New Password";
+  static const String newPasswordAgain = "New Password Again";
 }

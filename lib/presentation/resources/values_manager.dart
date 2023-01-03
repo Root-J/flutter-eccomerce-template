@@ -50,6 +50,7 @@ class AppSize {
 class AppCircularRadius {
   static const double cr5 = 5.0;
   static const double cr66 = 66.0;
+  static const double cr8 = 8.0;
 }
 
 class AppElevation {

@@ -13,7 +13,7 @@ class MarketParent extends StatefulWidget {
 
   final int? intIndex;
 
-  const MarketParent({Key? key, this.intIndex}) : super(key: key);
+  const MarketParent({Key? key, this.intIndex = 0}) : super(key: key);
 
   @override
   State<MarketParent> createState() => _MarketParentState();
