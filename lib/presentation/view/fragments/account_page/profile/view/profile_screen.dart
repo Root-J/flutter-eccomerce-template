@@ -36,19 +36,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: StreamBuilder(
-                stream: _viewModel.outputProfileViewObject,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return getProfileUI(snapshot.data, context);
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(
-                          color: AppColors.primaryBlue),
-                    );
-                  }
-                })));
+      body: SingleChildScrollView(
+        child: StreamBuilder(
+            stream: _viewModel.outputProfileViewObject,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return getProfileUI(snapshot.data, context);
+              } else {
+                return const Center(
+                  child:
+                      CircularProgressIndicator(color: AppColors.primaryBlue),
+                );
+              }
+            }),
+      ),
+    );
   }
 }
 

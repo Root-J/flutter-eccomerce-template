@@ -10,8 +10,8 @@ import '../../../../../resources/strings_manager.dart';
 
 class GenderViewModel extends BaseViewModel
     with GenderViewModelInput, GenderViewModelOutput {
-  String? gender;
-  String? selectedValue;
+  String? _gender;
+  String? _selectedValue;
   late SharedPreferences prefs;
 
   final StreamController<GenderModel> _streamController =
@@ -20,8 +20,9 @@ class GenderViewModel extends BaseViewModel
   @override
   void start() async {
     prefs = await SharedPreferences.getInstance();
-    gender = prefs.getString(AppStrings.gender);
-    selectedValue = gender;
+    _gender = prefs.getString(AppStrings.gender);
+    _selectedValue = _gender;
+    _postDateToView(_selectedValue!);
   }
 
   @override
@@ -30,9 +31,13 @@ class GenderViewModel extends BaseViewModel
     _streamController.close();
   }
 
+  void _postDateToView(String gender) {
+    inputGenderViewObject.add(GenderModel(gender));
+  }
+
   void saveButton(BuildContext context) {
-    if (selectedValue != gender) {
-      SharedPrefs.save(key: AppStrings.gender, value: selectedValue);
+    if (_selectedValue != _gender) {
+      SharedPrefs.save(key: AppStrings.gender, value: _selectedValue);
       Navigator.pushNamedAndRemoveUntil(
           context, Routes.accountProfileRoute, (route) => false);
     }
@@ -40,11 +45,12 @@ class GenderViewModel extends BaseViewModel
 
   @override
   void onChange(String selection) {
-    selectedValue = selection;
+    _selectedValue = selection;
+    _postDateToView(_selectedValue!);
   }
 
   @override
-  Sink get inputGenderViewObject => _streamController.sink;
+  Sink<GenderModel> get inputGenderViewObject => _streamController.sink;
 
   @override
   Stream<GenderModel> get outputGenderViewObject =>
@@ -53,11 +59,11 @@ class GenderViewModel extends BaseViewModel
 
 abstract class GenderViewModelInput {
   void onChange(String selection);
-  Sink get inputGenderViewObject;
+  Sink<GenderModel> get inputGenderViewObject;
 }
 
 abstract class GenderViewModelOutput {
-  Stream get outputGenderViewObject;
+  Stream<GenderModel> get outputGenderViewObject;
 }
 
 class GenderModel {
