@@ -1,15 +1,13 @@
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/gender_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../resources/assets_manager.dart';
-import '../../../../../resources/routes_manager.dart';
 
 class GenderScreen extends StatefulWidget {
   const GenderScreen({Key? key}) : super(key: key);
@@ -19,22 +17,18 @@ class GenderScreen extends StatefulWidget {
 }
 
 class _GenderScreenState extends State<GenderScreen> {
-  String? gender;
-  String? selectedValue;
-  late SharedPreferences prefs;
+  final GenderViewModel _viewModel = GenderViewModel();
 
   @override
   void initState() {
     super.initState();
-    initial();
+    _viewModel.start();
   }
 
-  void initial() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      gender = prefs.getString(AppStrings.gender);
-      selectedValue = gender;
-    });
+  @override
+  void dispose() {
+    super.dispose();
+    _viewModel.dispose();
   }
 
   @override
@@ -66,9 +60,9 @@ class _GenderScreenState extends State<GenderScreen> {
                         .copyWith(color: AppColors.neutralGrey),
                   ),
                   borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-                  value: selectedValue,
+                  value: _viewModel.selectedValue,
                   onChanged: (String? newValue) =>
-                      setState(() => selectedValue = newValue),
+                      setState(() => _viewModel.selectedValue = newValue),
                   items: [AppStrings.male, AppStrings.female]
                       .map<DropdownMenuItem<String>>(
                           (String value) => DropdownMenuItem<String>(
@@ -78,9 +72,10 @@ class _GenderScreenState extends State<GenderScreen> {
                                   style: const AppTextStyles()
                                       .formTextFill
                                       .copyWith(
-                                          color: value == selectedValue
-                                              ? AppColors.primaryBlue
-                                              : AppColors.neutralGrey),
+                                          color:
+                                              value == _viewModel.selectedValue
+                                                  ? AppColors.primaryBlue
+                                                  : AppColors.neutralGrey),
                                 ),
                               ))
                       .toList(),
@@ -94,12 +89,6 @@ class _GenderScreenState extends State<GenderScreen> {
             )
           ],
         ),
-        fabFun: () {
-          if (selectedValue != gender) {
-            SharedPrefs.save(key: AppStrings.gender, value: selectedValue);
-          }
-          Navigator.pushNamedAndRemoveUntil(
-              context, Routes.accountProfileRoute, (route) => false);
-        });
+        fabFun: () => _viewModel.saveButton(context));
   }
 }
