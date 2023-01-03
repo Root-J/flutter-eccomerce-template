@@ -27,8 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _viewModel.start();
   }
 
-  Future<void> initial() async {}
-
   @override
   void dispose() {
     super.dispose();
@@ -45,24 +43,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (snapshot.hasData) {
                     return getProfileUI(snapshot.data, context);
                   } else {
-                    return Text('data');
+                    return const Center(
+                      child: CircularProgressIndicator(
+                          color: AppColors.primaryBlue),
+                    );
                   }
                 })));
   }
 }
 
 Widget getProfileUI(data, context) {
-  return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    HeaderPadding(
-        widget: NestedAppBar(
-            title: AppStrings.profile,
-            backFunction: () => Navigator.pushNamedAndRemoveUntil(
-                context, Routes.marketRoute, (route) => false,
-                // to get back to Account Fragment after getting back from pushAndRemoveUntil from any other screen
-                arguments: const ParentIndexParams(intIndex: 4)))),
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      HeaderPadding(
+          widget: NestedAppBar(
+              title: AppStrings.profile,
+              backFunction: () => Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.marketRoute, (route) => false,
+                  // to get back to Account Fragment after getting back from pushAndRemoveUntil from any other screen
+                  arguments: const ParentIndexParams(intIndex: 4)))),
 
-    // Profile Name and Photo
-    Padding(
+      // Profile Name and Photo
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           const CircleAvatar(
@@ -71,65 +74,73 @@ Widget getProfileUI(data, context) {
           ),
           const SizedBox(width: AppMargin.m16),
           Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, Routes.accountNameRoute),
-                    child: Text(
-                      '${data.firstName} ${data.lastName}',
-                      style: const AppTextStyles()
-                          .headingH5
-                          .copyWith(color: AppColors.neutralDark),
-                    )),
-                Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-                    child: Text(
-                      data.userName ?? '',
-                      style: const AppTextStyles()
-                          .bodyTextNormalRegular
-                          .copyWith(color: AppColors.neutralGrey),
-                    ))
-              ])
-        ])),
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextButton(
+                  onPressed: () =>
+                      Navigator.pushNamed(context, Routes.accountNameRoute),
+                  child: Text(
+                    '${data.firstName} ${data.lastName}',
+                    style: const AppTextStyles()
+                        .headingH5
+                        .copyWith(color: AppColors.neutralDark),
+                  )),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+                child: Text(
+                  data.userName ?? '',
+                  style: const AppTextStyles()
+                      .bodyTextNormalRegular
+                      .copyWith(color: AppColors.neutralGrey),
+                ),
+              )
+            ],
+          )
+        ]),
+      ),
 
-    const SizedBox(height: AppMargin.m24),
+      const SizedBox(height: AppMargin.m24),
 
-// Profile Details
-    Column(mainAxisSize: MainAxisSize.min, children: [
-      ProfileTiles(
-          imagePath: SystemIcons.genderIcon,
-          title: AppStrings.gender,
-          trailing: data.gender ?? '',
-          onTap: () => Navigator.pushNamed(context, Routes.accountGenderRoute)),
-      ProfileTiles(
-          imagePath: SystemIcons.dateIcon,
-          title: AppStrings.birthday,
-          trailing: data.birthday ?? '',
-          onTap: () =>
-              Navigator.pushNamed(context, Routes.accountBirthdayRoute)),
-      ProfileTiles(
-          imagePath: SystemIcons.emailIcon,
-          title: AppStrings.email,
-          trailing: data.email ?? '',
-          onTap: () => Navigator.pushNamed(context, Routes.accountEmailRoute)),
-      ProfileTiles(
-          imagePath: SystemIcons.phoneIcon,
-          title: AppStrings.phoneNumber,
-          trailing: data.phoneNumber ?? '',
-          onTap: () =>
-              Navigator.pushNamed(context, Routes.accountPhoneNumberRoute)),
-      ProfileTiles(
-          imagePath: SystemIcons.passwordIcon,
-          isPassword: true,
-          title: AppStrings.changePassword,
-          trailing: data.password ?? '',
-          onTap: () =>
-              Navigator.pushNamed(context, Routes.accountChangePassword))
-    ])
-  ]);
+      // Profile Details
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <ProfileTiles>[
+          ProfileTiles(
+              imagePath: SystemIcons.genderIcon,
+              title: AppStrings.gender,
+              trailing: data.gender ?? '',
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.accountGenderRoute)),
+          ProfileTiles(
+              imagePath: SystemIcons.dateIcon,
+              title: AppStrings.birthday,
+              trailing: data.birthday ?? '',
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.accountBirthdayRoute)),
+          ProfileTiles(
+              imagePath: SystemIcons.emailIcon,
+              title: AppStrings.email,
+              trailing: data.email ?? '',
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.accountEmailRoute)),
+          ProfileTiles(
+              imagePath: SystemIcons.phoneIcon,
+              title: AppStrings.phoneNumber,
+              trailing: data.phoneNumber ?? '',
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.accountPhoneNumberRoute)),
+          ProfileTiles(
+              imagePath: SystemIcons.passwordIcon,
+              isPassword: true,
+              title: AppStrings.changePassword,
+              trailing: data.password ?? '',
+              onTap: () =>
+                  Navigator.pushNamed(context, Routes.accountChangePassword))
+        ],
+      )
+    ],
+  );
 }
 
 class ProfileTiles extends StatelessWidget {
