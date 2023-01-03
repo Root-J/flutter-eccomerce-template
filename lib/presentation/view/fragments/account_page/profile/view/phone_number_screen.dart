@@ -10,11 +10,8 @@ import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profi
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/phone_number_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../core/validation/phone_validator.dart';
-import '../../../../../../data/profile_data/account_data.dart';
-import '../../../../../resources/routes_manager.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);
@@ -30,16 +27,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   void initState() {
     super.initState();
     _viewModel.start();
-
   }
-@override
+
+  @override
   void dispose() {
     super.dispose();
     _viewModel.dispose();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +90,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
             ),
           ],
         ),
-        fabFun: ()=>_viewModel.saveButton(context));
+        fabFun: () => _viewModel.saveButton(context));
   }
 }

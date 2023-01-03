@@ -36,59 +36,69 @@ class _GenderScreenState extends State<GenderScreen> {
     Size size = MediaQuery.of(context).size;
     return ProfileDescendantsScaffold(
         title: AppStrings.gender,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.chooseGender,
-              style: const AppTextStyles()
-                  .headingH5
-                  .copyWith(color: AppColors.neutralDark),
-            ),
-            const SizedBox(height: AppMargin.m16),
-            Container(
-              width: size.width - 16,
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p12),
-              decoration: AppDecoration.defaultBoxDecoration,
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  hint: Text(
-                    AppStrings.gender,
-                    style: const AppTextStyles()
-                        .formTextFill
-                        .copyWith(color: AppColors.neutralGrey),
-                  ),
-                  borderRadius: BorderRadius.circular(AppCircularRadius.cr5),
-                  value: _viewModel.selectedValue,
-                  onChanged: (String? newValue) =>
-                      setState(() => _viewModel.selectedValue = newValue),
-                  items: [AppStrings.male, AppStrings.female]
-                      .map<DropdownMenuItem<String>>(
-                          (String value) => DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: const AppTextStyles()
-                                      .formTextFill
-                                      .copyWith(
-                                          color:
-                                              value == _viewModel.selectedValue
+        child: StreamBuilder(
+            stream: _viewModel.outputGenderViewObject,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.chooseGender,
+                      style: const AppTextStyles()
+                          .headingH5
+                          .copyWith(color: AppColors.neutralDark),
+                    ),
+                    const SizedBox(height: AppMargin.m16),
+                    Container(
+                      width: size.width - 16,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.p12),
+                      decoration: AppDecoration.defaultBoxDecoration,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          hint: Text(
+                            AppStrings.gender,
+                            style: const AppTextStyles()
+                                .formTextFill
+                                .copyWith(color: AppColors.neutralGrey),
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(AppCircularRadius.cr5),
+                          value: snapshot.data!.gender,
+                          onChanged: (selection) =>
+                              _viewModel.onChange(selection!),
+                          items: [AppStrings.male, AppStrings.female]
+                              .map<DropdownMenuItem<String>>((String value) =>
+                                  DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(
+                                      value,
+                                      style: const AppTextStyles()
+                                          .formTextFill
+                                          .copyWith(
+                                              color: value ==
+                                                      _viewModel.selectedValue
                                                   ? AppColors.primaryBlue
                                                   : AppColors.neutralGrey),
-                                ),
-                              ))
-                      .toList(),
-                  icon: Image.asset(
-                    SystemIcons.bottomArrowIcon,
-                    scale: AppSize.s24,
-                  ),
-                  underline: const SizedBox(),
-                ),
-              ),
-            )
-          ],
-        ),
+                                    ),
+                                  ))
+                              .toList(),
+                          icon: Image.asset(
+                            SystemIcons.bottomArrowIcon,
+                            scale: AppSize.s24,
+                          ),
+                          underline: const SizedBox(),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              } else {
+                return const Center(child: Text('Wait'));
+              }
+            }),
         fabFun: () => _viewModel.saveButton(context));
   }
 }

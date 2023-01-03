@@ -7,8 +7,8 @@ import '../../../../base/base_view_model.dart';
 class AddressViewModel extends BaseViewModel
     with AddressViewModelInput, AddressViewModelOutput {
   late final List<AddressModel> list;
-  final StreamController<AddressModel> _streamController =
-      StreamController<AddressModel>();
+  final StreamController<List<AddressModel>> _streamController =
+      StreamController<List<AddressModel>>();
   final List<Map<String, dynamic>> addressList = [
     {
       'address town': 'Priscekila',
@@ -62,24 +62,22 @@ class AddressViewModel extends BaseViewModel
   }
 
   void _postDataToView() {
-    for (int i = 0; i < list.length; i++) {
-      inputAddressViewObject.add(list[i]);
-    }
+    inputAddressViewObject.add(list);
   }
 
   @override
-  Sink get inputAddressViewObject => _streamController.sink;
+  Sink<List<AddressModel>> get inputAddressViewObject => _streamController.sink;
 
   @override
-  Stream get outputAddressViewObject =>
+  Stream<List<AddressModel>> get outputAddressViewObject =>
       _streamController.stream.map((event) => event);
 }
 
 abstract class AddressViewModelOutput {
-  void selectAddress(int selectedI);
-  Sink get inputAddressViewObject;
+  Stream<List<AddressModel>> get outputAddressViewObject;
 }
 
 abstract class AddressViewModelInput {
-  Stream get outputAddressViewObject;
+  void selectAddress(int selectedI);
+  Sink<List<AddressModel>> get inputAddressViewObject;
 }

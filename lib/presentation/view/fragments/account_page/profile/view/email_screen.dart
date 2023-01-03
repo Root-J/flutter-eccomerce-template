@@ -27,6 +27,12 @@ class _EmailScreenState extends State<EmailScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _viewModel.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ProfileDescendantsScaffold(
         title: AppStrings.email,

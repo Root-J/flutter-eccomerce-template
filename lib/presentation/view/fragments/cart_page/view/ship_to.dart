@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
@@ -49,20 +51,20 @@ class _PickAddressState extends State<PickAddress> {
             stream: _addressViewModel.outputAddressViewObject,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                log(snapshot.data!.toString());
                 return Wrap(children: [
-                  for (int i = 0; i < _addressViewModel.list.length; i++)
+                  for (int i = 0; i < snapshot.data!.length; i++)
                     GestureDetector(
                       onTap: () {
-                        if (_addressViewModel.list[i].isDefault == false) {
+                        if (snapshot.data![i].isDefault == false) {
                           _addressViewModel.selectAddress(i);
                         }
                       },
                       child: AddressItem(
-                        town: _addressViewModel.list[i].town,
-                        addressDetails:
-                            _addressViewModel.list[i].addressDetails,
-                        phone: _addressViewModel.list[i].phone,
-                        isSelected: _addressViewModel.list[i].isDefault,
+                        town: snapshot.data![i].town,
+                        addressDetails: snapshot.data![i].addressDetails,
+                        phone: snapshot.data![i].phone,
+                        isSelected: snapshot.data![i].isDefault,
                       ),
                     )
                 ]);
