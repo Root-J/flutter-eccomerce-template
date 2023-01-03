@@ -105,7 +105,7 @@ class RouteGenerator {
       case Routes.accountEmailRoute:
         return MaterialPageRoute(builder: (_) => const EmailScreen());
       case Routes.accountPhoneNumberRoute:
-        return MaterialPageRoute(builder: (_) => const PhoneNumber());
+        return MaterialPageRoute(builder: (_) => const PhoneNumberScreen());
       default:
         return unDefinedRoute();
     }
