@@ -66,11 +66,11 @@ class RouteGenerator {
       case Routes.cartShipToRoute:
         return MaterialPageRoute(builder: (_) => const PickAddress());
       case Routes.successRoute:
-        final args = settings.arguments as SuccessAlertParams;
+        final successArgs = settings.arguments as SuccessAlertParams;
         return MaterialPageRoute(
             builder: (_) => SuccessScreen(
-                  buttonText: args.buttonText,
-                  message: args.message,
+                  buttonText: successArgs.buttonText,
+                  message: successArgs.message,
                 ));
       case Routes.accountRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());

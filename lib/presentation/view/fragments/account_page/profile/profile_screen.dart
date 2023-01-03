@@ -6,11 +6,46 @@ import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../resources/assets_manager.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String? firstName;
+  String? lastName;
+  String? userName;
+  String? gender;
+  String? birthday;
+  String? email;
+  String? phoneNumber;
+  String? password;
+  late SharedPreferences prefs;
+  void initial() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      firstName = prefs.getString(AppStrings.firstName);
+      lastName = prefs.getString(AppStrings.lastName);
+      userName = prefs.getString(AppStrings.userName);
+      gender = prefs.getString(AppStrings.gender);
+      birthday = prefs.getString(AppStrings.birthday);
+      email = prefs.getString(AppStrings.email);
+      phoneNumber = prefs.getString(AppStrings.phoneNumber);
+      password = prefs.getString(AppStrings.password);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initial();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                       onPressed: () =>
                           Navigator.pushNamed(context, Routes.accountNameRoute),
                       child: Text(
-                        'Thomas Meshail',
+                        '$firstName $lastName',
                         style: const AppTextStyles()
                             .headingH5
                             .copyWith(color: AppColors.neutralDark),
@@ -49,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                       padding:
                           const EdgeInsets.symmetric(horizontal: AppPadding.p8),
                       child: Text(
-                        '@2Math0',
+                        userName ?? '',
                         style: const AppTextStyles()
                             .bodyTextNormalRegular
                             .copyWith(color: AppColors.neutralGrey),
@@ -69,28 +104,28 @@ class ProfileScreen extends StatelessWidget {
                 ProfileTiles(
                     imagePath: SystemIcons.genderIcon,
                     title: AppStrings.gender,
-                    trailing: AppStrings.male,
+                    trailing: gender ?? '',
                     onTap: () {}),
                 ProfileTiles(
                     imagePath: SystemIcons.dateIcon,
                     title: AutofillHints.birthdayDay,
-                    trailing: '20-4-2000',
+                    trailing: birthday ?? '',
                     onTap: () {}),
                 ProfileTiles(
                     imagePath: SystemIcons.emailIcon,
                     title: AppStrings.email,
-                    trailing: 'thomas.meshail@gmail.com',
+                    trailing: email ?? '',
                     onTap: () {}),
                 ProfileTiles(
                     imagePath: SystemIcons.phoneIcon,
                     title: AppStrings.phoneNumber,
-                    trailing: '(+20) 1206207320',
+                    trailing: phoneNumber ?? '',
                     onTap: () {}),
                 ProfileTiles(
                     imagePath: SystemIcons.passwordIcon,
                     isPassword: true,
                     title: AppStrings.changePassword,
-                    trailing: 'this is password',
+                    trailing: password ?? '',
                     onTap: () {}),
               ],
             ),

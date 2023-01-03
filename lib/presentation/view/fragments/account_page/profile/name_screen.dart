@@ -1,14 +1,15 @@
-import 'dart:developer';
-
 import 'package:ecommerce_flutter/core/validation/name_validator.dart';
+import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/validation/base_validator.dart';
 import '../../../shared_widgets/default_button.dart';
@@ -21,14 +22,35 @@ class NameScreen extends StatefulWidget {
 }
 
 class _NameScreenState extends State<NameScreen> {
+  late SharedPreferences prefs;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  void initial() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      firstNameController.text = prefs.getString(AppStrings.firstName) ?? '';
+      lastNameController.text = prefs.getString(AppStrings.lastName) ?? '';
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    log(size.width.toString());
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: DefaultButton(
@@ -36,7 +58,12 @@ class _NameScreenState extends State<NameScreen> {
           width: size.width - AppSize.s24,
           onTap: () {
             if (_formKey.currentState!.validate()) {
-              Navigator.pop(context);
+              SharedPrefs.save(
+                  key: AppStrings.firstName, value: firstNameController.text);
+              SharedPrefs.save(
+                  key: AppStrings.lastName, value: lastNameController.text);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.accountProfileRoute, (route) => false);
             }
           }),
       body: Column(

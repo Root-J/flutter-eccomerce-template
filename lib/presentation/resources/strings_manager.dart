@@ -73,6 +73,8 @@ class AppStrings {
   static const String password = "Password";
   static const String male = "Male";
   static const String female = "Female";
+  static const String userName = "User Name";
+  static const String tempData = "Local Temp Data";
 
   //Name Screen
   static const String name = "Name";
