@@ -29,6 +29,9 @@ class SharedPrefs {
     }
 
     log('saved $value in $key');
+    if (prefs.containsKey(AppStrings.birthday)) {
+      prefs.remove(AppStrings.birthday);
+    }
   }
 
   static Future<void> delete(key) async {
@@ -43,7 +46,7 @@ class SharedPrefs {
     save(key: AppStrings.lastName, value: 'Meshail');
     save(key: AppStrings.userName, value: '@2Math');
     save(key: AppStrings.gender, value: AppStrings.male);
-    save(key: AppStrings.birthday, value: '20-04-2000');
+    // save(key: AppStrings.birthday, value: '20-04-2000');
     save(key: AppStrings.email, value: 'thomas.meshail@gmail.com');
     save(key: AppStrings.phoneNumber, value: '(+20) 1206207320');
     save(key: AppStrings.password, value: '123hi?/ as');

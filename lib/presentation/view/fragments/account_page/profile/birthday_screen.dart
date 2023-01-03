@@ -30,9 +30,11 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
 
   void initial() async {
     prefs = await SharedPreferences.getInstance();
+    String? temp = prefs.getString(AppStrings.birthday);
     setState(() {
-      birthday = DateFormat('dd-MM-yyyy')
-          .parse(prefs.getString(AppStrings.birthday) ?? '');
+      if (temp != null) {
+        birthday = DateFormat('dd-MM-yyyy').parse(temp);
+      }
     });
   }
 
