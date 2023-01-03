@@ -1,14 +1,12 @@
 import 'package:ecommerce_flutter/core/validation/email_validator.dart';
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/email_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../resources/assets_manager.dart';
 import '../../../../../resources/colors_manager.dart';
 import '../../../../../resources/decoration_manager.dart';
-import '../../../../../resources/routes_manager.dart';
 import '../../../../../resources/text_styles_manager.dart';
 import '../../../../../resources/values_manager.dart';
 
@@ -20,30 +18,12 @@ class EmailScreen extends StatefulWidget {
 }
 
 class _EmailScreenState extends State<EmailScreen> {
-  String? email;
-  late SharedPreferences prefs;
-
-  TextEditingController emailController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final EmailViewModel _viewModel = EmailViewModel();
 
   @override
   void initState() {
     super.initState();
-    initial();
-  }
-
-  initial() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      email = prefs.getString(AppStrings.email);
-      emailController.text = email!;
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
+    _viewModel.start();
   }
 
   @override
@@ -54,7 +34,7 @@ class _EmailScreenState extends State<EmailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Form(
-              key: _formKey,
+              key: _viewModel.formKey,
               child: TextFormField(
                   decoration:
                       AppDecoration.formFieldDecoration(AppStrings.email)
@@ -67,7 +47,7 @@ class _EmailScreenState extends State<EmailScreen> {
                   style: const AppTextStyles()
                       .formTextFill
                       .copyWith(color: AppColors.neutralGrey),
-                  controller: emailController,
+                  controller: _viewModel.emailController,
                   keyboardType: TextInputType.emailAddress,
                   validator: (val) {
                     if (!EmailValidator().validate(val)) {
@@ -78,14 +58,6 @@ class _EmailScreenState extends State<EmailScreen> {
             ),
           ],
         ),
-        fabFun: () {
-          if (_formKey.currentState!.validate() &&
-              email != emailController.text) {
-            SharedPrefs.save(
-                key: AppStrings.email, value: emailController.text);
-            Navigator.pushNamedAndRemoveUntil(
-                context, Routes.accountProfileRoute, (route) => false);
-          }
-        });
+        fabFun: () => _viewModel.saveButton(context));
   }
 }
