@@ -36,6 +36,8 @@ class AppStrings {
   // Validation messages
   static const String passwordValidationMessage =
       'Password must be at least 8 Characters';
+  static const String passwordNotMatchingMessage =
+      'Oops! Your Password Is Not Correct';
   static const String requiredValidationMessage = 'Required Field';
   static const String emailValidationMessage = 'Invalid Email';
   static const String phoneValidationMessage = 'Invalid Phone Number';
@@ -84,4 +86,9 @@ class AppStrings {
 
   //Gender Screen
   static const String chooseGender = "Choose Gender";
+
+  //Change Password Screen
+  static const String oldPassword = 'Old Password';
+  static const String newPassword = "New Password";
+  static const String newPasswordAgain = "New Password Again";
 }
