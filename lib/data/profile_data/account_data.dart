@@ -46,6 +46,6 @@ class SharedPrefs {
     save(key: AppStrings.birthday, value: '20-04-2000');
     save(key: AppStrings.email, value: 'thomas.meshail@gmail.com');
     save(key: AppStrings.phoneNumber, value: '+201206207320');
-    save(key: AppStrings.password, value: '123hi?/ as');
+    save(key: AppStrings.password, value: '0000');
   }
 }

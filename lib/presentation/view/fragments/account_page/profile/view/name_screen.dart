@@ -9,7 +9,7 @@ import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../core/validation/base_validator.dart';
+import '../../../../../../core/validation/base_validator.dart';
 import 'descendants_scaffold.dart';
 
 class NameScreen extends StatefulWidget {

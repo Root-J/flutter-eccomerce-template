@@ -6,14 +6,14 @@ import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../core/validation/phone_validator.dart';
-import '../../../../../data/profile_data/account_data.dart';
-import '../../../../resources/routes_manager.dart';
+import '../../../../../../core/validation/phone_validator.dart';
+import '../../../../../../data/profile_data/account_data.dart';
+import '../../../../../resources/routes_manager.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);

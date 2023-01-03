@@ -1,16 +1,16 @@
 import 'package:ecommerce_flutter/core/validation/email_validator.dart';
 import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../resources/assets_manager.dart';
-import '../../../../resources/colors_manager.dart';
-import '../../../../resources/decoration_manager.dart';
-import '../../../../resources/routes_manager.dart';
-import '../../../../resources/text_styles_manager.dart';
-import '../../../../resources/values_manager.dart';
+import '../../../../../resources/assets_manager.dart';
+import '../../../../../resources/colors_manager.dart';
+import '../../../../../resources/decoration_manager.dart';
+import '../../../../../resources/routes_manager.dart';
+import '../../../../../resources/text_styles_manager.dart';
+import '../../../../../resources/values_manager.dart';
 
 class EmailScreen extends StatefulWidget {
   const EmailScreen({Key? key}) : super(key: key);
