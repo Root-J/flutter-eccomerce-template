@@ -116,7 +116,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     imagePath: SystemIcons.dateIcon,
                     title: AppStrings.birthday,
                     trailing: birthday ?? '',
-                    onTap: () {}),
+                    onTap: () => Navigator.pushNamed(
+                        context, Routes.accountBirthdayRoute)),
                 ProfileTiles(
                     imagePath: SystemIcons.emailIcon,
                     title: AppStrings.email,
