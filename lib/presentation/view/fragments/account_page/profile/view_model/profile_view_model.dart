@@ -11,13 +11,13 @@ class ProfileViewModel extends BaseViewModel
   String? _firstName;
   String? _lastName;
   String? _userName;
-  String? gender;
-  String? birthday;
-  String? email;
-  String? phoneNumber;
-  String? password;
+  String? _gender;
+  String? _birthday;
+  String? _email;
+  String? _phoneNumber;
+  String? _password;
   late SharedPreferences prefs;
-  ProfileModel? model;
+  ProfileModel? _model;
 
   final StreamController<ProfileModel> _streamController =
       StreamController<ProfileModel>.broadcast();
@@ -38,13 +38,14 @@ class ProfileViewModel extends BaseViewModel
     _firstName = prefs.getString(AppStrings.firstName);
     _lastName = prefs.getString(AppStrings.lastName);
     _userName = prefs.getString(AppStrings.userName);
-    gender = prefs.getString(AppStrings.gender);
-    birthday = prefs.getString(AppStrings.birthday);
-    email = prefs.getString(AppStrings.email);
-    phoneNumber = prefs.getString(AppStrings.phoneNumber);
-    password = prefs.getString(AppStrings.password);
-    model = ProfileModel(_firstName, _lastName, _userName, gender, birthday,
-        email, phoneNumber, password);
+    _gender = prefs.getString(AppStrings.gender);
+    _birthday = prefs.getString(AppStrings.birthday);
+    _email = prefs.getString(AppStrings.email);
+    _phoneNumber = prefs.getString(AppStrings.phoneNumber);
+    _password = prefs.getString(AppStrings.password);
+    _model = ProfileModel(_firstName, _lastName, _userName, _gender, _birthday,
+        _email, _phoneNumber, _password);
+    inputProfileViewObject.add(_model!);
   }
 
   @override
@@ -56,9 +57,9 @@ class ProfileViewModel extends BaseViewModel
 }
 
 abstract class ProfileViewModelInput {
-  Sink get inputProfileViewObject;
+  Sink<ProfileModel> get inputProfileViewObject;
 }
 
 abstract class ProfileViewModelOutput {
-  Stream get outputProfileViewObject;
+  Stream<ProfileModel> get outputProfileViewObject;
 }
