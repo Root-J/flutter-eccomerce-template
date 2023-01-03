@@ -7,6 +7,7 @@ import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/phone_number_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,35 +24,22 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
-  String? phoneNumber;
-  late SharedPreferences prefs;
-  PhoneNumber? number;
-
-  TextEditingController phoneNumberController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String initialCountry = 'NG';
+  final PhoneNumberViewModel _viewModel = PhoneNumberViewModel();
 
   @override
   void initState() {
     super.initState();
-    initial();
-  }
+    _viewModel.start();
 
-  initial() async {
-    prefs = await SharedPreferences.getInstance();
-    phoneNumber = prefs.getString(AppStrings.phoneNumber);
-    number = phoneNumber != null
-        ? await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber!)
-        : null;
-    phoneNumberController.text = number!.phoneNumber!;
-    log(number.toString());
   }
-
-  @override
+@override
   void dispose() {
     super.dispose();
-    phoneNumberController.dispose();
+    _viewModel.dispose();
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +54,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                     .copyWith(color: AppColors.neutralDark)),
             const SizedBox(height: AppMargin.m8),
             Form(
-              key: _formKey,
+              key: _viewModel.formKey,
               child: InternationalPhoneNumberInput(
                 inputDecoration:
                     AppDecoration.formFieldDecoration(AppStrings.phoneNumber)
@@ -78,7 +66,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   ),
                 ),
                 onInputChanged: (PhoneNumber n) {
-                  number = n;
+                  _viewModel.number = n;
                 },
                 selectorConfig: const SelectorConfig(
                   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -86,7 +74,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 textStyle: const AppTextStyles()
                     .formTextFill
                     .copyWith(color: AppColors.neutralGrey),
-                initialValue: number,
+                initialValue: _viewModel.number,
                 validator: (val) {
                   if (!PhoneValidator().validate(val)) {
                     return PhoneValidator().getMessage();
@@ -96,7 +84,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 selectorTextStyle: const AppTextStyles()
                     .formTextFill
                     .copyWith(color: AppColors.neutralGrey),
-                textFieldController: phoneNumberController,
+                textFieldController: _viewModel.phoneNumberController,
                 formatInput: false,
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
@@ -108,16 +96,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
             ),
           ],
         ),
-        fabFun: () {
-          _formKey.currentState?.save();
-          if (_formKey.currentState!.validate() &&
-              phoneNumber != phoneNumberController.text) {
-            SharedPrefs.save(
-                key: AppStrings.phoneNumber,
-                value: number?.phoneNumber.toString());
-            Navigator.pushNamedAndRemoveUntil(
-                context, Routes.accountProfileRoute, (route) => false);
-          }
-        });
+        fabFun: ()=>_viewModel.saveButton(context));
   }
 }
