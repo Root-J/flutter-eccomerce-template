@@ -11,12 +11,15 @@ class NestedAppBar extends StatelessWidget {
   final bool isFullBar;
   final bool isAdd;
   final void Function()? onAddTapped;
+  final void Function()? backFunction;
+
   const NestedAppBar({
     Key? key,
     required this.title,
     this.isFullBar = false,
     this.isAdd = false,
     this.onAddTapped,
+    this.backFunction,
   }) : super(key: key);
 
   @override
@@ -25,7 +28,9 @@ class NestedAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              backFunction == null ? Navigator.pop(context) : backFunction!();
+            },
             icon: Image.asset(
               SystemIcons.backIcon,
               scale: AppSize.s20,

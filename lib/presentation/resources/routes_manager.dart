@@ -1,11 +1,13 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/gender_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/name_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/ship_to.dart';
 import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_activity.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_feed.dart';
@@ -31,11 +33,12 @@ class Routes {
   static const String cartChooseCardRoute = '/choose Card';
   static const String successRoute = '/success purchase';
   static const String accountRoute = '/account';
-  static const String accountProfileRoute = '/profile';
+  static const String accountProfileRoute = '$marketRoute/profile';
   static const String accountOrderRoute = '/order';
   static const String accountAddressRoute = '/address';
   static const String accountPaymentRoute = '$accountRoute/payment';
   static const String accountNameRoute = '$accountProfileRoute/name';
+  static const String accountGenderRoute = '$accountProfileRoute/gender';
 }
 
 class RouteGenerator {
@@ -48,7 +51,11 @@ class RouteGenerator {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const MarketParent());
       case Routes.marketRoute:
-        return MaterialPageRoute(builder: (_) => const MarketParent());
+        final parentArgs = settings.arguments as ParentIndexParams?;
+        return MaterialPageRoute(
+            builder: (_) => MarketParent(
+                  intIndex: parentArgs?.intIndex ?? 0,
+                ));
       case Routes.favouritesRoute:
         return MaterialPageRoute(builder: (_) => FavouriteScreen());
       case Routes.notificationRoute:
@@ -84,6 +91,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AccountPage());
       case Routes.accountNameRoute:
         return MaterialPageRoute(builder: (_) => const NameScreen());
+      case Routes.accountGenderRoute:
+        return MaterialPageRoute(builder: (_) => const GenderScreen());
       default:
         return unDefinedRoute();
     }

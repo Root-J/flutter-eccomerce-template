@@ -81,3 +81,8 @@ abstract class ParentViewInput {
 abstract class ParentViewOutput {
   Stream get outputNavViewObject;
 }
+
+class ParentIndexParams {
+  final int intIndex;
+  const ParentIndexParams({required this.intIndex});
+}

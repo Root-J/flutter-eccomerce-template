@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +55,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const HeaderPadding(
-                widget: NestedAppBar(title: AppStrings.profile)),
+            HeaderPadding(
+                widget: NestedAppBar(
+                    title: AppStrings.profile,
+                    backFunction: () => Navigator.pushNamedAndRemoveUntil(
+                        context, Routes.marketRoute, (route) => false,
+                        arguments: const ParentIndexParams(intIndex: 4)))),
 
             // Profile Name and Photo
             Padding(
@@ -105,7 +110,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     imagePath: SystemIcons.genderIcon,
                     title: AppStrings.gender,
                     trailing: gender ?? '',
-                    onTap: () {}),
+                    onTap: () => Navigator.pushNamed(
+                        context, Routes.accountGenderRoute)),
                 ProfileTiles(
                     imagePath: SystemIcons.dateIcon,
                     title: AutofillHints.birthdayDay,

@@ -69,6 +69,7 @@ class SystemIcons {
   static const String phoneIcon = '$SYSTEM_ICONS_PATHx24/Phone.png';
   static const String passwordIcon = '$SYSTEM_ICONS_PATHx24/Password.png';
   static const String dateIcon = '$SYSTEM_ICONS_PATHx24/Date.png';
+  static const String bottomArrowIcon = '$SYSTEM_ICONS_PATHx24/bottom.png';
 
   static const String minusIcon = '$SYSTEM_ICONS_PATHx16/Minus.png';
   static const String plusIcon = '$SYSTEM_ICONS_PATHx16/Plus.png';
