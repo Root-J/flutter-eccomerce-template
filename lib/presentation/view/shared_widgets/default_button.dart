@@ -37,6 +37,7 @@ class DefaultButton extends StatelessWidget {
       child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
+              shadowColor: AppColors.backgroundWhite,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppCircularRadius.cr5)),
               backgroundColor: AppColors.primaryBlue,

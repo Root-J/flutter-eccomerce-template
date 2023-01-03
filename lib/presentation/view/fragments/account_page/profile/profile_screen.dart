@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
@@ -31,20 +32,28 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: AppMargin.m16),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Thomas Meshail',
-                      style: const AppTextStyles()
-                          .headingH5
-                          .copyWith(color: AppColors.neutralDark),
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, Routes.accountNameRoute),
+                      child: Text(
+                        'Thomas Meshail',
+                        style: const AppTextStyles()
+                            .headingH5
+                            .copyWith(color: AppColors.neutralDark),
+                      ),
                     ),
-                    Text(
-                      '@2Math0',
-                      style: const AppTextStyles()
-                          .bodyTextNormalRegular
-                          .copyWith(color: AppColors.neutralGrey),
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+                      child: Text(
+                        '@2Math0',
+                        style: const AppTextStyles()
+                            .bodyTextNormalRegular
+                            .copyWith(color: AppColors.neutralGrey),
+                      ),
                     ),
                   ],
                 ),

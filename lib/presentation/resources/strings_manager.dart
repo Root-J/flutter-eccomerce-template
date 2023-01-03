@@ -32,12 +32,16 @@ class AppStrings {
   static const String importCharges = 'Import Charges';
   static const String totalPrice = 'Total Price';
   static const String checkOut = 'Check Out';
+
+  // Validation messages
   static const String passwordValidationMessage =
       'Password must be at least 8 Characters';
   static const String requiredValidationMessage = 'Required Field';
   static const String emailValidationMessage = 'Invalid Email';
   static const String phoneValidationMessage = 'Invalid Phone Number';
   static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
+  static const String nameValidationMessage = "Only letters(a-A) are allowed";
+
   static const String payment = 'Payment';
   static const String shipTo = 'Ship To';
   static const String pay = 'Pay';
@@ -69,4 +73,10 @@ class AppStrings {
   static const String password = "Password";
   static const String male = "Male";
   static const String female = "Female";
+
+  //Name Screen
+  static const String name = "Name";
+  static const String firstName = "First Name";
+  static const String lastName = "Last Name";
+  static const String save = "Save";
 }

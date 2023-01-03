@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/name_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
@@ -34,6 +35,7 @@ class Routes {
   static const String accountOrderRoute = '/order';
   static const String accountAddressRoute = '/address';
   static const String accountPaymentRoute = '$accountRoute/payment';
+  static const String accountNameRoute = '$accountProfileRoute/name';
 }
 
 class RouteGenerator {
@@ -80,6 +82,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AccountPage());
       case Routes.accountPaymentRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());
+      case Routes.accountNameRoute:
+        return MaterialPageRoute(builder: (_) => const NameScreen());
       default:
         return unDefinedRoute();
     }
