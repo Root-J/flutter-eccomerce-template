@@ -1,11 +1,11 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/birthday_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/email_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/gender_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/name_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/phone_number_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/profile_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/gender_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/name_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/phone_number_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/profile_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/choose_card.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/ship_to.dart';
@@ -17,7 +17,7 @@ import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
 import 'package:flutter/material.dart';
 
-import '../view/fragments/account_page/profile/change_password_screen.dart';
+import '../view/fragments/account_page/profile/view/change_password_screen.dart';
 import '../view/screens/notification_screen/notification_offer.dart';
 import '../view/shared_widgets/alerts/success_alert.dart';
 

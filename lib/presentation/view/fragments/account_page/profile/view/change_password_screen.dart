@@ -1,16 +1,13 @@
-import 'package:ecommerce_flutter/core/validation/password_validator.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/change_password_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../data/profile_data/account_data.dart';
-import '../../../../resources/assets_manager.dart';
-import '../../../../resources/colors_manager.dart';
-import '../../../../resources/decoration_manager.dart';
-import '../../../../resources/routes_manager.dart';
-import '../../../../resources/text_styles_manager.dart';
-import '../../../../resources/values_manager.dart';
+import '../../../../../resources/assets_manager.dart';
+import '../../../../../resources/colors_manager.dart';
+import '../../../../../resources/decoration_manager.dart';
+import '../../../../../resources/text_styles_manager.dart';
+import '../../../../../resources/values_manager.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -20,33 +17,17 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-  String? oldPassword;
-  late SharedPreferences prefs;
-
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController newPasswordAgainController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final ChangePasswordViewModel _viewModel = ChangePasswordViewModel();
   @override
   void initState() {
     super.initState();
-    initial();
-  }
-
-  initial() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      oldPassword = prefs.getString(AppStrings.password);
-    });
+    _viewModel.start();
   }
 
   @override
   void dispose() {
     super.dispose();
-    passwordController.dispose();
-    newPasswordAgainController.dispose();
-    newPasswordController.dispose();
+    _viewModel.dispose();
   }
 
   @override
@@ -54,53 +35,29 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return ProfileDescendantsScaffold(
         title: AppStrings.changePassword,
         child: Form(
-          key: _formKey,
+          key: _viewModel.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <PasswordCard>[
               PasswordCard(
-                passwordController: passwordController,
-                valFunction: (val) {
-                  if (val != oldPassword) {
-                    return AppStrings.passwordNotMatchingMessage;
-                  }
-                  return null;
-                },
+                passwordController: _viewModel.passwordController,
+                valFunction: (val) => _viewModel.oldPasswordMatch(val),
                 title: AppStrings.oldPassword,
               ),
               PasswordCard(
-                passwordController: newPasswordController,
-                valFunction: (val) {
-                  if (!PasswordValidator().validate(val)) {
-                    return PasswordValidator().getMessage();
-                  }
-                  return null;
-                },
+                passwordController: _viewModel.newPasswordController,
+                valFunction: (val) => _viewModel.newPasswordFormat(val),
                 title: AppStrings.newPassword,
               ),
               PasswordCard(
-                passwordController: newPasswordAgainController,
-                valFunction: (val) {
-                  if (newPasswordController.text != val) {
-                    return AppStrings.passwordNotMatchingMessage;
-                  }
-                  return null;
-                },
+                passwordController: _viewModel.newPasswordAgainController,
+                valFunction: (val) => _viewModel.newPasswordMatch(val),
                 title: AppStrings.newPasswordAgain,
               )
             ],
           ),
         ),
-        fabFun: () {
-          if (_formKey.currentState!.validate() &&
-              newPasswordController.text != oldPassword) {
-            SharedPrefs.save(
-                key: AppStrings.password,
-                value: newPasswordAgainController.text);
-            Navigator.pushNamedAndRemoveUntil(
-                context, Routes.accountProfileRoute, (route) => false);
-          }
-        });
+        fabFun: () => _viewModel.saveButton(context));
   }
 }
 

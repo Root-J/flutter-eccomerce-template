@@ -1,16 +1,14 @@
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/descendants_scaffold.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view_model/birthday_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../resources/decoration_manager.dart';
-import '../../../../resources/routes_manager.dart';
+import '../../../../../resources/decoration_manager.dart';
 
 class BirthdayScreen extends StatefulWidget {
   const BirthdayScreen({Key? key}) : super(key: key);
@@ -20,23 +18,18 @@ class BirthdayScreen extends StatefulWidget {
 }
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
-  DateTime? birthday;
-  late SharedPreferences prefs;
+  final BirthdayViewModel _viewModel = BirthdayViewModel();
 
   @override
   void initState() {
     super.initState();
-    initial();
+    _viewModel.start();
   }
 
-  void initial() async {
-    prefs = await SharedPreferences.getInstance();
-    String? temp = prefs.getString(AppStrings.birthday);
-    setState(() {
-      if (temp != null) {
-        birthday = DateFormat('dd-MM-yyyy').parse(temp);
-      }
-    });
+  @override
+  void dispose() {
+    super.dispose();
+    _viewModel.dispose();
   }
 
   @override
@@ -57,9 +50,9 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    birthday == null
+                    _viewModel.birthday == null
                         ? ''
-                        : DateFormat('dd-MM-yyyy').format(birthday!),
+                        : DateFormat('dd-MM-yyyy').format(_viewModel.birthday!),
                     style: const AppTextStyles()
                         .formTextFill
                         .copyWith(color: AppColors.neutralGrey),
@@ -76,19 +69,16 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             Container(
               decoration: AppDecoration.defaultBoxDecoration,
               child: CalendarDatePicker(
-                  initialDate: birthday != null ? birthday! : DateTime.now(),
+                  initialDate: _viewModel.birthday != null
+                      ? _viewModel.birthday!
+                      : DateTime.now(),
                   firstDate: DateTime(1940),
                   lastDate: DateTime(2025),
                   onDateChanged: (DateTime value) =>
-                      setState(() => birthday = value)),
+                      setState(() => _viewModel.birthday = value)),
             ),
           ],
         ),
-        fabFun: () {
-          SharedPrefs.save(
-              key: AppStrings.birthday,
-              value: DateFormat('dd-MM-yyyy').format(birthday!));
-          Navigator.pushNamed(context, Routes.accountProfileRoute);
-        });
+        fabFun: () => _viewModel.saveButton(context));
   }
 }

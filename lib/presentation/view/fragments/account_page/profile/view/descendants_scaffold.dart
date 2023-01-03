@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../resources/strings_manager.dart';
-import '../../../../resources/values_manager.dart';
-import '../../../shared_widgets/bars/nested_app_bar.dart';
-import '../../../shared_widgets/default_button.dart';
-import '../../../shared_widgets/header_padding.dart';
+import '../../../../../resources/strings_manager.dart';
+import '../../../../../resources/values_manager.dart';
+import '../../../../shared_widgets/bars/nested_app_bar.dart';
+import '../../../../shared_widgets/default_button.dart';
+import '../../../../shared_widgets/header_padding.dart';
 
 class ProfileDescendantsScaffold extends StatelessWidget {
   const ProfileDescendantsScaffold({
