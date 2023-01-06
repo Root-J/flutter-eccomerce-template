@@ -1,5 +1,8 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/add_address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/edit_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/gender_screen.dart';
@@ -22,25 +25,36 @@ import '../view/screens/notification_screen/notification_offer.dart';
 import '../view/shared_widgets/alerts/success_alert.dart';
 
 class Routes {
+  // app start
   static const String splashRoute = '/';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String marketRoute = '/market';
+
   static const String favouritesRoute = '/favourite';
+
+  // Notification
   static const String notificationRoute = '/notification';
   static const String searchRoute = '/search';
   static const String notificationOfferRoute = '/offer';
   static const String notificationFeedRoute = '/feed';
   static const String notificationActivityRoute = '/activity';
-  static const String cartShipToRoute = '/ship to';
-  static const String cartPaymentRoute = '/cart/payment';
-  static const String cartChooseCardRoute = '/choose Card';
+
+  // Cart
+  static const String cartRoute = '/cart';
+  static const String cartShipToRoute = '$cartRoute/ship to';
+  static const String cartPaymentRoute = '$cartRoute/payment';
+  static const String cartChooseCardRoute = '$cartRoute/choose Card';
   static const String successRoute = '/success purchase';
+
+  // Account
   static const String accountRoute = '/account';
-  static const String accountProfileRoute = '$marketRoute/profile';
-  static const String accountOrderRoute = '/order';
-  static const String accountAddressRoute = '/address';
+  static const String accountProfileRoute = '$accountRoute/profile';
+  static const String accountOrderRoute = '$accountRoute/order';
+  static const String accountAddressRoute = '$accountRoute/address';
   static const String accountPaymentRoute = '$accountRoute/payment';
+
+  // Profile
   static const String accountNameRoute = '$accountProfileRoute/name';
   static const String accountGenderRoute = '$accountProfileRoute/gender';
   static const String accountBirthdayRoute = '$accountProfileRoute/birthday';
@@ -49,11 +63,18 @@ class Routes {
       '$accountProfileRoute/phone number';
   static const String accountChangePassword =
       '$accountProfileRoute/change password';
+
+  // Address
+  static const String accountAddAddressRoute =
+      "$accountAddressRoute/add address";
+  static const String accountEditAddressRoute =
+      "$accountAddressRoute/edit address";
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      // App init
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const MarketParent());
       case Routes.loginRoute:
@@ -66,8 +87,11 @@ class RouteGenerator {
             builder: (_) => MarketParent(
                   intIndex: parentArgs?.intIndex ?? 0,
                 ));
+
+      // App Bar
       case Routes.favouritesRoute:
         return MaterialPageRoute(builder: (_) => FavouriteScreen());
+      // Notification
       case Routes.notificationRoute:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.notificationOfferRoute:
@@ -76,6 +100,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NotificationFeedScreen());
       case Routes.notificationActivityRoute:
         return MaterialPageRoute(builder: (_) => NotificationActivityScreen());
+
+      // Cart
       case Routes.cartChooseCardRoute:
         return MaterialPageRoute(builder: (_) => const ChooseCard());
       case Routes.cartPaymentRoute:
@@ -89,6 +115,8 @@ class RouteGenerator {
                   buttonText: successArgs.buttonText,
                   message: successArgs.message,
                 ));
+
+      // Account
       case Routes.accountRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());
       case Routes.accountProfileRoute:
@@ -96,9 +124,11 @@ class RouteGenerator {
       case Routes.accountOrderRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());
       case Routes.accountAddressRoute:
-        return MaterialPageRoute(builder: (_) => const AccountPage());
+        return MaterialPageRoute(builder: (_) => const AddressScreen());
       case Routes.accountPaymentRoute:
         return MaterialPageRoute(builder: (_) => const AccountPage());
+
+      // Profile
       case Routes.accountNameRoute:
         return MaterialPageRoute(builder: (_) => const NameScreen());
       case Routes.accountGenderRoute:
@@ -111,6 +141,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const PhoneNumberScreen());
       case Routes.accountChangePassword:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+
+      // Address
+      case Routes.accountAddAddressRoute:
+        return MaterialPageRoute(builder: (_) => const AddAddressScreen());
+      case Routes.accountEditAddressRoute:
+        return MaterialPageRoute(builder: (_) => const EditAddressScreen());
       default:
         return unDefinedRoute();
     }

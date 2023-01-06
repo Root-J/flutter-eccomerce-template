@@ -91,4 +91,7 @@ class AppStrings {
   static const String oldPassword = 'Old Password';
   static const String newPassword = "New Password";
   static const String newPasswordAgain = "New Password Again";
+
+  //Address Screen
+  static const String addAddress = "Add Address";
 }

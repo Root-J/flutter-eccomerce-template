@@ -64,6 +64,11 @@ class SharedPrefs {
     _saveAddress(addressList);
   }
 
+  void removeAddress(int position) {
+    addressList.removeAt(position);
+    _saveAddress(addressList);
+  }
+
   void _saveAddress(List<Map<String, dynamic>> addressList) {
     String address = json.encode(addressList);
     save(key: AppStrings.address, value: address);
