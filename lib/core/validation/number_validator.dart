@@ -4,7 +4,7 @@ import 'base_validator.dart';
 class NumberValidator extends BaseValidator {
   @override
   String getMessage() {
-    return '* ${AppStrings.nameValidationMessage}';
+    return '* ${AppStrings.numberValidationMessage}';
   }
 
   @override

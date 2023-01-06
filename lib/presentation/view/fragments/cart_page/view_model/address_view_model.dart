@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
@@ -11,11 +10,12 @@ import '../../../../base/base_view_model.dart';
 
 class AddressViewModel extends BaseViewModel
     with AddressViewModelInput, AddressViewModelOutput {
-  late List<AddressModel> list;
+  late List<AddressModel>? list;
   final StreamController<List<AddressModel>> _streamController =
       StreamController<List<AddressModel>>.broadcast();
-  List addressList = [];
+  List? addressList = [];
   late SharedPreferences prefs;
+  final SharedPrefs customPref = SharedPrefs();
 
   @override
   void start() async {
@@ -31,36 +31,47 @@ class AddressViewModel extends BaseViewModel
     super.dispose();
   }
 
-  List<AddressModel> get getAddresses {
+  List<AddressModel>? get getAddresses {
     List<AddressModel> myList = [];
-    for (var i in addressList) {
-      myList.add(AddressModel.fromJson(i));
+    if (addressList != null) {
+      for (var i in addressList!) {
+        myList.add(AddressModel.fromJson(i));
+      }
+      return myList;
     }
-    return myList;
+    return null;
   }
 
   @override
   void selectAddress(int selectedI) {
     // assign selected Address
-    list[selectedI].isDefault = true;
+    list![selectedI].isDefault = true;
 
     // make other addresses unavailable
-    for (int i = 0; i < addressList.length; i++) {
+    for (int i = 0; i < addressList!.length; i++) {
       if (i != selectedI) {
-        list[i].isDefault = false;
+        list![i].isDefault = false;
       }
     }
-    _saveDefault(list);
+    _saveDefault(list!);
     _postDataToView();
   }
 
   void _saveDefault(List list) {
-    SharedPrefs().saveAddress(list);
-    log(prefs.getString(AppStrings.address).toString());
+    customPref.saveAddress(list);
+  }
+
+  void removeAddress(int i) {
+    customPref.removeAddress(i);
+    start();
   }
 
   void _postDataToView() {
-    inputAddressViewObject.add(list);
+    if (list != null) {
+      inputAddressViewObject.add(list!);
+    } else {
+      inputAddressViewObject.add([]);
+    }
   }
 
   @override

@@ -48,7 +48,7 @@ class SharedPrefs {
       "address street": "3711 Spring Hill Rd undefined Tallahassee,",
       "phone": "+99 1234567890",
       "state": "Nevada",
-      "zip code": "52874",
+      "zip code": "52222",
       "country": "United States",
       "address street 2": "Something,",
       "isDefault": true
@@ -71,8 +71,13 @@ class SharedPrefs {
   }
 
   void removeAddress(int position) {
+    log(addressList.length.toString());
+    log(addressList.toString());
     addressList.removeAt(position);
+    log("deleted at index $position ${addressList[position]}");
+
     saveAddress(addressList);
+    log(addressList.toString());
   }
 
   void saveAddress(List addressList) {

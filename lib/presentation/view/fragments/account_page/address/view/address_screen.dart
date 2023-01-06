@@ -45,7 +45,6 @@ class _AddressScreenState extends State<AddressScreen> {
             stream: _addressViewModel.outputAddressViewObject,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                log(snapshot.data!.toString());
                 return Wrap(children: [
                   for (int i = 0; i < snapshot.data!.length; i++)
                     GestureDetector(
@@ -65,6 +64,12 @@ class _AddressScreenState extends State<AddressScreen> {
                         secondStreet: snapshot.data![i].street2,
                         editFun: () => Navigator.pushNamed(
                             context, Routes.accountEditAddressRoute),
+                        removeFun: () {
+                          log(i.toString());
+                          log(snapshot.data![i].name.toString());
+                          log(snapshot.data![i].toString());
+                          _addressViewModel.removeAddress(i);
+                        },
                       ),
                     )
                 ]);
@@ -73,6 +78,7 @@ class _AddressScreenState extends State<AddressScreen> {
               }
             },
           ),
+          const SizedBox(height: AppMargin.m76)
         ]),
       ),
       floatingActionButton: DefaultButton(

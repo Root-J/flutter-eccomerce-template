@@ -10,6 +10,7 @@ import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view_model/add_adderss_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/name_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
@@ -26,30 +27,17 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
-  String? countryValue = "";
-  String? stateValue = "";
-  String? cityValue = '';
-  String? address = "";
+  final AddAddressViewModel _addAddressViewModel = AddAddressViewModel();
 
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController streetAddressController = TextEditingController();
-  final TextEditingController secondStreetAddressController =
-      TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController zipCodeController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    _addAddressViewModel.start();
+  }
 
   @override
   void dispose() {
-    firstNameController.dispose();
-    lastNameController.dispose();
-    streetAddressController.dispose();
-    secondStreetAddressController.dispose();
-    stateController.dispose();
-    zipCodeController.dispose();
-    phoneNumberController.dispose();
+    _addAddressViewModel.dispose();
     super.dispose();
   }
 
@@ -117,7 +105,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   // initialSelection: 'US'
                   onChanged: (CountryCode? code) {
                     setState(() {
-                      countryValue = code!.name!;
+                      _addAddressViewModel.countryValue = code!.name!;
                     });
                   },
                   // Whether to allow the widget to set a custom UI overlay
@@ -125,11 +113,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   // Whether the country list should be wrapped in a SafeArea
                   useSafeArea: true),
             ),
-            if (countryValue!.isEmpty)
+            if (_addAddressViewModel.countryValue!.isEmpty)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24),
                 child: Text(
-                  "Country is Required",
+                  " * Country is Required",
                   style: const AppTextStyles()
                       .bodyTextNormalBold
                       .copyWith(color: AppColors.primaryRed),
@@ -138,35 +126,37 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
               child: Form(
-                key: _formKey,
+                key: _addAddressViewModel.formKey,
                 child: Column(
                   children: [
                     FieldWithTitle(
-                        controller: firstNameController,
+                        controller: _addAddressViewModel.firstNameController,
                         title: AppStrings.firstName,
                         validator: NameValidator()),
                     FieldWithTitle(
-                        controller: lastNameController,
+                        controller: _addAddressViewModel.lastNameController,
                         title: AppStrings.lastName,
                         validator: NameValidator()),
                     FieldWithTitle(
-                        controller: streetAddressController,
+                        controller:
+                            _addAddressViewModel.streetAddressController,
                         title: AppStrings.streetAddress,
                         validator: RequiredValidator()),
                     FieldWithTitle(
-                        controller: secondStreetAddressController,
+                        controller:
+                            _addAddressViewModel.secondStreetAddressController,
                         title: AppStrings.secondStreetAddress,
                         validator: OptionalValidator()),
                     FieldWithTitle(
-                        controller: stateController,
+                        controller: _addAddressViewModel.stateController,
                         title: AppStrings.state,
                         validator: NameValidator()),
                     FieldWithTitle(
-                        controller: zipCodeController,
+                        controller: _addAddressViewModel.zipCodeController,
                         title: AppStrings.zipCode,
                         validator: NumberValidator()),
                     FieldWithTitle(
-                        controller: phoneNumberController,
+                        controller: _addAddressViewModel.phoneNumberController,
                         title: AppStrings.phoneNumber,
                         validator: PhoneValidator()),
                   ],
@@ -178,7 +168,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   title: AppStrings.addAddress,
                   width: size.width - 16 * 2,
                   onTap: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_addAddressViewModel.formKey.currentState!.validate() &&
+                        _addAddressViewModel.countryValue!.isNotEmpty) {
+                      _addAddressViewModel.addAddressToDate();
+                    }
                   }),
             ),
             const SizedBox(height: AppMargin.m16),
@@ -206,13 +199,13 @@ class FieldWithTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(height: AppMargin.m12),
+      const SizedBox(height: AppMargin.m8),
       Text(title,
           style: const AppTextStyles()
               .headingH5
               .copyWith(color: AppColors.neutralDark)),
-      const SizedBox(height: AppMargin.m8),
-      DataField(controller: controller, hintText: title, validator: validator)
+      DataField(controller: controller, hintText: title, validator: validator),
+      const SizedBox(height: AppMargin.m4),
     ]);
   }
 }

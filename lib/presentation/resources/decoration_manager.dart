@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'colors_manager.dart';
@@ -15,6 +16,9 @@ class AppDecoration {
           contentPadding: const EdgeInsets.all(AppPadding.p12),
           hintText: hintText,
           border: defaultOutlineBorder(),
+          errorStyle: const AppTextStyles()
+              .bodyTextNormalBold
+              .copyWith(color: AppColors.primaryRed),
           enabledBorder: defaultOutlineBorder(),
           focusedBorder: defaultOutlineBorder(color: AppColors.primaryBlue),
           errorBorder: defaultOutlineBorder(color: AppColors.primaryRed),

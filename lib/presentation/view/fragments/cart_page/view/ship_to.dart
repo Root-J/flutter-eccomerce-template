@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
@@ -69,6 +70,7 @@ class _PickAddressState extends State<PickAddress> {
                         phone: snapshot.data![i].phone!,
                         isSelected: snapshot.data![i].isDefault!,
                         secondStreet: snapshot.data![i].street2,
+                        removeFun: () => SharedPrefs().removeAddress(i),
                       ),
                     )
                 ]);
@@ -98,6 +100,7 @@ class AddressItem extends StatelessWidget {
   final String state;
   final String? secondStreet;
   final void Function()? editFun;
+  final void Function()? removeFun;
   const AddressItem({
     Key? key,
     required this.name,
@@ -109,11 +112,11 @@ class AddressItem extends StatelessWidget {
     required this.zipCode,
     required this.state,
     this.secondStreet,
+    this.removeFun,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    log(secondStreet.toString());
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -170,9 +173,12 @@ class AddressItem extends StatelessWidget {
                       width: AppSize.s80,
                       onTap: () => editFun),
                   const SizedBox(width: AppMargin.m24),
-                  Image.asset(
-                    SystemIcons.trashIcon,
-                    scale: AppSize.s20,
+                  IconButton(
+                    icon: Image.asset(
+                      SystemIcons.trashIcon,
+                      scale: AppSize.s20,
+                    ),
+                    onPressed: removeFun,
                   )
                 ],
               ),
