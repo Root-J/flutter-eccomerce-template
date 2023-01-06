@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../base/base_view_model.dart';
 
@@ -8,32 +11,22 @@ class AddressViewModel extends BaseViewModel
     with AddressViewModelInput, AddressViewModelOutput {
   late final List<AddressModel> list;
   final StreamController<List<AddressModel>> _streamController =
-      StreamController<List<AddressModel>>();
-  final List<Map<String, dynamic>> addressList = [
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': true,
-    },
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': false,
-    },
-  ];
+      StreamController<List<AddressModel>>.broadcast();
+  List addressList = [];
+  late SharedPreferences prefs;
 
   @override
-  void start() {
+  void start() async {
+    prefs = await SharedPreferences.getInstance();
+    addressList = json.decode(prefs.getString(AppStrings.address)!);
     list = getAddresses;
     _postDataToView();
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+    _streamController.close();
+  }
 
   List<AddressModel> get getAddresses {
     List<AddressModel> myList = [];
