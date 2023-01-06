@@ -43,6 +43,8 @@ class AppStrings {
   static const String phoneValidationMessage = 'Invalid Phone Number';
   static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
   static const String nameValidationMessage = "Only letters(a-A) are allowed";
+  static const String numberValidationMessage =
+      "This Field Should Contain Numbers Only";
 
   static const String payment = 'Payment';
   static const String shipTo = 'Ship To';
@@ -94,4 +96,11 @@ class AppStrings {
 
   //Address Screen
   static const String addAddress = "Add Address";
+
+  //Add Address Screen
+  static const String countryOrRegion = "Country or Region";
+  static const String streetAddress = "Street Address";
+  static const String secondStreetAddress = "Street Address 2 (Optional)";
+  static const String state = "State/Province";
+  static const String zipCode = "Zip Code";
 }

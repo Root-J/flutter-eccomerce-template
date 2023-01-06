@@ -69,7 +69,7 @@ class _NameScreenState extends State<NameScreen> {
 class DataField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  final BaseValidator validator;
+  final BaseValidator? validator;
   const DataField({
     Key? key,
     required this.controller,
@@ -88,8 +88,10 @@ class DataField extends StatelessWidget {
           decoration: AppDecoration.formFieldDecoration(hintText),
           controller: controller,
           validator: (val) {
-            if (!validator.validate(val)) {
-              return validator.getMessage();
+            if (validator == null) {
+              return null;
+            } else if (!validator!.validate(val)) {
+              return validator!.getMessage();
             }
             return null;
           }),

@@ -28,6 +28,7 @@ class AddressViewModel extends BaseViewModel
   @override
   void dispose() {
     _streamController.close();
+    super.dispose();
   }
 
   List<AddressModel> get getAddresses {

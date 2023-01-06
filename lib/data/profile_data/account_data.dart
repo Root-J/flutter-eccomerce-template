@@ -44,19 +44,25 @@ class SharedPrefs {
 
   List<Map<String, dynamic>> addressList = [
     {
-      "address town": "Priscekila",
-      "address details":
-          "3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States",
+      "address name": "Priscekila",
+      "address street": "3711 Spring Hill Rd undefined Tallahassee,",
       "phone": "+99 1234567890",
+      "state": "Nevada",
+      "zip code": "52874",
+      "country": "United States",
+      "address street 2": "Something,",
       "isDefault": true
     },
     {
-      "address town": "Priscekila",
-      "address details":
-          "3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States",
+      "address name": "Priscekila",
+      "address street": "3711 Spring Hill Rd undefined Tallahassee,",
       "phone": "+99 1234567890",
+      "state": "Nevada",
+      "zip code": "52874",
+      "country": "United States",
+      "address street 2": "Something,",
       "isDefault": false
-    },
+    }
   ];
 
   void addToAddress(Map<String, dynamic> address) {

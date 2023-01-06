@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
@@ -8,7 +9,7 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_butto
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
-import '../../cart_page/view/ship_to.dart';
+import '../../../cart_page/view/ship_to.dart';
 
 // The design of this page is the exact of PickAddress Screen in Cart Page
 class AddressScreen extends StatefulWidget {
@@ -29,8 +30,8 @@ class _AddressScreenState extends State<AddressScreen> {
 
   @override
   void dispose() {
-    super.dispose();
     _addressViewModel.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,10 +55,16 @@ class _AddressScreenState extends State<AddressScreen> {
                         }
                       },
                       child: AddressItem(
-                        town: snapshot.data![i].town!,
-                        addressDetails: snapshot.data![i].addressDetails!,
+                        name: snapshot.data![i].name!,
+                        state: snapshot.data![i].state!,
+                        country: snapshot.data![i].country!,
+                        street: snapshot.data![i].street!,
+                        zipCode: snapshot.data![i].zipCode!,
                         phone: snapshot.data![i].phone!,
                         isSelected: snapshot.data![i].isDefault!,
+                        secondStreet: snapshot.data![i].street2,
+                        editFun: () => Navigator.pushNamed(
+                            context, Routes.accountEditAddressRoute),
                       ),
                     )
                 ]);
@@ -71,7 +78,8 @@ class _AddressScreenState extends State<AddressScreen> {
       floatingActionButton: DefaultButton(
         width: size.width - AppPadding.p16 * 2,
         title: AppStrings.addAddress,
-        onTap: () {},
+        onTap: () => Navigator.pushReplacementNamed(
+            context, Routes.accountAddAddressRoute),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

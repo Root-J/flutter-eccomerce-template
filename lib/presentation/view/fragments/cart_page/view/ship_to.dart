@@ -61,10 +61,14 @@ class _PickAddressState extends State<PickAddress> {
                         }
                       },
                       child: AddressItem(
-                        town: snapshot.data![i].town!,
-                        addressDetails: snapshot.data![i].addressDetails!,
+                        name: snapshot.data![i].name!,
+                        state: snapshot.data![i].state!,
+                        country: snapshot.data![i].country!,
+                        street: snapshot.data![i].street!,
+                        zipCode: snapshot.data![i].zipCode!,
                         phone: snapshot.data![i].phone!,
                         isSelected: snapshot.data![i].isDefault!,
+                        secondStreet: snapshot.data![i].street2,
                       ),
                     )
                 ]);
@@ -85,25 +89,38 @@ class _PickAddressState extends State<PickAddress> {
 }
 
 class AddressItem extends StatelessWidget {
-  final String town;
-  final String addressDetails;
+  final String name;
+  final String street;
   final String phone;
   final bool isSelected;
+  final String country;
+  final String zipCode;
+  final String state;
+  final String? secondStreet;
+  final void Function()? editFun;
   const AddressItem({
     Key? key,
-    required this.town,
-    required this.addressDetails,
+    required this.name,
+    required this.street,
     required this.phone,
     required this.isSelected,
+    this.editFun,
+    required this.country,
+    required this.zipCode,
+    required this.state,
+    this.secondStreet,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    log(secondStreet.toString());
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: GestureDetector(
         // onTap: () => setState(() => isTapped = !isTapped),
         child: Container(
+          width: size.width,
           decoration: isSelected
               ? AppDecoration.lightRoundedBorder
                   .copyWith(border: Border.all(color: AppColors.primaryBlue))
@@ -112,13 +129,26 @@ class AddressItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(town,
+              Text(name,
                   style: const AppTextStyles()
                       .headingH5
                       .copyWith(color: AppColors.neutralDark)),
               const SizedBox(height: AppMargin.m16),
               Text(
-                addressDetails,
+                street,
+                style: const AppTextStyles()
+                    .bodyTextNormalRegular
+                    .copyWith(color: AppColors.neutralGrey),
+              ),
+              if (secondStreet != null)
+                Text(
+                  secondStreet!,
+                  style: const AppTextStyles()
+                      .bodyTextNormalRegular
+                      .copyWith(color: AppColors.neutralGrey),
+                ),
+              Text(
+                "$state $zipCode $country",
                 style: const AppTextStyles()
                     .bodyTextNormalRegular
                     .copyWith(color: AppColors.neutralGrey),
@@ -136,7 +166,9 @@ class AddressItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DefaultButton(
-                      title: AppStrings.edit, width: AppSize.s80, onTap: () {}),
+                      title: AppStrings.edit,
+                      width: AppSize.s80,
+                      onTap: () => editFun),
                   const SizedBox(width: AppMargin.m24),
                   Image.asset(
                     SystemIcons.trashIcon,

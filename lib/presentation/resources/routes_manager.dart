@@ -1,7 +1,7 @@
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/add_address_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/add_address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/edit_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
