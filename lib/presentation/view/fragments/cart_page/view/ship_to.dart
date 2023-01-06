@@ -61,10 +61,10 @@ class _PickAddressState extends State<PickAddress> {
                         }
                       },
                       child: AddressItem(
-                        town: snapshot.data![i].town,
-                        addressDetails: snapshot.data![i].addressDetails,
-                        phone: snapshot.data![i].phone,
-                        isSelected: snapshot.data![i].isDefault,
+                        town: snapshot.data![i].town!,
+                        addressDetails: snapshot.data![i].addressDetails!,
+                        phone: snapshot.data![i].phone!,
+                        isSelected: snapshot.data![i].isDefault!,
                       ),
                     )
                 ]);

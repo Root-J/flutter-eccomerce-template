@@ -1,12 +1,28 @@
 class AddressModel {
-  final String town;
-  final String addressDetails;
-  final String phone;
-  bool isDefault;
+  AddressModel({
+    this.town,
+    this.addressDetails,
+    this.phone,
+    this.isDefault,
+  });
+  String? town;
+  String? addressDetails;
+  String? phone;
+  bool? isDefault;
 
-  AddressModel(
-      {required this.town,
-      required this.addressDetails,
-      required this.phone,
-      this.isDefault = false});
+  AddressModel.fromJson(Map<String, dynamic> json) {
+    town = json['address town'];
+    addressDetails = json['address details'];
+    phone = json['phone'];
+    isDefault = json['isDefault'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['address town'] = town;
+    data['address details'] = addressDetails;
+    data['phone'] = phone;
+    data['isDefault'] = isDefault;
+    return data;
+  }
 }

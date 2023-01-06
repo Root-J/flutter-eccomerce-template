@@ -54,10 +54,10 @@ class _AddressScreenState extends State<AddressScreen> {
                         }
                       },
                       child: AddressItem(
-                        town: snapshot.data![i].town,
-                        addressDetails: snapshot.data![i].addressDetails,
-                        phone: snapshot.data![i].phone,
-                        isSelected: snapshot.data![i].isDefault,
+                        town: snapshot.data![i].town!,
+                        addressDetails: snapshot.data![i].addressDetails!,
+                        phone: snapshot.data![i].phone!,
+                        isSelected: snapshot.data![i].isDefault!,
                       ),
                     )
                 ]);

@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../data/profile_data/account_data.dart';
 import '../../../../base/base_view_model.dart';
 
 class AddressViewModel extends BaseViewModel
     with AddressViewModelInput, AddressViewModelOutput {
-  late final List<AddressModel> list;
+  late List<AddressModel> list;
   final StreamController<List<AddressModel>> _streamController =
       StreamController<List<AddressModel>>.broadcast();
   List addressList = [];
@@ -31,11 +33,7 @@ class AddressViewModel extends BaseViewModel
   List<AddressModel> get getAddresses {
     List<AddressModel> myList = [];
     for (var i in addressList) {
-      myList.add(AddressModel(
-          town: i['address town'],
-          addressDetails: i["address details"],
-          phone: i["phone"],
-          isDefault: i["isDefault"]));
+      myList.add(AddressModel.fromJson(i));
     }
     return myList;
   }
@@ -51,7 +49,13 @@ class AddressViewModel extends BaseViewModel
         list[i].isDefault = false;
       }
     }
+    _saveDefault(list);
     _postDataToView();
+  }
+
+  void _saveDefault(List list) {
+    SharedPrefs().saveAddress(list);
+    log(prefs.getString(AppStrings.address).toString());
   }
 
   void _postDataToView() {
