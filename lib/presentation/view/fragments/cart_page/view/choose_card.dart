@@ -51,7 +51,12 @@ class ChooseCard extends StatelessWidget {
           title: AppStrings.pay,
           width: size.width - (AppPadding.p16 * 2),
           onTap: () => Navigator.pushNamed(context, Routes.successRoute,
-              arguments: const SuccessAlertParams(
+              arguments: DefaultAlertParams(
+                  mainFun: () => Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.marketRoute,
+                        (route) => false,
+                      ),
                   buttonText: AppStrings.backToOrder,
                   message: AppStrings.cartSuccessMessage))),
     );

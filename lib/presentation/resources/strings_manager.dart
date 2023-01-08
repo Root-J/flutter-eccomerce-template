@@ -43,6 +43,8 @@ class AppStrings {
   static const String phoneValidationMessage = 'Invalid Phone Number';
   static const String couponValidationMessage = 'Your Coupon Is Not Correct ';
   static const String nameValidationMessage = "Only letters(a-A) are allowed";
+  static const String numberValidationMessage =
+      "This Field Should Contain Numbers Only";
 
   static const String payment = 'Payment';
   static const String shipTo = 'Ship To';
@@ -53,9 +55,20 @@ class AppStrings {
   static const String creditCardOrDebit = 'Credit Card Or Debit';
   static const String paypal = 'Paypal';
   static const String bankTransfer = 'Bank Transfer';
+
+  // Alerts
+  // Success
   static const String success = 'Success';
   static const String cartSuccessMessage =
       'Thank you for shopping using appName';
+
+  //Confirmation
+  static const String deleteAddressConfirmationMessage =
+      "Are you sure wanna delete address";
+  static const String confirmation = "Confirmation";
+  static const String delete = "Delete";
+  static const String cancel = "Cancel";
+
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';
   static const String next = 'Next';
@@ -91,4 +104,18 @@ class AppStrings {
   static const String oldPassword = 'Old Password';
   static const String newPassword = "New Password";
   static const String newPasswordAgain = "New Password Again";
+
+  //Address Screen
+  static const String addAddress = "Add Address";
+
+  //Add Address Screen
+  static const String countryOrRegion = "Country or Region";
+  static const String streetAddress = "Street Address";
+  static const String secondStreetAddress = "Street Address 2 (Optional)";
+  static const String state = "State/Province";
+  static const String zipCode = "Zip Code";
+
+  //Edit Address Screen
+  static const String saveAddress = "Save Address";
+  static const String editAddress = "Edit Address";
 }

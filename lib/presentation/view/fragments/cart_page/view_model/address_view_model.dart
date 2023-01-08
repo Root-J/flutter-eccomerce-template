@@ -1,68 +1,77 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../data/profile_data/account_data.dart';
 import '../../../../base/base_view_model.dart';
 
 class AddressViewModel extends BaseViewModel
     with AddressViewModelInput, AddressViewModelOutput {
-  late final List<AddressModel> list;
+  late List<AddressModel>? list;
   final StreamController<List<AddressModel>> _streamController =
-      StreamController<List<AddressModel>>();
-  final List<Map<String, dynamic>> addressList = [
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': true,
-    },
-    {
-      'address town': 'Priscekila',
-      'address details':
-          '3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States',
-      'phone': '+99 1234567890',
-      'isDefault': false,
-    },
-  ];
+      StreamController<List<AddressModel>>.broadcast();
+  List? addressList = [];
+  late SharedPreferences prefs;
+  final SharedPrefs customPref = SharedPrefs();
 
   @override
-  void start() {
+  void start() async {
+    prefs = await SharedPreferences.getInstance();
+    addressList = json.decode(prefs.getString(AppStrings.address)!);
     list = getAddresses;
     _postDataToView();
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+    _streamController.close();
+    super.dispose();
+  }
 
-  List<AddressModel> get getAddresses {
+  List<AddressModel>? get getAddresses {
     List<AddressModel> myList = [];
-    for (var i in addressList) {
-      myList.add(AddressModel(
-          town: i['address town'],
-          addressDetails: i["address details"],
-          phone: i["phone"],
-          isDefault: i["isDefault"]));
+    if (addressList != null) {
+      for (var i in addressList!) {
+        myList.add(AddressModel.fromJson(i));
+      }
+      return myList;
     }
-    return myList;
+    return null;
   }
 
   @override
   void selectAddress(int selectedI) {
     // assign selected Address
-    list[selectedI].isDefault = true;
+    list![selectedI].isDefault = true;
 
     // make other addresses unavailable
-    for (int i = 0; i < addressList.length; i++) {
+    for (int i = 0; i < addressList!.length; i++) {
       if (i != selectedI) {
-        list[i].isDefault = false;
+        list![i].isDefault = false;
       }
     }
+    _saveDefault(list!);
     _postDataToView();
   }
 
+  void _saveDefault(List list) {
+    customPref.saveAddress(list);
+  }
+
+  void removeAddress(int index) async {
+    await customPref.removeAddress(index);
+    start();
+  }
+
   void _postDataToView() {
-    inputAddressViewObject.add(list);
+    if (list != null) {
+      inputAddressViewObject.add(list!);
+    } else {
+      inputAddressViewObject.add([]);
+    }
   }
 
   @override

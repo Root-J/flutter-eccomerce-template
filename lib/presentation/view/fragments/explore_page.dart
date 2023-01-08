@@ -7,7 +7,7 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_paddin
 import 'package:flutter/material.dart';
 
 import '../../resources/assets_manager.dart';
-import '../shared_widgets/items/category_Item.dart';
+import '../shared_widgets/items/category_item.dart';
 
 class ExplorePage extends StatelessWidget {
   final FocusNode searchFocusNode = FocusNode();

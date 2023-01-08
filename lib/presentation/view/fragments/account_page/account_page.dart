@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
@@ -10,7 +8,6 @@ import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/text_header.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -35,15 +32,12 @@ class AccountPage extends StatelessWidget {
             AccountItem(
                 imagePath: SystemIcons.locationIcon,
                 txt: AppStrings.address,
-                onTap: () {}),
+                onTap: () =>
+                    Navigator.pushNamed(context, Routes.accountAddressRoute)),
             AccountItem(
                 imagePath: SystemIcons.creditCardIcon,
                 txt: AppStrings.payment,
-                onTap: () async {
-                  final prefs = await SharedPreferences.getInstance();
-                  log(prefs.containsKey(AppStrings.firstName).toString());
-                  log(prefs.getString(AppStrings.firstName).toString());
-                }),
+                onTap: () async {}),
             AccountItem(
                 imagePath: SystemIcons.userIcon,
                 txt: AppStrings.tempData,

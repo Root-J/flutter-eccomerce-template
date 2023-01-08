@@ -1,21 +1,22 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
 import 'package:flutter/material.dart';
 
-class SuccessScreen extends StatelessWidget {
+class ConfirmationScreen extends StatelessWidget {
   final String buttonText;
   final String message;
   final void Function() mainFun;
-  const SuccessScreen(
-      {Key? key,
-      required this.buttonText,
-      required this.message,
-      required this.mainFun})
-      : super(key: key);
+  const ConfirmationScreen({
+    Key? key,
+    required this.buttonText,
+    required this.message,
+    required this.mainFun,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,11 @@ class SuccessScreen extends StatelessWidget {
           children: [
             Image.asset(
               fit: BoxFit.fill,
-              AlertIcons.successIcon,
+              AlertIcons.alertIcon,
               scale: AppSize.s4,
             ),
             Text(
-              AppStrings.success,
+              AppStrings.confirmation,
               style: const AppTextStyles()
                   .headingH2
                   .copyWith(color: AppColors.neutralDark),
@@ -47,21 +48,24 @@ class SuccessScreen extends StatelessWidget {
             DefaultButton(
                 title: buttonText,
                 width: size.width - AppPadding.p16 * 2,
-                onTap: mainFun)
+                onTap: mainFun),
+            const SizedBox(height: AppMargin.m12),
+            Container(
+              height: AppSize.s60,
+              width: size.width - AppPadding.p16 * 2,
+              decoration: AppDecoration.lightRoundedBorder,
+              child: TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    AppStrings.cancel,
+                    style: const AppTextStyles()
+                        .buttonText
+                        .copyWith(color: AppColors.neutralGrey),
+                  )),
+            )
           ],
         ),
       ),
     );
   }
-}
-
-class DefaultAlertParams {
-  final String buttonText;
-  final String message;
-  final void Function() mainFun;
-  const DefaultAlertParams({
-    required this.buttonText,
-    required this.message,
-    required this.mainFun,
-  });
 }
