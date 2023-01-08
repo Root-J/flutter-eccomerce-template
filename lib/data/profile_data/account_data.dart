@@ -67,7 +67,6 @@ class SharedPrefs {
     }
   ];
 
-  // ToDO : you need to recall address List from the shared preferences as calling it from hard coded variable is resetting the data each time
   Future<void> addToAddress(Map<String, dynamic> address) async {
     List addressList = json.decode((await read(AppStrings.address))!);
     addressList.add(address);

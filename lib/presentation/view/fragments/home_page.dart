@@ -7,7 +7,7 @@ import '../../resources/colors_manager.dart';
 import '../../resources/values_manager.dart';
 import '../shared_widgets/bars/active_search_app_bar_.dart';
 import '../shared_widgets/bars/see_more_bar.dart';
-import '../shared_widgets/items/category_Item.dart';
+import '../shared_widgets/items/category_item.dart';
 import '../shared_widgets/items/sale_item.dart';
 import '../shared_widgets/items/sales_ad.dart';
 import '../shared_widgets/slide_show.dart';
