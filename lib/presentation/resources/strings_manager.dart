@@ -55,9 +55,20 @@ class AppStrings {
   static const String creditCardOrDebit = 'Credit Card Or Debit';
   static const String paypal = 'Paypal';
   static const String bankTransfer = 'Bank Transfer';
+
+  // Alerts
+  // Success
   static const String success = 'Success';
   static const String cartSuccessMessage =
       'Thank you for shopping using appName';
+
+  //Confirmation
+  static const String deleteAddressConfirmationMessage =
+      "Are you sure wanna delete address";
+  static const String confirmation = "Confirmation";
+  static const String delete = "Delete";
+  static const String cancel = "Cancel";
+
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';
   static const String next = 'Next';

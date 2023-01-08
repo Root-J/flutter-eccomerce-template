@@ -18,6 +18,7 @@ import 'package:ecommerce_flutter/presentation/view/screens/favourite_screen.dar
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_activity.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_feed.dart';
 import 'package:ecommerce_flutter/presentation/view/screens/notification_screen/notification_main.dart';
+import 'package:ecommerce_flutter/presentation/view/shared_widgets/alerts/confirmation_alert.dart';
 import 'package:flutter/material.dart';
 
 import '../view/fragments/account_page/profile/view/change_password_screen.dart';
@@ -45,7 +46,10 @@ class Routes {
   static const String cartShipToRoute = '$cartRoute/ship to';
   static const String cartPaymentRoute = '$cartRoute/payment';
   static const String cartChooseCardRoute = '$cartRoute/choose Card';
-  static const String successRoute = '/success purchase';
+
+  // Alerts
+  static const String successRoute = '/success';
+  static const String confirmationRoute = '/confirmation';
 
   // Account
   static const String accountRoute = '/account';
@@ -108,12 +112,23 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const Payment());
       case Routes.cartShipToRoute:
         return MaterialPageRoute(builder: (_) => const PickAddress());
+
+      // Alerts
       case Routes.successRoute:
-        final successArgs = settings.arguments as SuccessAlertParams;
+        final successArgs = settings.arguments as DefaultAlertParams;
         return MaterialPageRoute(
             builder: (_) => SuccessScreen(
+                  mainFun: successArgs.mainFun,
                   buttonText: successArgs.buttonText,
                   message: successArgs.message,
+                ));
+      case Routes.confirmationRoute:
+        final confirmationArgs = settings.arguments as DefaultAlertParams;
+        return MaterialPageRoute(
+            builder: (_) => ConfirmationScreen(
+                  mainFun: confirmationArgs.mainFun,
+                  buttonText: confirmationArgs.buttonText,
+                  message: confirmationArgs.message,
                 ));
 
       // Account
