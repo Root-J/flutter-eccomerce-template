@@ -8,6 +8,7 @@ import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
@@ -90,7 +91,8 @@ class _PickAddressState extends State<PickAddress> {
       floatingActionButton: DefaultButton(
           width: size.width - AppPadding.p16 * 2,
           title: AppStrings.next,
-          onTap: () => Navigator.pushNamed(context, Routes.cartPaymentRoute)),
+          onTap: () => Navigator.pushNamed(context, Routes.paymentRoute,
+              arguments: const PaymentParams(isAccount: false))),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

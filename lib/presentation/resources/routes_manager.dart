@@ -44,7 +44,7 @@ class Routes {
   // Cart
   static const String cartRoute = '/cart';
   static const String cartShipToRoute = '$cartRoute/ship to';
-  static const String cartPaymentRoute = '$cartRoute/payment';
+  static const String paymentRoute = '/payment';
   static const String cartChooseCardRoute = '$cartRoute/choose Card';
 
   // Alerts
@@ -108,8 +108,10 @@ class RouteGenerator {
       // Cart
       case Routes.cartChooseCardRoute:
         return MaterialPageRoute(builder: (_) => const ChooseCard());
-      case Routes.cartPaymentRoute:
-        return MaterialPageRoute(builder: (_) => const Payment());
+      case Routes.paymentRoute:
+        final paymentArgs = settings.arguments as PaymentParams;
+        return MaterialPageRoute(
+            builder: (_) => Payment(isAccount: paymentArgs.isAccount));
       case Routes.cartShipToRoute:
         return MaterialPageRoute(builder: (_) => const PickAddress());
 
