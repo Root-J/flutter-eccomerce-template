@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,7 +61,7 @@ class AddAddressViewModel extends BaseViewModel
   }
 
   void addAddressToData() {
-    SharedPrefs().addToAddress(_changeDataToMap());
+    SharedPrefs().addToAddress(_changeDataToMap(), AppStrings.address);
   }
 
   void getAddressFromIndex(AddressModel addressModel) {
@@ -82,7 +83,7 @@ class AddAddressViewModel extends BaseViewModel
   }
 
   void updateAddress({required int index}) {
-    SharedPrefs().updateAddress(_changeDataToMap(), index);
+    SharedPrefs().updateAddress(_changeDataToMap(), index, AppStrings.address);
     // addAddressToData();
   }
 }

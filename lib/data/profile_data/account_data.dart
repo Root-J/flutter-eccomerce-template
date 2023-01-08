@@ -90,28 +90,26 @@ class SharedPrefs {
     }
   ];
 
-  Future<void> addToAddress(Map<String, dynamic> address) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    addressList.add(address);
-    saveModelList(addressList, AppStrings.address);
+  Future<void> addToAddress(Map<String, dynamic> data, String key) async {
+    List list = json.decode((await read(key))!);
+    list.add(data);
+    saveModelList(list, key);
   }
 
-  Future<void> updateAddress(Map<String, dynamic> address, int index) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    addressList[index] = address;
-    saveModelList(addressList, AppStrings.address);
+  Future<void> updateAddress(
+      Map<String, dynamic> data, int index, String key) async {
+    List list = json.decode((await read(key))!);
+    list[index] = data;
+    saveModelList(list, key);
   }
 
-  Future<void> removeAddress(int position) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    log('${addressList.length} in remove');
-    log('$addressList in remove');
-    log(position.toString());
-    addressList.removeAt(position);
+  Future<void> removeAddress(int position, String key) async {
+    List list = json.decode((await read(key))!);
+    list.removeAt(position);
     // log("deleted at index $position ${addressList[position]}");
 
-    saveModelList(addressList, AppStrings.address);
-    log(addressList.toString());
+    saveModelList(list, key);
+    log(list.toString());
   }
 
   Future<void> saveModelList(List modelList, String key) async {

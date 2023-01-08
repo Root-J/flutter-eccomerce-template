@@ -111,7 +111,7 @@ class RouteGenerator {
 
       // Cart
       case Routes.cartChooseCardRoute:
-        return MaterialPageRoute(builder: (_) => const ChooseCard());
+        return MaterialPageRoute(builder: (_) => ChooseCard());
       case Routes.paymentRoute:
         final paymentArgs = settings.arguments as PaymentParams;
         return MaterialPageRoute(
@@ -176,7 +176,7 @@ class RouteGenerator {
 
       //Card
       case Routes.accountCreditCard:
-        return MaterialPageRoute(builder: (_) => const CardScreen());
+        return MaterialPageRoute(builder: (_) => CardScreen());
       default:
         return unDefinedRoute();
     }

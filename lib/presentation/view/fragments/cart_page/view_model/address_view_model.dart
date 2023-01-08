@@ -62,7 +62,7 @@ class AddressViewModel extends BaseViewModel
   }
 
   void removeAddress(int index) async {
-    await customPref.removeAddress(index);
+    await customPref.removeAddress(index, AppStrings.address);
     start();
   }
 

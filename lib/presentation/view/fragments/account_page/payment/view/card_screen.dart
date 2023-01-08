@@ -8,29 +8,13 @@ import '../../../../shared_widgets/bars/nested_app_bar.dart';
 import '../../../../shared_widgets/default_button.dart';
 import '../../../../shared_widgets/header_padding.dart';
 
-class CardScreen extends StatefulWidget {
-  const CardScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CardScreen> createState() => _CardScreenState();
-}
-
-class _CardScreenState extends State<CardScreen> {
+class CardScreen extends StatelessWidget {
   final CardViewModel _cardViewModel = CardViewModel();
-  @override
-  void initState() {
-    _cardViewModel.start();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _cardViewModel.dispose();
-  }
+  CardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    _cardViewModel.start();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(

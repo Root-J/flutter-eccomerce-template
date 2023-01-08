@@ -3,7 +3,6 @@ import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/edit_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
-import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/alerts/success_alert.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
@@ -44,9 +43,7 @@ class _AddressScreenState extends State<AddressScreen> {
           HeaderPadding(
               widget: NestedAppBar(
             title: AppStrings.address,
-            backFunction: () => Navigator.pushReplacementNamed(
-                context, Routes.marketRoute,
-                arguments: const ParentIndexParams(intIndex: 4)),
+            backFunction: () => Navigator.pop(context),
           )),
           StreamBuilder(
             stream: _addressViewModel.outputAddressViewObject,

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
@@ -15,6 +14,7 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_butto
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared_widgets/alerts/success_alert.dart';
 import '../../account_page/address/view/edit_address_screen.dart';
 
 class PickAddress extends StatefulWidget {
@@ -59,27 +59,39 @@ class _PickAddressState extends State<PickAddress> {
                 return Wrap(children: [
                   for (int i = 0; i < snapshot.data!.length; i++)
                     GestureDetector(
-                      onTap: () {
-                        if (snapshot.data![i].isDefault == false) {
-                          _addressViewModel.selectAddress(i);
-                        }
-                      },
-                      child: AddressItem(
-                        name: snapshot.data![i].name!,
-                        state: snapshot.data![i].state!,
-                        country: snapshot.data![i].country!,
-                        street: snapshot.data![i].street!,
-                        zipCode: snapshot.data![i].zipCode!,
-                        phone: snapshot.data![i].phone!,
-                        isSelected: snapshot.data![i].isDefault!,
-                        secondStreet: snapshot.data![i].street2,
-                        editFun: () => Navigator.pushNamed(
-                            context, Routes.accountEditAddressRoute,
-                            arguments:
-                                EditAddressScreenParams(snapshot.data![i], i)),
-                        removeFun: () => SharedPrefs().removeAddress(i),
-                      ),
-                    )
+                        onTap: () {
+                          if (snapshot.data![i].isDefault == false) {
+                            _addressViewModel.selectAddress(i);
+                          }
+                        },
+                        child: AddressItem(
+                          name: snapshot.data![i].name!,
+                          state: snapshot.data![i].state!,
+                          country: snapshot.data![i].country!,
+                          street: snapshot.data![i].street!,
+                          zipCode: snapshot.data![i].zipCode!,
+                          phone: snapshot.data![i].phone!,
+                          isSelected: snapshot.data![i].isDefault!,
+                          secondStreet: snapshot.data![i].street2,
+                          editFun: () {
+                            Navigator.pushNamed(
+                                context, Routes.accountEditAddressRoute,
+                                arguments: EditAddressScreenParams(
+                                    snapshot.data![i], i));
+                          },
+                          removeFun: () {
+                            Navigator.pushNamed(
+                                context, Routes.confirmationRoute,
+                                arguments: DefaultAlertParams(
+                                    mainFun: () async {
+                                      _addressViewModel.removeAddress(i);
+                                      Navigator.pop(context);
+                                    },
+                                    message: AppStrings
+                                        .deleteAddressConfirmationMessage,
+                                    buttonText: AppStrings.delete));
+                          },
+                        ))
                 ]);
               } else {
                 return const Center(child: Text('you need to put address'));
