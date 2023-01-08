@@ -61,9 +61,9 @@ class AddressViewModel extends BaseViewModel
     customPref.saveAddress(list);
   }
 
-  void removeAddress(int index) {
-    customPref.removeAddress(index);
-    _postDataToView();
+  void removeAddress(int index) async {
+    await customPref.removeAddress(index);
+    start();
   }
 
   void _postDataToView() {
