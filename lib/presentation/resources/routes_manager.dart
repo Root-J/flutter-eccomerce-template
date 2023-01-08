@@ -2,7 +2,7 @@ import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/account_page.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/add_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/address_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/edit_address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/edit_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/gender_screen.dart';
@@ -146,7 +146,12 @@ class RouteGenerator {
       case Routes.accountAddAddressRoute:
         return MaterialPageRoute(builder: (_) => const AddAddressScreen());
       case Routes.accountEditAddressRoute:
-        return MaterialPageRoute(builder: (_) => const EditAddressScreen());
+        final editAddressArgs = settings.arguments as EditAddressScreenParams;
+        return MaterialPageRoute(
+            builder: (_) => EditAddressScreen(
+                  addressModel: editAddressArgs.addressModel,
+                  index: editAddressArgs.index,
+                ));
       default:
         return unDefinedRoute();
     }

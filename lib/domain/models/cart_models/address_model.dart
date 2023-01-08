@@ -14,6 +14,7 @@ class AddressModel {
   String? phone;
   String? state;
   String? zipCode;
+  String? countryCode;
   String? country;
   bool? isDefault;
 
@@ -27,6 +28,7 @@ class AddressModel {
     state = json['state'];
     zipCode = json['zip code'];
     country = json['country'];
+    countryCode = json['country code'];
     isDefault = json['isDefault'];
   }
 
@@ -39,6 +41,7 @@ class AddressModel {
     _data['state'] = state;
     _data['zip code'] = zipCode;
     _data['country'] = country;
+    _data['country code'] = countryCode;
     _data['isDefault'] = isDefault;
     return _data;
   }

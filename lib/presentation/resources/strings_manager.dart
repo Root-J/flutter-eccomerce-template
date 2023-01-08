@@ -103,4 +103,8 @@ class AppStrings {
   static const String secondStreetAddress = "Street Address 2 (Optional)";
   static const String state = "State/Province";
   static const String zipCode = "Zip Code";
+
+  //Edit Address Screen
+  static const String saveAddress = "Save Address";
+  static const String editAddress = "Edit Address";
 }

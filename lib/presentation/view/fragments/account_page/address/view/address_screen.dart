@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/edit_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
@@ -40,11 +42,17 @@ class _AddressScreenState extends State<AddressScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const HeaderPadding(widget: NestedAppBar(title: AppStrings.address)),
+          HeaderPadding(
+              widget: NestedAppBar(
+            title: AppStrings.address,
+            backFunction: () => Navigator.pushReplacementNamed(
+                context, Routes.marketRoute,
+                arguments: const ParentIndexParams(intIndex: 4)),
+          )),
           StreamBuilder(
             stream: _addressViewModel.outputAddressViewObject,
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                 return Wrap(children: [
                   for (int i = 0; i < snapshot.data!.length; i++)
                     GestureDetector(
@@ -62,12 +70,14 @@ class _AddressScreenState extends State<AddressScreen> {
                         phone: snapshot.data![i].phone!,
                         isSelected: snapshot.data![i].isDefault!,
                         secondStreet: snapshot.data![i].street2,
-                        editFun: () => Navigator.pushNamed(
-                            context, Routes.accountEditAddressRoute),
-                        removeFun: () {
-                          log(i.toString());
-                          log(snapshot.data![i].name.toString());
-                          log(snapshot.data![i].toString());
+                        editFun: () {
+                          Navigator.pushNamed(
+                              context, Routes.accountEditAddressRoute,
+                              arguments: EditAddressScreenParams(
+                                  snapshot.data![i], i));
+                        },
+                        removeFun: () async {
+                          log("$i position passed");
                           _addressViewModel.removeAddress(i);
                         },
                       ),

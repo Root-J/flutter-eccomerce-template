@@ -1,39 +1,46 @@
+import 'dart:developer';
+
 import 'package:country_list_pick/country_list_pick.dart';
-import 'package:ecommerce_flutter/core/validation/base_validator.dart';
-import 'package:ecommerce_flutter/core/validation/name_validator.dart';
-import 'package:ecommerce_flutter/core/validation/number_validator.dart';
-import 'package:ecommerce_flutter/core/validation/optional_validation.dart';
-import 'package:ecommerce_flutter/core/validation/phone_validator.dart';
-import 'package:ecommerce_flutter/core/validation/required_validator.dart';
-import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
-import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view_model/add_address_view_model.dart';
-import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/name_screen.dart';
-import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
-import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
-import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/validation/name_validator.dart';
+import '../../../../../../core/validation/number_validator.dart';
+import '../../../../../../core/validation/optional_validation.dart';
+import '../../../../../../core/validation/phone_validator.dart';
+import '../../../../../../core/validation/required_validator.dart';
+import '../../../../../../domain/models/cart_models/address_model.dart';
+import '../../../../../resources/assets_manager.dart';
+import '../../../../../resources/colors_manager.dart';
 import '../../../../../resources/decoration_manager.dart';
+import '../../../../../resources/routes_manager.dart';
+import '../../../../../resources/strings_manager.dart';
+import '../../../../../resources/text_styles_manager.dart';
+import '../../../../../resources/values_manager.dart';
+import '../../../../shared_widgets/bars/nested_app_bar.dart';
+import '../../../../shared_widgets/default_button.dart';
+import '../../../../shared_widgets/header_padding.dart';
+import '../view_model/add_address_view_model.dart';
+import 'add_address_screen.dart';
 
-class AddAddressScreen extends StatefulWidget {
-  const AddAddressScreen({Key? key}) : super(key: key);
+class EditAddressScreen extends StatefulWidget {
+  final AddressModel addressModel;
+  final int index;
+  const EditAddressScreen(
+      {Key? key, required this.addressModel, required this.index})
+      : super(key: key);
 
   @override
-  State<AddAddressScreen> createState() => _AddAddressScreenState();
+  State<EditAddressScreen> createState() => _EditAddressScreenState();
 }
 
-class _AddAddressScreenState extends State<AddAddressScreen> {
+class _EditAddressScreenState extends State<EditAddressScreen> {
   final AddAddressViewModel _addAddressViewModel = AddAddressViewModel();
 
   @override
   void initState() {
     super.initState();
     _addAddressViewModel.start();
+    _addAddressViewModel.getAddressFromIndex(widget.addressModel);
   }
 
   @override
@@ -41,6 +48,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     _addAddressViewModel.dispose();
     super.dispose();
   }
+
+  // ToDo : when calling country by user's region as initial value the Edit and Add Address screens should be one class with (title, buttonName, buttonFun, addressModel(for edit)) arguments
+  // Also there is another approach by making a boolean to switch between edit and add states therefore the args would be (booleanSwitcher, AddressModel?) only
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +61,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const HeaderPadding(
-                widget: NestedAppBar(title: AppStrings.addAddress)),
+                widget: NestedAppBar(title: AppStrings.editAddress)),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
                 child: Text(AppStrings.countryOrRegion,
@@ -99,11 +109,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       showEnglishName: true,
                       labelColor: AppColors.neutralGrey,
                       alphabetTextColor: AppColors.neutralDark,
+                      initialSelection: _addAddressViewModel.countryCode,
                       alphabetSelectedBackgroundColor: AppColors.neutralDark),
                   // Set default value
                   // initialSelection: '+62',
                   // or
-                  // initialSelection: 'US'
+                  initialSelection: _addAddressViewModel.countryCode,
                   onChanged: (CountryCode? code) {
                     setState(() {
                       _addAddressViewModel.countryValue = code!.name;
@@ -167,14 +178,16 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             ),
             Center(
               child: DefaultButton(
-                  title: AppStrings.addAddress,
+                  title: AppStrings.saveAddress,
                   width: size.width - 16 * 2,
                   onTap: () {
                     if (_addAddressViewModel.formKey.currentState!.validate() &&
                         _addAddressViewModel.countryValue!.isNotEmpty) {
-                      _addAddressViewModel.addAddressToData();
+                      _addAddressViewModel.updateAddress(index: widget.index);
                       Navigator.pushReplacementNamed(
                           context, Routes.accountAddressRoute);
+                    } else {
+                      log("error happened");
                     }
                   }),
             ),
@@ -188,28 +201,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   }
 }
 
-class FieldWithTitle extends StatelessWidget {
-  const FieldWithTitle({
-    Key? key,
-    required this.controller,
-    required this.title,
-    this.validator,
-  }) : super(key: key);
-
-  final TextEditingController controller;
-  final String title;
-  final BaseValidator? validator;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(height: AppMargin.m8),
-      Text(title,
-          style: const AppTextStyles()
-              .headingH5
-              .copyWith(color: AppColors.neutralDark)),
-      DataField(controller: controller, hintText: title, validator: validator),
-      const SizedBox(height: AppMargin.m4),
-    ]);
-  }
+class EditAddressScreenParams {
+  final AddressModel addressModel;
+  final int index;
+  const EditAddressScreenParams(this.addressModel, this.index);
 }

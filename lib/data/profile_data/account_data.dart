@@ -7,7 +7,7 @@ import "package:shared_preferences/shared_preferences.dart";
 class SharedPrefs {
   SharedPrefs();
 
-  static Future<String?> read(key) async {
+  static Future<String?> read(String key) async {
     final prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(key);
     return value;
@@ -35,14 +35,14 @@ class SharedPrefs {
     }
   }
 
-  static Future<void> delete(key) async {
+  static Future<void> delete(String key) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
 
     log("deleted $key");
   }
 
-  List<Map<String, dynamic>> addressList = [
+  List<Map<String, dynamic>> addressListHard = [
     {
       "address name": "Priscekila",
       "address street": "3711 Spring Hill Rd undefined Tallahassee,",
@@ -50,6 +50,7 @@ class SharedPrefs {
       "state": "Nevada",
       "zip code": "52222",
       "country": "United States",
+      "country code": "US",
       "address street 2": "Something,",
       "isDefault": true
     },
@@ -60,27 +61,38 @@ class SharedPrefs {
       "state": "Nevada",
       "zip code": "52874",
       "country": "United States",
+      "country code": "US",
       "address street 2": "Something,",
       "isDefault": false
     }
   ];
 
-  void addToAddress(Map<String, dynamic> address) {
+  // ToDO : you need to recall address List from the shared preferences as calling it from hard coded variable is resetting the data each time
+  Future<void> addToAddress(Map<String, dynamic> address) async {
+    List addressList = json.decode((await read(AppStrings.address))!);
     addressList.add(address);
     saveAddress(addressList);
   }
 
-  void removeAddress(int position) {
-    log(addressList.length.toString());
-    log(addressList.toString());
+  Future<void> updateAddress(Map<String, dynamic> address, int index) async {
+    List addressList = json.decode((await read(AppStrings.address))!);
+    addressList[index] = address;
+    saveAddress(addressList);
+  }
+
+  Future<void> removeAddress(int position) async {
+    List addressList = json.decode((await read(AppStrings.address))!);
+    log('${addressList.length} in remove');
+    log('$addressList in remove');
+    log(position.toString());
     addressList.removeAt(position);
-    log("deleted at index $position ${addressList[position]}");
+    // log("deleted at index $position ${addressList[position]}");
 
     saveAddress(addressList);
     log(addressList.toString());
   }
 
-  void saveAddress(List addressList) {
+  Future<void> saveAddress(List addressList) async {
     String address = json.encode(addressList);
     save(key: AppStrings.address, value: address);
   }
@@ -94,6 +106,6 @@ class SharedPrefs {
     save(key: AppStrings.email, value: "thomas.meshail@gmail.com");
     save(key: AppStrings.phoneNumber, value: "+201206207320");
     save(key: AppStrings.password, value: "0000");
-    saveAddress(addressList);
+    saveAddress(addressListHard);
   }
 }

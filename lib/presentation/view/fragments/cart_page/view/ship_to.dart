@@ -14,6 +14,8 @@ import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_butto
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
+import '../../account_page/address/view/edit_address_screen.dart';
+
 class PickAddress extends StatefulWidget {
   const PickAddress({Key? key}) : super(key: key);
 
@@ -70,6 +72,10 @@ class _PickAddressState extends State<PickAddress> {
                         phone: snapshot.data![i].phone!,
                         isSelected: snapshot.data![i].isDefault!,
                         secondStreet: snapshot.data![i].street2,
+                        editFun: () => Navigator.pushNamed(
+                            context, Routes.accountEditAddressRoute,
+                            arguments:
+                                EditAddressScreenParams(snapshot.data![i], i)),
                         removeFun: () => SharedPrefs().removeAddress(i),
                       ),
                     )
@@ -99,7 +105,7 @@ class AddressItem extends StatelessWidget {
   final String zipCode;
   final String state;
   final String? secondStreet;
-  final void Function()? editFun;
+  final void Function() editFun;
   final void Function()? removeFun;
   const AddressItem({
     Key? key,
@@ -107,7 +113,7 @@ class AddressItem extends StatelessWidget {
     required this.street,
     required this.phone,
     required this.isSelected,
-    this.editFun,
+    required this.editFun,
     required this.country,
     required this.zipCode,
     required this.state,
@@ -171,7 +177,7 @@ class AddressItem extends StatelessWidget {
                   DefaultButton(
                       title: AppStrings.edit,
                       width: AppSize.s80,
-                      onTap: () => editFun),
+                      onTap: editFun),
                   const SizedBox(width: AppMargin.m24),
                   IconButton(
                     icon: Image.asset(
