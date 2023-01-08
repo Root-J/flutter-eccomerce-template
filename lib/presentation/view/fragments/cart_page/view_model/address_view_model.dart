@@ -58,7 +58,7 @@ class AddressViewModel extends BaseViewModel
   }
 
   void _saveDefault(List list) {
-    customPref.saveAddress(list);
+    customPref.saveModelList(list, AppStrings.address);
   }
 
   void removeAddress(int index) async {

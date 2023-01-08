@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter/presentation/view/fragments/account_page/accou
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/add_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/edit_address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view/card_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/gender_screen.dart';
@@ -73,6 +74,9 @@ class Routes {
       "$accountAddressRoute/add address";
   static const String accountEditAddressRoute =
       "$accountAddressRoute/edit address";
+
+  // Card
+  static const String accountCreditCard = '$accountRoute/credit card';
 }
 
 class RouteGenerator {
@@ -169,6 +173,10 @@ class RouteGenerator {
                   addressModel: editAddressArgs.addressModel,
                   index: editAddressArgs.index,
                 ));
+
+      //Card
+      case Routes.accountCreditCard:
+        return MaterialPageRoute(builder: (_) => const CardScreen());
       default:
         return unDefinedRoute();
     }

@@ -37,7 +37,8 @@ class CreditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.p16),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.p16, vertical: AppPadding.p8),
       child: Container(
         width: size.width,
         height: 190,

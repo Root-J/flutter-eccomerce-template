@@ -22,7 +22,7 @@ class Payment extends StatelessWidget {
           const HeaderPadding(widget: NestedAppBar(title: AppStrings.payment)),
           ListTile(
               onTap: () => isAccount
-                  ? null
+                  ? Navigator.pushNamed(context, Routes.accountCreditCard)
                   : Navigator.pushNamed(context, Routes.cartChooseCardRoute),
               leading: Image.asset(SystemIcons.creditCardIcon,
                   scale: AppSize.s20, color: AppColors.primaryBlue),
