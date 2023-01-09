@@ -12,7 +12,6 @@ import '../../../../../../domain/models/cart_models/address_model.dart';
 import '../../../../../resources/assets_manager.dart';
 import '../../../../../resources/colors_manager.dart';
 import '../../../../../resources/decoration_manager.dart';
-import '../../../../../resources/routes_manager.dart';
 import '../../../../../resources/strings_manager.dart';
 import '../../../../../resources/text_styles_manager.dart';
 import '../../../../../resources/values_manager.dart';
@@ -184,8 +183,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                     if (_addAddressViewModel.formKey.currentState!.validate() &&
                         _addAddressViewModel.countryValue!.isNotEmpty) {
                       _addAddressViewModel.updateAddress(index: widget.index);
-                      Navigator.pushReplacementNamed(
-                          context, Routes.accountAddressRoute);
+                      Navigator.pop(context);
                     } else {
                       log("error happened");
                     }

@@ -67,33 +67,52 @@ class SharedPrefs {
     }
   ];
 
-  Future<void> addToAddress(Map<String, dynamic> address) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    addressList.add(address);
-    saveAddress(addressList);
+  List<Map<String, dynamic>> creditCardList = [
+    {
+      "number": "6969696969696969",
+      "holder": "Lailyfa Febrina",
+      "expireDate": "19/2042",
+      "security code": "1010",
+    },
+    {
+      "number": "6969696969696969",
+      "holder": "Lailyfa Febrina",
+      "expireDate": "19/2042",
+      "security code": "1010",
+    },
+    {
+      "number": "6969696969696969",
+      "holder": "Lailyfa Febrina",
+      "expireDate": "19/2042",
+      "security code": "1010",
+    },
+  ];
+
+  Future<void> addToList(Map<String, dynamic> data, String key) async {
+    List list = json.decode((await read(key))!);
+    list.add(data);
+    saveModelList(list, key);
   }
 
-  Future<void> updateAddress(Map<String, dynamic> address, int index) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    addressList[index] = address;
-    saveAddress(addressList);
+  Future<void> updateList(
+      Map<String, dynamic> data, int index, String key) async {
+    List list = json.decode((await read(key))!);
+    list[index] = data;
+    saveModelList(list, key);
   }
 
-  Future<void> removeAddress(int position) async {
-    List addressList = json.decode((await read(AppStrings.address))!);
-    log('${addressList.length} in remove');
-    log('$addressList in remove');
-    log(position.toString());
-    addressList.removeAt(position);
+  Future<void> removeList(int position, String key) async {
+    List list = json.decode((await read(key))!);
+    list.removeAt(position);
     // log("deleted at index $position ${addressList[position]}");
 
-    saveAddress(addressList);
-    log(addressList.toString());
+    saveModelList(list, key);
+    log(list.toString());
   }
 
-  Future<void> saveAddress(List addressList) async {
-    String address = json.encode(addressList);
-    save(key: AppStrings.address, value: address);
+  Future<void> saveModelList(List modelList, String key) async {
+    String list = json.encode(modelList);
+    save(key: key, value: list);
   }
 
   Future<void> addDateTemp() async {
@@ -105,6 +124,7 @@ class SharedPrefs {
     save(key: AppStrings.email, value: "thomas.meshail@gmail.com");
     save(key: AppStrings.phoneNumber, value: "+201206207320");
     save(key: AppStrings.password, value: "0000");
-    saveAddress(addressListHard);
+    saveModelList(addressListHard, AppStrings.address);
+    saveModelList(creditCardList, AppStrings.creditCardOrDebit);
   }
 }

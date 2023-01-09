@@ -37,7 +37,8 @@ class CreditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.p16),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.p16, vertical: AppPadding.p8),
       child: Container(
         width: size.width,
         height: 190,
@@ -77,7 +78,7 @@ class CreditCard extends StatelessWidget {
                                   .withOpacity(AppSize.s60 / 100)),
                     ),
                     Text(
-                      'Lailyfa Febrina',
+                      holder,
                       style: const AppTextStyles()
                           .captionNormalBold
                           .copyWith(color: AppColors.backgroundWhite),
@@ -96,7 +97,7 @@ class CreditCard extends StatelessWidget {
                                   .withOpacity(AppSize.s60 / 100)),
                     ),
                     Text(
-                      '19/2042',
+                      expireDate,
                       style: const AppTextStyles()
                           .captionNormalBold
                           .copyWith(color: AppColors.backgroundWhite),

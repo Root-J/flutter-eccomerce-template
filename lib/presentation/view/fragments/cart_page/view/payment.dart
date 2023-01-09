@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import '../../../../resources/colors_manager.dart';
 
 class Payment extends StatelessWidget {
-  const Payment({Key? key}) : super(key: key);
+  final bool isAccount;
+  const Payment({Key? key, required this.isAccount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,9 @@ class Payment extends StatelessWidget {
         children: [
           const HeaderPadding(widget: NestedAppBar(title: AppStrings.payment)),
           ListTile(
-              onTap: () =>
-                  Navigator.pushNamed(context, Routes.cartChooseCardRoute),
+              onTap: () => isAccount
+                  ? Navigator.pushNamed(context, Routes.accountCreditCard)
+                  : Navigator.pushNamed(context, Routes.cartChooseCardRoute),
               leading: Image.asset(SystemIcons.creditCardIcon,
                   scale: AppSize.s20, color: AppColors.primaryBlue),
               title: Text(AppStrings.creditCardOrDebit,
@@ -45,4 +47,9 @@ class Payment extends StatelessWidget {
       ),
     );
   }
+}
+
+class PaymentParams {
+  final bool isAccount;
+  const PaymentParams({required this.isAccount});
 }

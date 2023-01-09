@@ -5,6 +5,7 @@ import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,8 @@ class AccountPage extends StatelessWidget {
             AccountItem(
                 imagePath: SystemIcons.creditCardIcon,
                 txt: AppStrings.payment,
-                onTap: () async {}),
+                onTap: () => Navigator.pushNamed(context, Routes.paymentRoute,
+                    arguments: const PaymentParams(isAccount: true))),
             AccountItem(
                 imagePath: SystemIcons.userIcon,
                 txt: AppStrings.tempData,

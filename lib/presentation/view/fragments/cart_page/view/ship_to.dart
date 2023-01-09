@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/decoration_manager.dart';
@@ -8,12 +7,14 @@ import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/text_styles_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view/payment.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/cart_page/view_model/address_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/nested_app_bar.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/default_button.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/header_padding.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared_widgets/alerts/success_alert.dart';
 import '../../account_page/address/view/edit_address_screen.dart';
 
 class PickAddress extends StatefulWidget {
@@ -58,27 +59,39 @@ class _PickAddressState extends State<PickAddress> {
                 return Wrap(children: [
                   for (int i = 0; i < snapshot.data!.length; i++)
                     GestureDetector(
-                      onTap: () {
-                        if (snapshot.data![i].isDefault == false) {
-                          _addressViewModel.selectAddress(i);
-                        }
-                      },
-                      child: AddressItem(
-                        name: snapshot.data![i].name!,
-                        state: snapshot.data![i].state!,
-                        country: snapshot.data![i].country!,
-                        street: snapshot.data![i].street!,
-                        zipCode: snapshot.data![i].zipCode!,
-                        phone: snapshot.data![i].phone!,
-                        isSelected: snapshot.data![i].isDefault!,
-                        secondStreet: snapshot.data![i].street2,
-                        editFun: () => Navigator.pushNamed(
-                            context, Routes.accountEditAddressRoute,
-                            arguments:
-                                EditAddressScreenParams(snapshot.data![i], i)),
-                        removeFun: () => SharedPrefs().removeAddress(i),
-                      ),
-                    )
+                        onTap: () {
+                          if (snapshot.data![i].isDefault == false) {
+                            _addressViewModel.selectAddress(i);
+                          }
+                        },
+                        child: AddressItem(
+                          name: snapshot.data![i].name!,
+                          state: snapshot.data![i].state!,
+                          country: snapshot.data![i].country!,
+                          street: snapshot.data![i].street!,
+                          zipCode: snapshot.data![i].zipCode!,
+                          phone: snapshot.data![i].phone!,
+                          isSelected: snapshot.data![i].isDefault!,
+                          secondStreet: snapshot.data![i].street2,
+                          editFun: () {
+                            Navigator.pushNamed(
+                                context, Routes.accountEditAddressRoute,
+                                arguments: EditAddressScreenParams(
+                                    snapshot.data![i], i));
+                          },
+                          removeFun: () {
+                            Navigator.pushNamed(
+                                context, Routes.confirmationRoute,
+                                arguments: DefaultAlertParams(
+                                    mainFun: () async {
+                                      _addressViewModel.removeAddress(i);
+                                      Navigator.pop(context);
+                                    },
+                                    message: AppStrings
+                                        .deleteAddressConfirmationMessage,
+                                    buttonText: AppStrings.delete));
+                          },
+                        ))
                 ]);
               } else {
                 return const Center(child: Text('you need to put address'));
@@ -90,7 +103,8 @@ class _PickAddressState extends State<PickAddress> {
       floatingActionButton: DefaultButton(
           width: size.width - AppPadding.p16 * 2,
           title: AppStrings.next,
-          onTap: () => Navigator.pushNamed(context, Routes.cartPaymentRoute)),
+          onTap: () => Navigator.pushNamed(context, Routes.paymentRoute,
+              arguments: const PaymentParams(isAccount: false))),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

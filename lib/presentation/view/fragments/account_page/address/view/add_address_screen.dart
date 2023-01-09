@@ -194,11 +194,13 @@ class FieldWithTitle extends StatelessWidget {
     required this.controller,
     required this.title,
     this.validator,
+    this.isTwo = false,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String title;
   final BaseValidator? validator;
+  final bool isTwo;
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +210,11 @@ class FieldWithTitle extends StatelessWidget {
           style: const AppTextStyles()
               .headingH5
               .copyWith(color: AppColors.neutralDark)),
-      DataField(controller: controller, hintText: title, validator: validator),
+      DataField(
+          controller: controller,
+          hintText: title,
+          validator: validator,
+          isTwo: isTwo),
       const SizedBox(height: AppMargin.m4),
     ]);
   }

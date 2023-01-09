@@ -33,16 +33,16 @@ class AddressModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['address name'] = name;
-    _data['address street'] = street;
-    _data['address street 2'] = street2;
-    _data['phone'] = phone;
-    _data['state'] = state;
-    _data['zip code'] = zipCode;
-    _data['country'] = country;
-    _data['country code'] = countryCode;
-    _data['isDefault'] = isDefault;
-    return _data;
+    final data = <String, dynamic>{};
+    data['address name'] = name;
+    data['address street'] = street;
+    data['address street 2'] = street2;
+    data['phone'] = phone;
+    data['state'] = state;
+    data['zip code'] = zipCode;
+    data['country'] = country;
+    data['country code'] = countryCode;
+    data['isDefault'] = isDefault;
+    return data;
   }
 }

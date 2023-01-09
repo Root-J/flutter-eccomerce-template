@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:ecommerce_flutter/data/profile_data/account_data.dart';
 import 'package:ecommerce_flutter/domain/models/cart_models/address_model.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,10 +60,6 @@ class AddAddressViewModel extends BaseViewModel
     };
   }
 
-  void addAddressToData() {
-    SharedPrefs().addToAddress(_changeDataToMap());
-  }
-
   void getAddressFromIndex(AddressModel addressModel) {
     log(addressModel.toString());
     List<String> name = addressModel.name!.split(' ');
@@ -81,8 +78,12 @@ class AddAddressViewModel extends BaseViewModel
     secondStreetAddressController.text = addressModel.street2 ?? '';
   }
 
+  void addAddressToData() {
+    SharedPrefs().addToList(_changeDataToMap(), AppStrings.address);
+  }
+
   void updateAddress({required int index}) {
-    SharedPrefs().updateAddress(_changeDataToMap(), index);
+    SharedPrefs().updateList(_changeDataToMap(), index, AppStrings.address);
     // addAddressToData();
   }
 }

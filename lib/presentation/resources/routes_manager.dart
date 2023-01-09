@@ -3,6 +3,8 @@ import 'package:ecommerce_flutter/presentation/view/fragments/account_page/accou
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/add_address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/address_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/address/view/edit_address_screen.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view/card_details.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view/card_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/birthday_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/email_screen.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/profile/view/gender_screen.dart';
@@ -44,7 +46,7 @@ class Routes {
   // Cart
   static const String cartRoute = '/cart';
   static const String cartShipToRoute = '$cartRoute/ship to';
-  static const String cartPaymentRoute = '$cartRoute/payment';
+  static const String paymentRoute = '/payment';
   static const String cartChooseCardRoute = '$cartRoute/choose Card';
 
   // Alerts
@@ -73,6 +75,10 @@ class Routes {
       "$accountAddressRoute/add address";
   static const String accountEditAddressRoute =
       "$accountAddressRoute/edit address";
+
+  // Card
+  static const String accountCreditCard = '$accountRoute/credit card';
+  static const String accountCardDetails = "$accountCreditCard/card details";
 }
 
 class RouteGenerator {
@@ -107,9 +113,11 @@ class RouteGenerator {
 
       // Cart
       case Routes.cartChooseCardRoute:
-        return MaterialPageRoute(builder: (_) => const ChooseCard());
-      case Routes.cartPaymentRoute:
-        return MaterialPageRoute(builder: (_) => const Payment());
+        return MaterialPageRoute(builder: (_) => ChooseCard());
+      case Routes.paymentRoute:
+        final paymentArgs = settings.arguments as PaymentParams;
+        return MaterialPageRoute(
+            builder: (_) => Payment(isAccount: paymentArgs.isAccount));
       case Routes.cartShipToRoute:
         return MaterialPageRoute(builder: (_) => const PickAddress());
 
@@ -166,6 +174,18 @@ class RouteGenerator {
             builder: (_) => EditAddressScreen(
                   addressModel: editAddressArgs.addressModel,
                   index: editAddressArgs.index,
+                ));
+
+      //Card
+      case Routes.accountCreditCard:
+        return MaterialPageRoute(builder: (_) => CardScreen());
+      case Routes.accountCardDetails:
+        final carDetailsArgs = settings.arguments as CardDetailParams;
+        return MaterialPageRoute(
+            builder: (_) => CardDetails(
+                  isAdd: carDetailsArgs.isAdd,
+                  model: carDetailsArgs.creditCardModel,
+                  index: carDetailsArgs.index,
                 ));
       default:
         return unDefinedRoute();
