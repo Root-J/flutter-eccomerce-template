@@ -1,6 +1,7 @@
 import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view/card_details.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view_model/card_view_model.dart';
+import 'package:ecommerce_flutter/presentation/view/shared_widgets/alerts/success_alert.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/items/credit_card_item.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,15 @@ class CardScreen extends StatelessWidget {
                               isAdd: false,
                               creditCardModel: snapshot.data![i],
                               index: i)),
-                      onLongPress: () {},
+                      onLongPress: () => Navigator.pushNamed(
+                          context, Routes.confirmationRoute,
+                          arguments: DefaultAlertParams(
+                              buttonText: AppStrings.delete,
+                              message: AppStrings.deleteCardConfirmationMessage,
+                              mainFun: () {
+                                _cardViewModel.removeCard(i);
+                                Navigator.pop(context);
+                              })),
                       child: CreditCard(
                           size: size,
                           number: snapshot.data![i].number!,

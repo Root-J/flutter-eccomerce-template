@@ -71,11 +71,13 @@ class AppStrings {
       'Thank you for shopping using appName';
 
   //Confirmation
-  static const String deleteAddressConfirmationMessage =
-      "Are you sure wanna delete address";
   static const String confirmation = "Confirmation";
   static const String delete = "Delete";
   static const String cancel = "Cancel";
+  static const String deleteAddressConfirmationMessage =
+      "Are you sure you want to delete this address";
+  static const String deleteCardConfirmationMessage =
+      "Are you sure you want to delete this card";
 
   static const String edit = 'Edit';
   static const backToOrder = 'Back To Order';

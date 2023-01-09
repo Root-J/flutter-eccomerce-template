@@ -56,6 +56,9 @@ class SuccessScreen extends StatelessWidget {
 }
 
 class DefaultAlertParams {
+  ///
+  /// in main function you should add the main method to run and you may add Navigator.pop(context);
+  ///
   final String buttonText;
   final String message;
   final void Function() mainFun;
