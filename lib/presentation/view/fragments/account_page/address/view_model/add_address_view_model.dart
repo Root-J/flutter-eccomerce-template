@@ -60,10 +60,6 @@ class AddAddressViewModel extends BaseViewModel
     };
   }
 
-  void addAddressToData() {
-    SharedPrefs().addToAddress(_changeDataToMap(), AppStrings.address);
-  }
-
   void getAddressFromIndex(AddressModel addressModel) {
     log(addressModel.toString());
     List<String> name = addressModel.name!.split(' ');
@@ -82,8 +78,12 @@ class AddAddressViewModel extends BaseViewModel
     secondStreetAddressController.text = addressModel.street2 ?? '';
   }
 
+  void addAddressToData() {
+    SharedPrefs().addToList(_changeDataToMap(), AppStrings.address);
+  }
+
   void updateAddress({required int index}) {
-    SharedPrefs().updateAddress(_changeDataToMap(), index, AppStrings.address);
+    SharedPrefs().updateList(_changeDataToMap(), index, AppStrings.address);
     // addAddressToData();
   }
 }

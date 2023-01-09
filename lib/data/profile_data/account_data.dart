@@ -90,20 +90,20 @@ class SharedPrefs {
     }
   ];
 
-  Future<void> addToAddress(Map<String, dynamic> data, String key) async {
+  Future<void> addToList(Map<String, dynamic> data, String key) async {
     List list = json.decode((await read(key))!);
     list.add(data);
     saveModelList(list, key);
   }
 
-  Future<void> updateAddress(
+  Future<void> updateList(
       Map<String, dynamic> data, int index, String key) async {
     List list = json.decode((await read(key))!);
     list[index] = data;
     saveModelList(list, key);
   }
 
-  Future<void> removeAddress(int position, String key) async {
+  Future<void> removeList(int position, String key) async {
     List list = json.decode((await read(key))!);
     list.removeAt(position);
     // log("deleted at index $position ${addressList[position]}");

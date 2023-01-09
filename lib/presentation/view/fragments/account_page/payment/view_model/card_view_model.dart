@@ -44,10 +44,10 @@ class CardViewModel extends BaseViewModel
     return null;
   }
 
-  // void removeCard(int index) async {
-  //   await customPref.removeCard(index);
-  //   start();
-  // }
+  void removeCard(int index) async {
+    await customPref.removeList(index, AppStrings.creditCardOrDebit);
+    start();
+  }
 
   void _postDataToView() {
     if (list != null) {
