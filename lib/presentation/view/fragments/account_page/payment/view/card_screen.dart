@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view/card_details.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view_model/card_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/items/credit_card_item.dart';
 import 'package:flutter/material.dart';
@@ -31,11 +32,20 @@ class CardScreen extends StatelessWidget {
               if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                 return Wrap(children: [
                   for (int i = 0; i < snapshot.data!.length; i++)
-                    CreditCard(
-                        size: size,
-                        number: snapshot.data![i].number!,
-                        holder: snapshot.data![i].holder!,
-                        expireDate: snapshot.data![i].expireDate!)
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                          context, Routes.accountCardDetails,
+                          arguments: CardDetailParams(
+                              isAdd: false,
+                              creditCardModel: snapshot.data![i],
+                              index: i)),
+                      onLongPress: () {},
+                      child: CreditCard(
+                          size: size,
+                          number: snapshot.data![i].number!,
+                          holder: snapshot.data![i].holder!,
+                          expireDate: snapshot.data![i].expireDate!),
+                    )
                 ]);
               } else {
                 return const Center(child: Text('You need to put cards'));
@@ -48,7 +58,8 @@ class CardScreen extends StatelessWidget {
       floatingActionButton: DefaultButton(
         width: size.width - AppPadding.p16 * 2,
         title: AppStrings.addCard,
-        onTap: () => Navigator.pushNamed(context, Routes.accountCardDetails),
+        onTap: () => Navigator.pushNamed(context, Routes.accountCardDetails,
+            arguments: const CardDetailParams()),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

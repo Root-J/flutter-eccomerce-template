@@ -180,7 +180,13 @@ class RouteGenerator {
       case Routes.accountCreditCard:
         return MaterialPageRoute(builder: (_) => CardScreen());
       case Routes.accountCardDetails:
-        return MaterialPageRoute(builder: (_) => const CardDetails());
+        final carDetailsArgs = settings.arguments as CardDetailParams;
+        return MaterialPageRoute(
+            builder: (_) => CardDetails(
+                  isAdd: carDetailsArgs.isAdd,
+                  model: carDetailsArgs.creditCardModel,
+                  index: carDetailsArgs.index,
+                ));
       default:
         return unDefinedRoute();
     }

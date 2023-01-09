@@ -78,7 +78,7 @@ class CreditCard extends StatelessWidget {
                                   .withOpacity(AppSize.s60 / 100)),
                     ),
                     Text(
-                      'Lailyfa Febrina',
+                      holder,
                       style: const AppTextStyles()
                           .captionNormalBold
                           .copyWith(color: AppColors.backgroundWhite),
@@ -97,7 +97,7 @@ class CreditCard extends StatelessWidget {
                                   .withOpacity(AppSize.s60 / 100)),
                     ),
                     Text(
-                      '19/2042',
+                      expireDate,
                       style: const AppTextStyles()
                           .captionNormalBold
                           .copyWith(color: AppColors.backgroundWhite),

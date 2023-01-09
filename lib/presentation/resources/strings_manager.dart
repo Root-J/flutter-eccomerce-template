@@ -134,4 +134,5 @@ class AppStrings {
   static const String cardNumber = "Card Number";
   static const String expirationDate = "Expiration Date";
   static const String securityCode = "Security Code";
+  static const String saveCard = "Save Card";
 }

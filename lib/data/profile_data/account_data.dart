@@ -71,23 +71,21 @@ class SharedPrefs {
     {
       "number": "6969696969696969",
       "holder": "Lailyfa Febrina",
-      "expireDate": "19/2042"
+      "expireDate": "19/2042",
+      "security code": "1010",
     },
     {
-      "number": "8686868686868686",
-      "holder": "Some Body",
-      "expireDate": "19/2042"
+      "number": "6969696969696969",
+      "holder": "Lailyfa Febrina",
+      "expireDate": "19/2042",
+      "security code": "1010",
     },
     {
-      "number": "1234567890123456",
-      "holder": "TM Afshkhana",
-      "expireDate": "19/2042"
+      "number": "6969696969696969",
+      "holder": "Lailyfa Febrina",
+      "expireDate": "19/2042",
+      "security code": "1010",
     },
-    {
-      "number": "1923409097349934",
-      "holder": "Ashoof Morad",
-      "expireDate": "19/2042"
-    }
   ];
 
   Future<void> addToList(Map<String, dynamic> data, String key) async {
