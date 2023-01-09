@@ -46,6 +46,14 @@ class AppStrings {
   static const String numberValidationMessage =
       "This Field Should Contain Numbers Only";
 
+  static const String cardNumberValidationMessage =
+      "Card Number should be 16 digits";
+  static const String cardHolderValidationMessage =
+      "Card Holder ex. THOMAS MESHAIL, Two names no numbers";
+  static const String expirationDateValidationMessage =
+      "MM/YYYY format, ex. 09/2024";
+  static const String securityCodeValidationMessage = "Four Numbers";
+
   static const String payment = 'Payment';
   static const String shipTo = 'Ship To';
   static const String pay = 'Pay';
@@ -118,4 +126,12 @@ class AppStrings {
   //Edit Address Screen
   static const String saveAddress = "Save Address";
   static const String editAddress = "Edit Address";
+
+  //Card Screen
+  static const String card = "Card";
+  static const String addCard = "Add Card";
+  static const String editCard = "Edit Card";
+  static const String cardNumber = "Card Number";
+  static const String expirationDate = "Expiration Date";
+  static const String securityCode = "Security Code";
 }

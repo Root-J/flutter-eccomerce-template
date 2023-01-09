@@ -70,31 +70,39 @@ class DataField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final BaseValidator? validator;
+  final bool isTwo;
   const DataField({
     Key? key,
     required this.controller,
     required this.hintText,
     required this.validator,
+    this.isTwo = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
-      child: TextFormField(
-          style: const AppTextStyles()
-              .formTextFill
-              .copyWith(color: AppColors.neutralGrey),
-          decoration: AppDecoration.formFieldDecoration(hintText),
-          controller: controller,
-          validator: (val) {
-            if (validator == null) {
+    Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: isTwo
+          ? (size.width * 0.5) - (AppPadding.p6 + (AppPadding.p8 * 2))
+          : null,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppPadding.p16),
+        child: TextFormField(
+            style: const AppTextStyles()
+                .formTextFill
+                .copyWith(color: AppColors.neutralGrey),
+            decoration: AppDecoration.formFieldDecoration(hintText),
+            controller: controller,
+            validator: (val) {
+              if (validator == null) {
+                return null;
+              } else if (!validator!.validate(val)) {
+                return validator!.getMessage();
+              }
               return null;
-            } else if (!validator!.validate(val)) {
-              return validator!.getMessage();
-            }
-            return null;
-          }),
+            }),
+      ),
     );
   }
 }

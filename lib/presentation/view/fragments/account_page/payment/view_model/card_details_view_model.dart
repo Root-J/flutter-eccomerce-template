@@ -36,12 +36,17 @@ class CardDetailsViewModel extends BaseViewModel
 
   Map<String, dynamic> _changeDataToMap() => {
         "number": cardNumberController.text,
-        "holder": cardHolderController.text,
+        "holder": cardHolderController.text.toUpperCase(),
         "expireDate": expirationDateController.text,
         "security code": securityCodeController.text,
       };
 
-  void getCardDetailsFromIndex(CreditCardModel creditCardModel) {}
+  void getCardDetailsFromIndex(CreditCardModel model) {
+    cardNumberController.text = model.number!;
+    expirationDateController.text = model.expireDate!;
+    securityCodeController.text = model.securityCode!;
+    cardHolderController.text = model.holder!;
+  }
 
   void addCardDetailsToData() {
     customPref.addToList(_changeDataToMap(), AppStrings.creditCardOrDebit);

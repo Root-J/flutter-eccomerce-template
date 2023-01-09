@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/fragments/account_page/payment/view_model/card_view_model.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/items/credit_card_item.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +47,8 @@ class CardScreen extends StatelessWidget {
       ),
       floatingActionButton: DefaultButton(
         width: size.width - AppPadding.p16 * 2,
-        title: AppStrings.addAddress,
-        onTap: () {},
+        title: AppStrings.addCard,
+        onTap: () => Navigator.pushNamed(context, Routes.accountCardDetails),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

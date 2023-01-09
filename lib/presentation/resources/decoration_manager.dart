@@ -19,6 +19,7 @@ class AppDecoration {
           errorStyle: const AppTextStyles()
               .bodyTextNormalBold
               .copyWith(color: AppColors.primaryRed),
+          errorMaxLines: 8,
           enabledBorder: defaultOutlineBorder(),
           focusedBorder: defaultOutlineBorder(color: AppColors.primaryBlue),
           errorBorder: defaultOutlineBorder(color: AppColors.primaryRed),
