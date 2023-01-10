@@ -90,3 +90,10 @@ class AlertIcons {
   static const String notFoundIcon = '$ALERT_ICONS_PATH/Not Found.png';
   static const String alertIcon = '$ALERT_ICONS_PATH/Alert.png';
 }
+
+const String Brand_ICONS_PATH = 'assets/icons/Icon_App';
+
+class BrandIcons {
+  static const String blueIcon = '$Brand_ICONS_PATH/single icon Blue.png';
+  static const String whiteIcon = '$Brand_ICONS_PATH/single icon White.png';
+}

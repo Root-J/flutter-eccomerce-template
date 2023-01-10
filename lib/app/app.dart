@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/presentation/view/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../presentation/resources/routes_manager.dart';
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'E commerce',
       debugShowCheckedModeBanner: false,
       theme: getApplicationTheme(),
-      home: const MarketParent(),
+      home: SplashScreen(),
+      // home: const MarketParent(),
     );
   }
 }

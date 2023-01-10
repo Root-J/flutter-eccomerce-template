@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.18.0
   intl_phone_number_input: ^0.7.1
   country_list_pick: ^1.0.1+6
+  flutter_native_splash: ^2.2.16
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
    - assets/icons/system_icon/16px/
    - assets/icons/social_icons/
    - assets/icons/Alert_Icon/
+   - assets/icons/Icon_App/
 
 
    # Images
