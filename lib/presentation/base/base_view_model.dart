@@ -1,7 +1,6 @@
 import 'dart:async';
 
-abstract class BaseViewModel extends BaseViewModelInputs
-    with BaseViewModelOutputs {
+abstract class BaseViewModel with BaseViewModelOutputs, BaseViewModelInputs {
   final StreamController _inputStateStreamController = StreamController();
 
   @override
@@ -19,13 +18,13 @@ abstract class BaseViewModel extends BaseViewModelInputs
 // shared variables and functions that will be used through any view model.
 }
 
-abstract class BaseViewModelInputs {
+mixin  BaseViewModelInputs {
   void start(); // will be called while init. of view model
   void dispose(); // will be called when view model dies.
 
   Sink get inputState;
 }
 
-abstract class BaseViewModelOutputs {
+mixin  BaseViewModelOutputs {
   Stream get outputState;
 }

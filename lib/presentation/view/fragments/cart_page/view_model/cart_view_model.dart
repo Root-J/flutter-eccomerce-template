@@ -2,7 +2,8 @@ import '/presentation/base/base_view_model.dart';
 import '../../../../../domain/models/cart_models/cart_items_model.dart';
 import '../../../../resources/assets_manager.dart';
 
-class CartViewModel extends BaseViewModel with CartViewInput, CartViewOutput {
+class CartViewModel extends BaseViewModel
+    implements CartViewInput, CartViewOutput {
   // This View Model
   // it's view should run a function
   // that change the current index value
@@ -100,12 +101,12 @@ class CartViewModel extends BaseViewModel with CartViewInput, CartViewOutput {
 
 //
 // inputs mean the orders that our view model will receive from our view
-abstract class CartViewInput {
+mixin CartViewInput on BaseViewModel {
   // Sink
   //     get inputCartViewObject; // this is the way to add data to the stream .. stream input
 }
 
 // outputs mean data or results that will be sent from our view model to our view
-abstract class CartViewOutput {
+mixin CartViewOutput on BaseViewModel {
   // Stream get outputCartViewObject;
 }

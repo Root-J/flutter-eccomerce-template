@@ -70,7 +70,7 @@ class MarketParentViewModel extends BaseViewModel
 }
 
 // inputs mean the orders that our view model will receive from our view
-abstract class ParentViewInput {
+mixin ParentViewInput on BaseViewModel {
   void onPageChanged(int index);
 
   Sink
@@ -78,11 +78,12 @@ abstract class ParentViewInput {
 }
 
 // outputs mean data or results that will be sent from our view model to our view
-abstract class ParentViewOutput {
+mixin ParentViewOutput on BaseViewModel {
   Stream get outputNavViewObject;
 }
 
 class ParentIndexParams {
   final int intIndex;
+
   const ParentIndexParams({required this.intIndex});
 }

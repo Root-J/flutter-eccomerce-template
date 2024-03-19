@@ -65,10 +65,10 @@ class CardViewModel extends BaseViewModel
       _streamController.stream.map((event) => event);
 }
 
-abstract class CardViewModelOutput {
+mixin CardViewModelOutput on BaseViewModel{
   Stream<List<CreditCardModel>> get outputCardViewObject;
 }
 
-abstract class CardViewModelInput {
+mixin CardViewModelInput on BaseViewModel{
   Sink<List<CreditCardModel>> get inputCardViewObject;
 }

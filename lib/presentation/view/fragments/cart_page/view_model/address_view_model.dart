@@ -82,11 +82,11 @@ class AddressViewModel extends BaseViewModel
       _streamController.stream.map((event) => event);
 }
 
-abstract class AddressViewModelOutput {
+mixin AddressViewModelOutput on BaseViewModel {
   Stream<List<AddressModel>> get outputAddressViewObject;
 }
 
-abstract class AddressViewModelInput {
+mixin AddressViewModelInput on BaseViewModel {
   void selectAddress(int selectedI);
   Sink<List<AddressModel>> get inputAddressViewObject;
 }

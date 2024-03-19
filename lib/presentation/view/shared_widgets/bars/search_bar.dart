@@ -5,8 +5,8 @@ import '../../../resources/colors_manager.dart';
 import '../../../resources/text_styles_manager.dart';
 import '../../../resources/values_manager.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
+class CustomSearchBar extends StatelessWidget {
+  const CustomSearchBar({
     Key? key,
     required this.searchController,
     required this.searchFocusNode,

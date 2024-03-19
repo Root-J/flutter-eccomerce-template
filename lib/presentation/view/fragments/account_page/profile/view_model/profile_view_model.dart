@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:ecommerce_flutter/domain/models/account_models/profile_models/profile_model.dart';
+import 'package:ecommerce_flutter/presentation/resources/strings_manager.dart';
+import 'package:ecommerce_flutter/presentation/base/base_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../../base/base_view_model.dart';
-import '../../../../../resources/strings_manager.dart';
 
 class ProfileViewModel extends BaseViewModel
     with ProfileViewModelInput, ProfileViewModelOutput {
@@ -56,10 +55,10 @@ class ProfileViewModel extends BaseViewModel
       _streamController.stream.map((event) => event);
 }
 
-abstract class ProfileViewModelInput {
+mixin ProfileViewModelInput on BaseViewModel {
   Sink<ProfileModel> get inputProfileViewObject;
 }
 
-abstract class ProfileViewModelOutput {
+mixin ProfileViewModelOutput on BaseViewModel {
   Stream<ProfileModel> get outputProfileViewObject;
 }

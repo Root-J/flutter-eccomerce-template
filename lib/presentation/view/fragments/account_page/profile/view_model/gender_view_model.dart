@@ -57,12 +57,12 @@ class GenderViewModel extends BaseViewModel
       _streamController.stream.map((event) => event);
 }
 
-abstract class GenderViewModelInput {
+mixin GenderViewModelInput on BaseViewModel {
   void onChange(String selection);
   Sink<GenderModel> get inputGenderViewObject;
 }
 
-abstract class GenderViewModelOutput {
+mixin GenderViewModelOutput on BaseViewModel {
   Stream<GenderModel> get outputGenderViewObject;
 }
 

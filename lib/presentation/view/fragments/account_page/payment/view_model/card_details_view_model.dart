@@ -59,6 +59,6 @@ class CardDetailsViewModel extends BaseViewModel
   }
 }
 
-abstract class CardDetailsViewModelOutput {}
+mixin CardDetailsViewModelOutput on BaseViewModel {}
 
-abstract class CardDetailsViewModelInput {}
+mixin CardDetailsViewModelInput on BaseViewModel {}

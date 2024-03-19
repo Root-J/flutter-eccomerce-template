@@ -1,9 +1,8 @@
+import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/routes_manager.dart';
+import 'package:ecommerce_flutter/presentation/resources/values_manager.dart';
 import 'package:ecommerce_flutter/presentation/view/shared_widgets/bars/search_bar.dart';
 import 'package:flutter/material.dart';
-
-import '../../../resources/assets_manager.dart';
-import '../../../resources/routes_manager.dart';
-import '../../../resources/values_manager.dart';
 
 class AppBarActiveSearch extends StatelessWidget {
   const AppBarActiveSearch({
@@ -21,11 +20,10 @@ class AppBarActiveSearch extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          // expanded widget here make the search bar takes the available space
-          child: SearchBar(
-              searchController: searchController,
-              searchFocusNode: searchFocusNode),
-        ),
+            // expanded widget here make the search bar takes the available space
+            child: CustomSearchBar(
+                searchController: searchController,
+                searchFocusNode: searchFocusNode)),
         const SizedBox(width: AppMargin.m8),
         GestureDetector(
             onTap: () =>

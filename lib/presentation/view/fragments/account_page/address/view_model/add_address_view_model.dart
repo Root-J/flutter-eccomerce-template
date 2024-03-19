@@ -88,6 +88,6 @@ class AddAddressViewModel extends BaseViewModel
   }
 }
 
-abstract class AddAddressViewModelOutput {}
+mixin  AddAddressViewModelOutput on BaseViewModel {}
 
-abstract class AddAddressViewModelInput {}
+mixin  AddAddressViewModelInput on BaseViewModel {}
