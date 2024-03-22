@@ -17,61 +17,59 @@ class MarketParentViewModel extends BaseViewModel
   // and return a state class
   // stream controllers
 
-  // TODO : remove braodcast() method it's only there for developing process
-  final StreamController _streamController =
-      StreamController<Widget>.broadcast();
+  // // TODO : remove broadcast() method it's only there for developing process
+  // final StreamController _streamController =
+  //     StreamController<Widget>.broadcast();
 
-  late final List _list;
+  late List<Widget> _list;
 
   int _currentIndex = 0;
 
   // inputs
   @override
   void dispose() {
-    _streamController.close();
+    // _streamController.close();
   }
+
+  List<Widget> get getPagesList => _list;
 
   @override
   void start() {
     _list = _getPages();
-    _postDataToView();
+    // _postDataToView();
   }
+
+
+  int get getCurrentIndex => _currentIndex;
+  void setIndex(int index) => _currentIndex = index;
 
   @override
-  void onPageChanged(int index) {
-    _currentIndex = index;
-    _postDataToView();
-  }
+  Sink get inputNavViewObject => throw UnimplementedError();
 
-  int get getCurrentIndex {
-    return _currentIndex;
-  }
-
-  @override
-  Sink get inputNavViewObject => _streamController.sink;
+  // _streamController.sink;
 
   // outputs
   @override
-  Stream<Widget> get outputNavViewObject =>
-      _streamController.stream.map((screen) => screen);
+  Stream<Widget> get outputNavViewObject => throw UnimplementedError();
+
+  // _streamController.stream.map((screen) => screen);
 
   // private functions
-  List _getPages() => [
+  List<Widget> _getPages() => [
         HomePage(),
         ExplorePage(),
         const CartPage(),
         const OfferPage(),
         const AccountPage(),
       ];
-
-  void _postDataToView() {
-    inputNavViewObject.add(_list[_currentIndex]);
-  }
+// void _postDataToView() {
+//   inputNavViewObject.add(_list[_currentIndex]);
+// }
 }
 
 // inputs mean the orders that our view model will receive from our view
 mixin ParentViewInput on BaseViewModel {
-  void onPageChanged(int index);
+  // void onPageChanged(int index);
 
   Sink
       get inputNavViewObject; // this is the way to add data to the stream .. stream input

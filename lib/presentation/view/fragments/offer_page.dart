@@ -8,8 +8,10 @@ import '../shared_widgets/header_padding.dart';
 import '../shared_widgets/items/sales_ad.dart';
 import '../shared_widgets/text_header.dart';
 
+int offerSeconds = 25000;
+
 class OfferPage extends StatelessWidget {
-  const OfferPage({Key? key}) : super(key: key);
+  const OfferPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +19,25 @@ class OfferPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
-          HeaderPadding(widget: TextHeader(text: AppStrings.offer)),
-          CouponBar(
+        children: <Widget>[
+          const HeaderPadding(widget: TextHeader(text: AppStrings.offer)),
+          const CouponBar(
               message:
                   'Use “MEGSL” Coupon For Get 90%off'), // ToDo add Api call that create that coupon
-          SizedBox(height: AppMargin.m24),
+          const SizedBox(height: AppMargin.m24),
           SaleAd(
             bgImagePath: PromotionImage.redShoeImage,
             widget: SaleAdClock(
-                seconds: 25000, saleName: AppStrings.flashSale, discount: 50),
+                seconds: offerSeconds, saleName: AppStrings.flashSale, discount: 50),
           ),
-          SizedBox(height: AppMargin.m24),
-          SaleAd(
+          const SizedBox(height: AppMargin.m24),
+          const SaleAd(
               bgImagePath: PromotionImage.whiteShoeImage,
               widget: RecommendationTexts(
                   title:
                       '90% Off Super Mega Sale', // ToDo add Api call that create Sale Ad Widget
                   subtitle: 'Special birthday gift for you')),
-          SizedBox(height: AppMargin.m24),
+          const SizedBox(height: AppMargin.m24),
         ],
       ),
     );

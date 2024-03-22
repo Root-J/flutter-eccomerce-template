@@ -12,8 +12,11 @@ import '../shared_widgets/items/sale_item.dart';
 import '../shared_widgets/items/sales_ad.dart';
 import '../shared_widgets/slide_show.dart';
 
+int adSeconds = 30000;
+
+
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   final TextEditingController searchController = TextEditingController();
   final FocusNode searchFocusNode = FocusNode();
@@ -99,14 +102,14 @@ class HomePage extends StatelessWidget {
                debugPrint('Page changed: $value');
             },
             */
-            autoPlayInterval: 6000,
+            autoPlayInterval: 12000,
             isLoop: true,
             children: [
-              const SaleAd(
+               SaleAd(
                   // Todo Add Api call that create sale Ad
                   bgImagePath: PromotionImage.redShoeImage,
                   widget: SaleAdClock(
-                      seconds: 30000,
+                      seconds: adSeconds,
                       saleName: 'Super Flash Sale',
                       discount: 50)),
               Image.asset(

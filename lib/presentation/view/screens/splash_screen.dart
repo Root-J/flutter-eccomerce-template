@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter/presentation/resources/assets_manager.dart';
 import 'package:ecommerce_flutter/presentation/resources/colors_manager.dart';
+import 'package:ecommerce_flutter/presentation/view/parent_nav/parent_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,9 +14,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light));
+    Future.delayed(const Duration(seconds: 3)).then((value) => Navigator.push(
+        context, MaterialPageRoute(builder: (builder) => MarketParent())));
     super.initState();
   }
 

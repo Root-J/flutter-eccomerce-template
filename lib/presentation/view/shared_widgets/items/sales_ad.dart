@@ -1,9 +1,16 @@
+import 'dart:async';
+
+import 'package:ecommerce_flutter/presentation/view/fragments/home_page.dart';
+import 'package:ecommerce_flutter/presentation/view/fragments/offer_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/colors_manager.dart';
 import '../../../resources/text_styles_manager.dart';
 import '../../../resources/values_manager.dart';
 import 'numeric_clock.dart';
+
+// ToDo: solve issue with count down and mount set state
+// ToDo: separate classes in different files
 
 class SaleAd extends StatelessWidget {
   /// This Widget as responsible for Ad Banners in the App
@@ -22,8 +29,8 @@ class SaleAd extends StatelessWidget {
 
   final String bgImagePath;
   final Widget widget;
-  const SaleAd({Key? key, required this.bgImagePath, required this.widget})
-      : super(key: key);
+
+  const SaleAd({super.key, required this.bgImagePath, required this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +39,17 @@ class SaleAd extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppCircularRadius.cr5)),
         child: Stack(children: [
-          Image.asset(
-            bgImagePath,
-            fit: BoxFit.fill,
+          SizedBox(
+            width: size.width,
+            child: Image.asset(
+              bgImagePath,
+              fit: BoxFit.fill,
+            ),
           ),
-          SizedBox(height: size.height / AppSize.s4, child: widget)
+          SizedBox(
+              height: size.height / AppSize.s4,
+              width: size.width,
+              child: widget)
         ]));
   }
 }
@@ -58,54 +71,39 @@ class SaleAdClock extends StatefulWidget {
   final int discount;
 
   const SaleAdClock({
-    Key? key,
+    super.key,
     required this.seconds,
     required this.saleName,
     required this.discount,
-  }) : super(key: key);
+  });
 
   @override
   State<SaleAdClock> createState() => _SaleAdClockState();
 }
 
-int hours = 0;
-int minutes = 0;
-int remainSeconds = 0;
-
-void timeTranslator(seconds) {
-  hours = seconds / (60 * 60) > 1 ? (seconds / (60 * 60)).truncate() : 0;
-  minutes = seconds / (60) > 1 ? (seconds / (60) - (60 * hours)).truncate() : 0;
-  remainSeconds = seconds - (hours * 60 * 60) - (minutes * 60);
-}
+// int hours = 0;
+// int minutes = 0;
+// int remainSeconds = 0;
+//
+// void timeTranslator(seconds) {
+//   hours = seconds / (60 * 60) > 1 ? (seconds / (60 * 60)).truncate() : 0;
+//   minutes = seconds / (60) > 1 ? (seconds / (60) - (60 * hours)).truncate() : 0;
+//   remainSeconds = seconds - (hours * 60 * 60) - (minutes * 60);
+// }
 
 class _SaleAdClockState extends State<SaleAdClock> {
-  void countDownTimer(seconds) async {
-    for (int x = seconds; x > 0; x--) {
-      await Future.delayed(const Duration(seconds: 1)).then((_) {
-        setState(() {
-          if (remainSeconds > 0) {
-            remainSeconds--;
-          } else if (remainSeconds == 0 && minutes > 0) {
-            minutes--;
-            remainSeconds = 60;
-            remainSeconds--;
-          } else if (remainSeconds == 0 && minutes == 0 && hours > 0) {
-            hours--;
-            minutes = 60;
-            minutes--;
-            remainSeconds = 60;
-            remainSeconds--;
-          }
-        });
-      });
-    }
-  }
+  final CountdownTimer _timer = CountdownTimer();
 
   @override
   void initState() {
     super.initState();
-    timeTranslator(widget.seconds);
-    countDownTimer(widget.seconds);
+    _timer.start(widget.seconds);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.dispose();
   }
 
   @override
@@ -124,10 +122,28 @@ class _SaleAdClockState extends State<SaleAdClock> {
               style: const AppTextStyles()
                   .headingH2
                   .copyWith(color: AppColors.backgroundWhite)),
-          NumericClock(
-            hours: hours.toString(),
-            seconds: remainSeconds.toString(),
-            minutes: minutes.toString(),
+          StreamBuilder(
+            stream: _timer.timerStream,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                final data = snapshot.data;
+                if (data != null && data.length >= 4) {
+                  return NumericClock(
+                    hours: data[1].toString(),
+                    seconds: data[3].toString(),
+                    minutes: data[2].toString(),
+                  );
+                } else {
+                  return const Text('Invalid data received from stream');
+                }
+              } else {
+                return const Text('No data available');
+              }
+            },
           )
         ],
       ),
@@ -138,9 +154,9 @@ class _SaleAdClockState extends State<SaleAdClock> {
 class RecommendationTexts extends StatelessWidget {
   final String title;
   final String subtitle;
+
   const RecommendationTexts(
-      {Key? key, required this.title, required this.subtitle})
-      : super(key: key);
+      {super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -171,5 +187,46 @@ class RecommendationTexts extends StatelessWidget {
             ]),
       ),
     );
+  }
+}
+
+class CountdownTimer {
+  late StreamController<List<int>> _timerController;
+  late Timer _timer;
+  late int _seconds;
+
+  CountdownTimer() {
+    _timerController = StreamController<List<int>>.broadcast();
+  }
+
+  Stream<List<int>> get timerStream => _timerController.stream;
+
+  void start(int seconds) {
+    _seconds = seconds;
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_seconds > 0) {
+        final days = _seconds ~/ (24 * 3600);
+        final hours = (_seconds ~/ 3600) % 24;
+        final minutes = (_seconds ~/ 60) % 60;
+        final seconds = _seconds % 60;
+        final timeString = [days, hours, minutes, seconds];
+        _timerController.sink.add(timeString);
+        debugPrint(adSeconds.toString());
+        adSeconds--;
+        offerSeconds--;
+        _seconds--;
+      } else {
+        _timer.cancel();
+      }
+    });
+  }
+
+  void dispose() {
+    _timer.cancel();
+    _timerController.close();
   }
 }

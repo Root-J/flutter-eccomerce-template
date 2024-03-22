@@ -13,7 +13,7 @@ class MarketParent extends StatefulWidget {
 
   final int? intIndex;
 
-  const MarketParent({Key? key, this.intIndex = 0}) : super(key: key);
+  const MarketParent({super.key, this.intIndex = 0});
 
   @override
   State<MarketParent> createState() => _MarketParentState();
@@ -35,7 +35,7 @@ class _MarketParentState extends State<MarketParent> {
   _bind() {
     _viewModel.start();
     if (widget.intIndex != null) {
-      _viewModel.onPageChanged(widget.intIndex!);
+      onPageChanged(widget.intIndex!);
     }
   }
 
@@ -54,14 +54,12 @@ class _MarketParentState extends State<MarketParent> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: _viewModel.outputNavViewObject,
-        builder: (context, snapshot) {
-          return getMarketUI(snapshot.data);
-        });
+    // final selectedIndex = ref.watch();
+    return getMarketUI(
+        _viewModel.getPagesList[_viewModel.getCurrentIndex], context);
   }
 
-  Widget getMarketUI(fragment) {
+  Widget getMarketUI(fragment, BuildContext context) {
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -96,42 +94,32 @@ class _MarketParentState extends State<MarketParent> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.homeIcon,
-                scale: bottomNavItemsScale,
-                color: _viewModel.getCurrentIndex == 0
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralGrey),
+                scale: AppCustomSizes.bottomNavItemsScale,
+                color: getItemColor(0)),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.searchIcon,
-                scale: bottomNavItemsScale,
-                color: _viewModel.getCurrentIndex == 1
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralGrey),
+                scale: AppCustomSizes.bottomNavItemsScale,
+                color: getItemColor(1)),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.cartIcon,
-                scale: bottomNavItemsScale,
-                color: _viewModel.getCurrentIndex == 2
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralGrey),
+                scale: AppCustomSizes.bottomNavItemsScale,
+                color: getItemColor(2)),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.offerIcon,
-                scale: bottomNavItemsScale,
-                color: _viewModel.getCurrentIndex == 3
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralGrey),
+                scale: AppCustomSizes.bottomNavItemsScale,
+                color: getItemColor(3)),
             label: 'Offer',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(SystemIcons.userIcon,
-                scale: bottomNavItemsScale,
-                color: _viewModel.getCurrentIndex == 4
-                    ? AppColors.primaryBlue
-                    : AppColors.neutralGrey),
+                scale: AppCustomSizes.bottomNavItemsScale,
+                color: getItemColor(4)),
             label: 'Account',
           ),
         ],
@@ -140,14 +128,14 @@ class _MarketParentState extends State<MarketParent> {
         selectedLabelStyle: const AppTextStyles().captionLargeBold,
         unselectedItemColor: Colors.grey,
         selectedItemColor: AppColors.primaryBlue,
-        onTap: _viewModel.onPageChanged,
+        onTap: onPageChanged,
       ),
     );
   }
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     pageIndex = index;
-  //   });
-  // }
+  void onPageChanged(int index) => setState(() => _viewModel.setIndex(index));
+
+  Color getItemColor(int index) => _viewModel.getCurrentIndex == index
+      ? AppColors.primaryBlue
+      : AppColors.neutralGrey;
 }

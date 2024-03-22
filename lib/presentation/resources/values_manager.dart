@@ -1,3 +1,10 @@
+class AppCustomSizes {
+  static const double bottomNavItemsScale = AppSize.s20;
+}
+
+
+
+
 class AppMargin {
   static const double m4 = 4.0;
   static const double m8 = 8.0;

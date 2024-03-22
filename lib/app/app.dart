@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'E commerce',
       debugShowCheckedModeBanner: false,
       theme: getApplicationTheme(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
       // home: const MarketParent(),
     );
   }
